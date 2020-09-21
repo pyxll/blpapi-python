@@ -1,5 +1,5 @@
-Bloomberg Python API version 3.9
-================================
+Bloomberg Python API version 3.12
+=================================
 
 This directory contains an interface for interacting with Bloomberg API
 services using the Python programming language. This package is the source

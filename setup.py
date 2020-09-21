@@ -11,7 +11,7 @@ from sys import version
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 platform = plat.system().lower()
-versionString = '3.12.2'
+versionString = '3.12.3'
 
 if version < '2.6':
     raise Exception(
