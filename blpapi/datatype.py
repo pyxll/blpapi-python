@@ -6,35 +6,16 @@ This file defines these classes:
     'DataType' - "enum" representing all possible data types in an Element.
 """
 
-
-
 from . import internals
 from . import utils
 from .compat import with_metaclass
 
+# pylint: disable=too-few-public-methods,useless-object-inheritance
 
 @with_metaclass(utils.MetaClassForClassesWithEnums)
 class DataType(object):
-    """Contains the possible data types which can be represented in an Element.
-
-    Class attributes:
-        BOOL            Boolean
-        CHAR            Char
-        BYTE            Unsigned 8 bit value
-        INT32           32 bit Integer
-        INT64           64 bit Integer
-        FLOAT32         32 bit Floating point
-        FLOAT64         64 bit Floating point
-        STRING          ASCIIZ string
-        BYTEARRAY       Opaque binary data
-        DATE            Date
-        TIME            Timestamp
-        DECIMAL         Currently Unsuppored
-        DATETIME        Date and time
-        ENUMERATION     An opaque enumeration
-        SEQUENCE        Sequence type
-        CHOICE          Choice type
-        CORRELATION_ID  Used for some internal messages
+    """Contains the possible data types which can be represented in an
+    :class:`Element`.
     """
 
     BOOL = internals.DATATYPE_BOOL

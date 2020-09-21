@@ -5,12 +5,14 @@
 from __future__ import absolute_import
 from __future__ import division
 
+import datetime as _dt
+
 from . import internals
 from . import utils
 from .compat import with_metaclass
 
-import datetime as _dt
 
+# pylint: disable=no-member,useless-object-inheritance
 
 @with_metaclass(utils.MetaClassForClassesWithEnums)
 class FixedOffset(_dt.tzinfo):
@@ -19,42 +21,56 @@ class FixedOffset(_dt.tzinfo):
     Represents time zone information to be used with Python standard library
     datetime classes.
 
-    FixedOffset(offsetInMinutes) creates an object that implements
-    datetime.tzinfo interface and represents a timezone with the specified
-    'offsetInMinutes' from UTC.
-
-    This class is intended to be used as 'tzinfo' for Python standard library
-    datetime.datetime and datetime.time classes. These classes are accepted by
-    the blpapi package to set DATE, TIME or DATETIME elements. For example, the
-    DATETIME element of a request could be set as:
+    This class is intended to be used as ``tzinfo`` for Python standard library
+    :class:`datetime.datetime` and :class:`datetime.time` classes. These
+    classes are accepted by the blpapi package to set :attr:`~DataType.DATE`,
+    :attr:`~DataType.TIME` or :attr:`~DataType.DATETIME` elements. For example,
+    the :attr:`~DataType.DATETIME` element of a request could be set as::
 
         value = datetime.datetime(1941, 6, 22, 4, 0, tzinfo=FixedOffset(4*60))
         request.getElement("last_trade").setValue(value)
 
-    The TIME element could be set in a similar way:
+    The :attr:`~DataType.TIME` element could be set in a similar way::
 
         value = datetime.time(9, 0, 1, tzinfo=FixedOffset(-5*60))
         request.getElement("session_open").setValue(value)
 
-    Note that you could use any other implementations of datetime.tzinfo with
-    BLPAPI-Py, for example the widely used 'pytz' package
-    (http://pypi.python.org/pypi/pytz/).
+    Note that you could use any other implementations of
+    :class:`datetime.tzinfo` with BLPAPI-Py, for example the widely used
+    ``pytz`` package (https://pypi.python.org/pypi/pytz/).
 
     For more details see datetime module documentation at
-    http://docs.python.org/library/datetime.html
-
+    https://docs.python.org/library/datetime.html
     """
 
     def __init__(self, offsetInMinutes=0):
+        """
+        Args:
+            offsetInMinutes (int): Offset from UTC in minutes
+
+        Creates an object that implements :class:`datetime.tzinfo` interface
+        and represents a timezone with the specified ``offsetInMinutes`` from
+        UTC.
+        """
         self.__offset = _dt.timedelta(minutes=offsetInMinutes)
 
-    def utcoffset(self, unused):
+    def utcoffset(self, dt):
+        del dt
         return self.__offset
 
-    def dst(self, unused):
+    def dst(self, dt): # pylint: disable=no-self-use
+        del dt
         return _dt.timedelta(0)
 
+    def tzname(self, dt):
+        del dt
+        return self.__offset
+
     def getOffsetInMinutes(self):
+        """
+        Returns:
+            int: Offset from UTC in minutes
+        """
         return self.__offset.days * 24 * 60 + self.__offset.seconds // 60
 
     def __hash__(self):
@@ -63,10 +79,10 @@ class FixedOffset(_dt.tzinfo):
 
     def __cmp__(self, other):
         """Let the comparison operations work based on the time delta.
-        NOTE: (compatibility) this method have no special meaning in python3, 
+        NOTE: (compatibility) this method have no special meaning in python3,
         we should use __eq__, __lt__ and __le__ instead. Built-in cmp function
         is also gone. This method can be called only from python2."""
-        return cmp(self.getOffsetInMinutes(), other.getOffsetInMinutes())
+        return cmp(self.getOffsetInMinutes(), other.getOffsetInMinutes()) # pylint: disable=undefined-variable
 
     def __eq__(self, other):
         """Let the equality operator work based on the time delta."""
@@ -91,8 +107,9 @@ class _DatetimeUtil(object):
     def convertToNative(blpapiDatetimeObj):
         """Convert BLPAPI Datetime object to a suitable Python object."""
 
-        isHighPrecision = isinstance(blpapiDatetimeObj,
-                internals.blpapi_HighPrecisionDatetime_tag)
+        isHighPrecision = isinstance(
+            blpapiDatetimeObj,
+            internals.blpapi_HighPrecisionDatetime_tag)
 
         if isHighPrecision:
             # used for (get/set)Element, (get/set/append)Value methods
@@ -124,21 +141,21 @@ class _DatetimeUtil(object):
                                     blpapiDatetime.seconds,
                                     microsecs,
                                     tzinfo)
-            else:
-                # Skip an offset, because it's not informative in case of
-                # there is a date without the time
-                return _dt.date(blpapiDatetime.year,
-                                blpapiDatetime.month,
-                                blpapiDatetime.day)
-        else:
-            if not hasTime:
-                raise ValueError("Datetime object misses both time and date \
-parts", blpapiDatetime)
-            return _dt.time(blpapiDatetime.hours,
-                            blpapiDatetime.minutes,
-                            blpapiDatetime.seconds,
-                            microsecs,
-                            tzinfo)
+            # Skip an offset, because it's not informative in case of
+            # there is a date without the time
+            return _dt.date(blpapiDatetime.year,
+                            blpapiDatetime.month,
+                            blpapiDatetime.day)
+
+        if not hasTime:
+            raise ValueError(
+                "Datetime object misses both time and date parts",
+                blpapiDatetime)
+        return _dt.time(blpapiDatetime.hours,
+                        blpapiDatetime.minutes,
+                        blpapiDatetime.seconds,
+                        microsecs,
+                        tzinfo)
 
     @staticmethod
     def isDatetime(dtime):

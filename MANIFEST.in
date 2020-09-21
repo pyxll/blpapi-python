@@ -1,0 +1,4 @@
+include README changelog.txt NOTES
+
+recursive-include examples *.py
+

@@ -16,30 +16,6 @@
 #define SWIG_PYTHON_THREADS
 #define SWIG_PYTHON_DIRECTOR_NO_VTABLE
 
-
-#ifdef __cplusplus
-/* SwigValueWrapper is described in swig.swg */
-template<typename T> class SwigValueWrapper {
-  struct SwigMovePointer {
-    T *ptr;
-    SwigMovePointer(T *p) : ptr(p) { }
-    ~SwigMovePointer() { delete ptr; }
-    SwigMovePointer& operator=(SwigMovePointer& rhs) { T* oldptr = ptr; ptr = 0; delete oldptr; ptr = rhs.ptr; rhs.ptr = 0; return *this; }
-  } pointer;
-  SwigValueWrapper& operator=(const SwigValueWrapper<T>& rhs);
-  SwigValueWrapper(const SwigValueWrapper<T>& rhs);
-public:
-  SwigValueWrapper() : pointer(0) { }
-  SwigValueWrapper& operator=(const T& t) { SwigMovePointer tmp(new T(t)); pointer = tmp; return *this; }
-  operator T&() const { return *pointer.ptr; }
-  T *operator&() { return pointer.ptr; }
-};
-
-template <typename T> T SwigValueInit() {
-  return T();
-}
-#endif
-
 /* -----------------------------------------------------------------------------
  *  This section contains generic SWIG labels for method/variable
  *  declarations/attributes, and other compiler dependent labels.
@@ -443,6 +419,7 @@ SWIG_TypeCheck(const char *c, swig_type_info *ty) {
     swig_cast_info *iter = ty->cast;
     while (iter) {
       if (strcmp(iter->type->name, c) == 0) {
+#if 0
         if (iter == ty->cast)
           return iter;
         /* Move iter to the top of the linked list */
@@ -453,6 +430,7 @@ SWIG_TypeCheck(const char *c, swig_type_info *ty) {
         iter->prev = 0;
         if (ty->cast) ty->cast->prev = iter;
         ty->cast = iter;
+#endif
         return iter;
       }
       iter = iter->next;
@@ -470,6 +448,7 @@ SWIG_TypeCheckStruct(swig_type_info *from, swig_type_info *ty) {
     swig_cast_info *iter = ty->cast;
     while (iter) {
       if (iter->type == from) {
+#if 0
         if (iter == ty->cast)
           return iter;
         /* Move iter to the top of the linked list */
@@ -480,6 +459,7 @@ SWIG_TypeCheckStruct(swig_type_info *from, swig_type_info *ty) {
         iter->prev = 0;
         if (ty->cast) ty->cast->prev = iter;
         ty->cast = iter;
+#endif
         return iter;
       }
       iter = iter->next;
@@ -3007,69 +2987,67 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_BloombergLP__blpapi__AbstractSession swig_types[0]
-#define SWIGTYPE_p_BloombergLP__blpapi__ProviderSession swig_types[1]
-#define SWIGTYPE_p_BloombergLP__blpapi__Session swig_types[2]
-#define SWIGTYPE_p_blpapi_AbstractSession swig_types[3]
-#define SWIGTYPE_p_blpapi_Constant swig_types[4]
-#define SWIGTYPE_p_blpapi_ConstantList swig_types[5]
-#define SWIGTYPE_p_blpapi_CorrelationId_t_ swig_types[6]
-#define SWIGTYPE_p_blpapi_Datetime_tag swig_types[7]
-#define SWIGTYPE_p_blpapi_Element swig_types[8]
-#define SWIGTYPE_p_blpapi_Event swig_types[9]
-#define SWIGTYPE_p_blpapi_EventDispatcher swig_types[10]
-#define SWIGTYPE_p_blpapi_EventFormatter swig_types[11]
-#define SWIGTYPE_p_blpapi_EventQueue swig_types[12]
-#define SWIGTYPE_p_blpapi_HighPrecisionDatetime_tag swig_types[13]
-#define SWIGTYPE_p_blpapi_Identity swig_types[14]
-#define SWIGTYPE_p_blpapi_Logging_Func_t swig_types[15]
-#define SWIGTYPE_p_blpapi_Logging_Severity_t swig_types[16]
-#define SWIGTYPE_p_blpapi_ManagedPtr_t_ swig_types[17]
-#define SWIGTYPE_p_blpapi_Message swig_types[18]
-#define SWIGTYPE_p_blpapi_MessageIterator swig_types[19]
-#define SWIGTYPE_p_blpapi_Name swig_types[20]
-#define SWIGTYPE_p_blpapi_Operation swig_types[21]
-#define SWIGTYPE_p_blpapi_ProviderSession swig_types[22]
-#define SWIGTYPE_p_blpapi_Request swig_types[23]
-#define SWIGTYPE_p_blpapi_RequestTemplate swig_types[24]
-#define SWIGTYPE_p_blpapi_ResolutionList swig_types[25]
-#define SWIGTYPE_p_blpapi_Service swig_types[26]
-#define SWIGTYPE_p_blpapi_ServiceRegistrationOptions swig_types[27]
-#define SWIGTYPE_p_blpapi_Session swig_types[28]
-#define SWIGTYPE_p_blpapi_SessionOptions swig_types[29]
-#define SWIGTYPE_p_blpapi_StreamWriter_t swig_types[30]
-#define SWIGTYPE_p_blpapi_SubscriptionItrerator swig_types[31]
-#define SWIGTYPE_p_blpapi_SubscriptionList swig_types[32]
-#define SWIGTYPE_p_blpapi_TimePoint_t swig_types[33]
-#define SWIGTYPE_p_blpapi_TlsOptions swig_types[34]
-#define SWIGTYPE_p_blpapi_Topic swig_types[35]
-#define SWIGTYPE_p_blpapi_TopicList swig_types[36]
-#define SWIGTYPE_p_char swig_types[37]
-#define SWIGTYPE_p_double swig_types[38]
-#define SWIGTYPE_p_f_p_blpapi_Event_p_blpapi_ProviderSession_p_void__void swig_types[39]
-#define SWIGTYPE_p_float swig_types[40]
-#define SWIGTYPE_p_int swig_types[41]
-#define SWIGTYPE_p_intArray swig_types[42]
-#define SWIGTYPE_p_long_long swig_types[43]
-#define SWIGTYPE_p_p_blpapi_Element swig_types[44]
-#define SWIGTYPE_p_p_blpapi_Event swig_types[45]
-#define SWIGTYPE_p_p_blpapi_Message swig_types[46]
-#define SWIGTYPE_p_p_blpapi_Name swig_types[47]
-#define SWIGTYPE_p_p_blpapi_Operation swig_types[48]
-#define SWIGTYPE_p_p_blpapi_Request swig_types[49]
-#define SWIGTYPE_p_p_blpapi_RequestTemplate swig_types[50]
-#define SWIGTYPE_p_p_blpapi_Service swig_types[51]
-#define SWIGTYPE_p_p_blpapi_Topic swig_types[52]
-#define SWIGTYPE_p_p_char swig_types[53]
-#define SWIGTYPE_p_p_p_void swig_types[54]
-#define SWIGTYPE_p_p_void swig_types[55]
-#define SWIGTYPE_p_short swig_types[56]
-#define SWIGTYPE_p_unsigned_char swig_types[57]
-#define SWIGTYPE_p_unsigned_int swig_types[58]
-#define SWIGTYPE_p_unsigned_long_long swig_types[59]
-#define SWIGTYPE_p_unsigned_short swig_types[60]
-static swig_type_info *swig_types[62];
-static swig_module_info swig_module = {swig_types, 61, 0, 0, 0, 0};
+#define SWIGTYPE_p_blpapi_AbstractSession swig_types[0]
+#define SWIGTYPE_p_blpapi_Constant swig_types[1]
+#define SWIGTYPE_p_blpapi_ConstantList swig_types[2]
+#define SWIGTYPE_p_blpapi_CorrelationId_t_ swig_types[3]
+#define SWIGTYPE_p_blpapi_CorrelationId_t__value swig_types[4]
+#define SWIGTYPE_p_blpapi_Datetime_tag swig_types[5]
+#define SWIGTYPE_p_blpapi_Element swig_types[6]
+#define SWIGTYPE_p_blpapi_Event swig_types[7]
+#define SWIGTYPE_p_blpapi_EventDispatcher swig_types[8]
+#define SWIGTYPE_p_blpapi_EventFormatter swig_types[9]
+#define SWIGTYPE_p_blpapi_EventQueue swig_types[10]
+#define SWIGTYPE_p_blpapi_HighPrecisionDatetime_tag swig_types[11]
+#define SWIGTYPE_p_blpapi_Identity swig_types[12]
+#define SWIGTYPE_p_blpapi_Logging_Func_t swig_types[13]
+#define SWIGTYPE_p_blpapi_Logging_Severity_t swig_types[14]
+#define SWIGTYPE_p_blpapi_ManagedPtr_t_ swig_types[15]
+#define SWIGTYPE_p_blpapi_Message swig_types[16]
+#define SWIGTYPE_p_blpapi_MessageIterator swig_types[17]
+#define SWIGTYPE_p_blpapi_Name swig_types[18]
+#define SWIGTYPE_p_blpapi_Operation swig_types[19]
+#define SWIGTYPE_p_blpapi_ProviderSession swig_types[20]
+#define SWIGTYPE_p_blpapi_Request swig_types[21]
+#define SWIGTYPE_p_blpapi_RequestTemplate swig_types[22]
+#define SWIGTYPE_p_blpapi_ResolutionList swig_types[23]
+#define SWIGTYPE_p_blpapi_Service swig_types[24]
+#define SWIGTYPE_p_blpapi_ServiceRegistrationOptions swig_types[25]
+#define SWIGTYPE_p_blpapi_Session swig_types[26]
+#define SWIGTYPE_p_blpapi_SessionOptions swig_types[27]
+#define SWIGTYPE_p_blpapi_StreamWriter_t swig_types[28]
+#define SWIGTYPE_p_blpapi_SubscriptionItrerator swig_types[29]
+#define SWIGTYPE_p_blpapi_SubscriptionList swig_types[30]
+#define SWIGTYPE_p_blpapi_TimePoint swig_types[31]
+#define SWIGTYPE_p_blpapi_TlsOptions swig_types[32]
+#define SWIGTYPE_p_blpapi_Topic swig_types[33]
+#define SWIGTYPE_p_blpapi_TopicList swig_types[34]
+#define SWIGTYPE_p_char swig_types[35]
+#define SWIGTYPE_p_double swig_types[36]
+#define SWIGTYPE_p_f_p_struct_blpapi_Event_p_struct_blpapi_ProviderSession_p_void__void swig_types[37]
+#define SWIGTYPE_p_float swig_types[38]
+#define SWIGTYPE_p_int swig_types[39]
+#define SWIGTYPE_p_intArray swig_types[40]
+#define SWIGTYPE_p_long_long swig_types[41]
+#define SWIGTYPE_p_p_blpapi_Element swig_types[42]
+#define SWIGTYPE_p_p_blpapi_Event swig_types[43]
+#define SWIGTYPE_p_p_blpapi_Message swig_types[44]
+#define SWIGTYPE_p_p_blpapi_Name swig_types[45]
+#define SWIGTYPE_p_p_blpapi_Operation swig_types[46]
+#define SWIGTYPE_p_p_blpapi_Request swig_types[47]
+#define SWIGTYPE_p_p_blpapi_RequestTemplate swig_types[48]
+#define SWIGTYPE_p_p_blpapi_Service swig_types[49]
+#define SWIGTYPE_p_p_blpapi_Topic swig_types[50]
+#define SWIGTYPE_p_p_char swig_types[51]
+#define SWIGTYPE_p_p_p_void swig_types[52]
+#define SWIGTYPE_p_p_void swig_types[53]
+#define SWIGTYPE_p_short swig_types[54]
+#define SWIGTYPE_p_unsigned_char swig_types[55]
+#define SWIGTYPE_p_unsigned_int swig_types[56]
+#define SWIGTYPE_p_unsigned_long_long swig_types[57]
+#define SWIGTYPE_p_unsigned_short swig_types[58]
+static swig_type_info *swig_types[60];
+static swig_module_info swig_module = {swig_types, 59, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3097,95 +3075,12 @@ static swig_module_info swig_module = {swig_types, 61, 0, 0, 0, 0};
 #define SWIG_VERSION SWIGVERSION
 
 
-#define SWIG_as_voidptr(a) const_cast< void * >(static_cast< const void * >(a)) 
-#define SWIG_as_voidptrptr(a) ((void)SWIG_as_voidptr(*a),reinterpret_cast< void** >(a)) 
-
-
-#include <stdexcept>
-
-
-namespace swig {
-  class SwigPtr_PyObject {
-  protected:
-    PyObject *_obj;
-
-  public:
-    SwigPtr_PyObject() :_obj(0)
-    {
-    }
-
-    SwigPtr_PyObject(const SwigPtr_PyObject& item) : _obj(item._obj)
-    {
-      SWIG_PYTHON_THREAD_BEGIN_BLOCK;
-      Py_XINCREF(_obj);      
-      SWIG_PYTHON_THREAD_END_BLOCK;
-    }
-    
-    SwigPtr_PyObject(PyObject *obj, bool initial_ref = true) :_obj(obj)
-    {
-      if (initial_ref) {
-        SWIG_PYTHON_THREAD_BEGIN_BLOCK;
-        Py_XINCREF(_obj);
-        SWIG_PYTHON_THREAD_END_BLOCK;
-      }
-    }
-    
-    SwigPtr_PyObject & operator=(const SwigPtr_PyObject& item) 
-    {
-      SWIG_PYTHON_THREAD_BEGIN_BLOCK;
-      Py_XINCREF(item._obj);
-      Py_XDECREF(_obj);
-      _obj = item._obj;
-      SWIG_PYTHON_THREAD_END_BLOCK;
-      return *this;      
-    }
-    
-    ~SwigPtr_PyObject() 
-    {
-      SWIG_PYTHON_THREAD_BEGIN_BLOCK;
-      Py_XDECREF(_obj);
-      SWIG_PYTHON_THREAD_END_BLOCK;
-    }
-    
-    operator PyObject *() const
-    {
-      return _obj;
-    }
-
-    PyObject *operator->() const
-    {
-      return _obj;
-    }
-  };
-}
-
-
-namespace swig {
-  struct SwigVar_PyObject : SwigPtr_PyObject {
-    SwigVar_PyObject(PyObject* obj = 0) : SwigPtr_PyObject(obj, false) { }
-    
-    SwigVar_PyObject & operator = (PyObject* obj)
-    {
-      Py_XDECREF(_obj);
-      _obj = obj;
-      return *this;      
-    }
-  };
-}
-
-
-SWIGINTERNINLINE PyObject*
-  SWIG_From_int  (int value)
-{
-  return PyInt_FromLong((long) value);
-}
+#define SWIG_as_voidptr(a) (void *)((const void *)(a)) 
+#define SWIG_as_voidptrptr(a) ((void)SWIG_as_voidptr(*a),(void**)(a)) 
 
 
 #define SWIG_FILE_WITH_INIT
 #include "blpapi_types.h"
-
-
-#include <string>
 
 
 SWIGINTERNINLINE PyObject*
@@ -3202,7 +3097,7 @@ SWIGINTERNINLINE PyObject*
 SWIG_From_unsigned_SS_long  (unsigned long value)
 {
   return (value > LONG_MAX) ?
-    PyLong_FromUnsignedLong(value) : PyInt_FromLong(static_cast< long >(value));
+    PyLong_FromUnsignedLong(value) : PyInt_FromLong((long)(value));
 }
 
 
@@ -3226,7 +3121,7 @@ SWIGINTERNINLINE PyObject*
 SWIG_From_unsigned_SS_long_SS_long  (unsigned long long value)
 {
   return (value > LONG_MAX) ?
-    PyLong_FromUnsignedLongLong(value) : PyInt_FromLong(static_cast< long >(value));
+    PyLong_FromUnsignedLongLong(value) : PyInt_FromLong((long)(value));
 }
 #endif
 
@@ -3237,13 +3132,20 @@ SWIG_From_size_t  (size_t value)
 #ifdef SWIG_LONG_LONG_AVAILABLE
   if (sizeof(size_t) <= sizeof(unsigned long)) {
 #endif
-    return SWIG_From_unsigned_SS_long  (static_cast< unsigned long >(value));
+    return SWIG_From_unsigned_SS_long  ((unsigned long)(value));
 #ifdef SWIG_LONG_LONG_AVAILABLE
   } else {
     /* assume sizeof(size_t) <= sizeof(unsigned long long) */
-    return SWIG_From_unsigned_SS_long_SS_long  (static_cast< unsigned long long >(value));
+    return SWIG_From_unsigned_SS_long_SS_long  ((unsigned long long)(value));
   }
 #endif
+}
+
+
+SWIGINTERNINLINE PyObject*
+  SWIG_From_int  (int value)
+{
+  return PyInt_FromLong((long) value);
 }
 
 
@@ -3280,80 +3182,109 @@ SWIG_From_size_t  (size_t value)
 #define MAX_GROUP_ID_SIZE 64
 #endif
 
-#include <sstream> // for std::ostringstream
-#include <stdexcept>  // for std::runtime_error
-#include <ctime>  // for tm and mktime
+#include <time.h>  // for tm and mktime
+
+#include <stdlib.h> // for malloc() and free()
+#include <string.h> // for strncpy()
+
+typedef struct StreamWriterData {
+    char *stream;
+    int size;
+} StreamWriterData;
 
 
-std::string blpapi_Service_printHelper(
+// this is the signature dictated by C layer
+// we are going to hijack the length and populate .size in streamData
+// to allow guiding python to array+size rather than 0-terminated option
+int cstr_StreamWriter(const char *data, int length, void *streamData)
+{
+    StreamWriterData *stream = (StreamWriterData*) streamData;
+    char *dest = (char *) malloc(length);
+    if (dest == 0) {
+        return 1;
+    }
+    memcpy(dest, data, length);
+    stream->stream = dest;
+    stream->size = length;
+    return 0;
+}
+
+// in all printHelper functions if C layer fails to produce a string
+// we shall return a null-pointer and 0-size to SWIG layer,
+// which is going to treat it correctly
+void blpapi_Service_printHelper(
     blpapi_Service_t *service,
     int level,
-    int spacesPerLevel)
+    int spacesPerLevel,
+    char **output_allocated,
+    int *output_size)
 {
-    std::ostringstream stream;
-
+    StreamWriterData stream = {0};
     blpapi_Service_print(
         service,
-        BloombergLP::blpapi::OstreamWriter,
+        cstr_StreamWriter,
         &stream,
         level,
         spacesPerLevel);
-
-    return stream.str();
+    *output_allocated = stream.stream;
+    *output_size = stream.size;
 }
 
-std::string blpapi_SchemaElementDefinition_printHelper(
+void blpapi_SchemaElementDefinition_printHelper(
     blpapi_SchemaElementDefinition_t *item,
     int level,
-    int spacesPerLevel)
+    int spacesPerLevel,
+    char **output_allocated,
+    int *output_size)
 {
-    std::ostringstream stream;
-
+    StreamWriterData stream = {0};
     blpapi_SchemaElementDefinition_print(
         item,
-        BloombergLP::blpapi::OstreamWriter,
+        cstr_StreamWriter,
         &stream,
         level,
         spacesPerLevel);
-
-    return stream.str();
+    *output_allocated = stream.stream;
+    *output_size = stream.size;
 }
 
-std::string blpapi_SchemaTypeDefinition_printHelper(
+void blpapi_SchemaTypeDefinition_printHelper(
     blpapi_SchemaTypeDefinition_t *item,
     int level,
-    int spacesPerLevel)
+    int spacesPerLevel,
+    char **output_allocated,
+    int *output_size)
 {
-    std::ostringstream stream;
-
+    StreamWriterData stream = {0};
     blpapi_SchemaTypeDefinition_print(
         item,
-        BloombergLP::blpapi::OstreamWriter,
+        cstr_StreamWriter,
         &stream,
         level,
         spacesPerLevel);
-
-    return stream.str();
+    *output_allocated = stream.stream;
+    *output_size = stream.size;
 }
 
-std::string blpapi_SessionOptions_printHelper(
+void blpapi_SessionOptions_printHelper(
     blpapi_SessionOptions_t *sessionOptions,
     int level,
-    int spacesPerLevel)
+    int spacesPerLevel,
+    char **output_allocated,
+    int *output_size)
 {
-    std::ostringstream stream;
-
+    StreamWriterData stream = {0};
     blpapi_SessionOptions_print(
         sessionOptions,
-        BloombergLP::blpapi::OstreamWriter,
+        cstr_StreamWriter,
         &stream,
         level,
         spacesPerLevel);
-
-    return stream.str();
+    *output_allocated = stream.stream;
+    *output_size = stream.size;
 }
 
-bool blpapi_SchemaTypeDefinition_hasElementDefinition(
+int blpapi_SchemaTypeDefinition_hasElementDefinition(
     const blpapi_SchemaTypeDefinition_t *type,
     const char *nameString,
     const blpapi_Name_t *name)
@@ -3362,7 +3293,7 @@ bool blpapi_SchemaTypeDefinition_hasElementDefinition(
             type, nameString, name);
 }
 
-bool blpapi_ConstantList_hasConstant(
+int blpapi_ConstantList_hasConstant(
     const blpapi_ConstantList_t *list,
     const char *nameString,
     const blpapi_Name_t *name)
@@ -3370,7 +3301,7 @@ bool blpapi_ConstantList_hasConstant(
     return 0 != blpapi_ConstantList_getConstant(list, nameString, name);
 }
 
-bool blpapi_Service_hasEventDefinition(
+int blpapi_Service_hasEventDefinition(
     blpapi_Service_t *service,
     const char* nameString,
     const blpapi_Name_t *name)
@@ -3381,7 +3312,7 @@ bool blpapi_Service_hasEventDefinition(
             service, &eventDefinition, nameString, name);
 }
 
-bool blpapi_Service_hasOperation(
+int blpapi_Service_hasOperation(
     blpapi_Service_t *service,
     const char* nameString,
     const blpapi_Name_t *name)
@@ -3409,30 +3340,37 @@ int blpapi_SubscriptionList_addHelper(
         options ? 1: 0);
 }
 
-bool blpapi_Name_hasName(const char *nameString)
+int blpapi_Name_hasName(const char *nameString)
 {
-    return blpapi_Name_findName(nameString) ? true : false;
+    return blpapi_Name_findName(nameString) ? 1 : 0;
 }
 
 blpapi_TopicList_t* blpapi_TopicList_createFromResolutionList(
     blpapi_ResolutionList_t* from)
 {
-    return blpapi_TopicList_create(reinterpret_cast<blpapi_TopicList_t*>(from));
+    return blpapi_TopicList_create((blpapi_TopicList_t*) (from));
 }
 
-std::string blpapi_DiagnosticsUtil_memoryInfo_wrapper()
+PyObject *blpapi_DiagnosticsUtil_memoryInfo_wrapper()
 {
     // Get the length of the buffer first
     int len = blpapi_DiagnosticsUtil_memoryInfo(0, 0);
+    int buffer_length;
+    char *buffer;
+    PyObject *diagnostics_str;
+
     if (len < 0) {
-        throw std::runtime_error("blpapi_DiagnosticsUtil_memoryInfo error");
+        PyErr_SetString(PyExc_RuntimeError, "blpapi_DiagnosticsUtil_memoryInfo error");
+        return NULL;
     }
 
-    // Allocate buffer and call the function
-    std::string buffer;
-    buffer.resize(len+1);
-    blpapi_DiagnosticsUtil_memoryInfo(&buffer[0], len+1);
-    return buffer;
+    buffer_length = len + 1;
+    buffer = (char *) malloc(buffer_length);
+    blpapi_DiagnosticsUtil_memoryInfo(buffer, buffer_length);
+    diagnostics_str = PyString_FromString(buffer);
+    free(buffer);
+
+    return diagnostics_str;
 }
 
 typedef void (*blpapi_Logging_Func_t)(blpapi_UInt64_t    threadId,
@@ -3444,20 +3382,22 @@ typedef void (*blpapi_Logging_Func_t)(blpapi_UInt64_t    threadId,
 // Shared global object guarded by GIL
 PyObject* loggerCallback = 0;
 
-static time_t blpapi_Datetime_to_unix(blpapi_Datetime_t const& original) {
+static time_t blpapi_Datetime_to_unix(blpapi_Datetime_t const *original) {
     time_t rawtime = time(NULL);
+    time_t result;
     struct tm *ts = localtime(&rawtime);
-    if (original.parts & BLPAPI_DATETIME_DATE_PART) {
-        ts->tm_year = original.year - 1900; // tm_year should contain number of years since 1900
-        ts->tm_mon  = original.month - 1;  // tm_mon is zero based
-        ts->tm_mday = original.day;
-        if (original.parts & BLPAPI_DATETIME_TIME_PART) {
-            ts->tm_hour = original.hours;
-            ts->tm_min  = original.minutes;
-            ts->tm_sec  = original.seconds;
+
+    if (original->parts & BLPAPI_DATETIME_DATE_PART) {
+        ts->tm_year = original->year - 1900; // tm_year should contain number of years since 1900
+        ts->tm_mon  = original->month - 1;  // tm_mon is zero based
+        ts->tm_mday = original->day;
+        if (original->parts & BLPAPI_DATETIME_TIME_PART) {
+            ts->tm_hour = original->hours;
+            ts->tm_min  = original->minutes;
+            ts->tm_sec  = original->seconds;
         }
     }
-    time_t result = mktime(ts);
+    result = mktime(ts);
     return result;
 }
 
@@ -3467,7 +3407,7 @@ void loggerCallbackWrapper(blpapi_UInt64_t   threadId,
                           const char        *category,
                           const char        *message)
 {
-    time_t ts = blpapi_Datetime_to_unix(original);
+    time_t ts = blpapi_Datetime_to_unix(&original);
 
     PyGILState_STATE gilstate = PyGILState_Ensure();
     PyObject* result = PyObject_CallFunction(loggerCallback, "KiIss",
@@ -3477,61 +3417,43 @@ void loggerCallbackWrapper(blpapi_UInt64_t   threadId,
     Py_XDECREF(result);
 }
 
-void setLoggerCallbackWrapper(PyObject *cb, int severity)
+int setLoggerCallbackWrapper(PyObject *cb, int severity)
 {
+    int err;
+
     if (!PyCallable_Check(cb)) {
-        throw std::invalid_argument("parameter must be a function");
+        return -1;
     }
     Py_XINCREF(cb);
     Py_XDECREF(loggerCallback);
     loggerCallback = cb;
     // Set actual callback
-    int err = blpapi_Logging_registerCallback(&loggerCallbackWrapper, (blpapi_Logging_Severity_t)severity);
+    err = blpapi_Logging_registerCallback(&loggerCallbackWrapper, (blpapi_Logging_Severity_t)severity);
     if (err != 0) {
-        throw std::runtime_error("unable to register callback");
+        return -2;
     }
+
+    return 0;
 }
 
 /** Convert `blpapi_TimePoint_t` value to `blpapi_Datetime_t`. Function
   * always returns UTC time.
   */
-blpapi_Datetime_t fromTimePoint(blpapi_TimePoint_t original) 
+blpapi_Datetime_t blpapi_HighPrecisionDatetime_fromTimePoint_wrapper(blpapi_TimePoint_t original)
 {
     blpapi_HighPrecisionDatetime_t highPrecisionDatetime;
+    blpapi_Datetime_t datetime;
+
     blpapi_HighPrecisionDatetime_fromTimePoint(
         &highPrecisionDatetime,
         &original,
         0);
 
-    blpapi_Datetime_t datetime = highPrecisionDatetime.datetime;
+    datetime = highPrecisionDatetime.datetime;
 
     return datetime;
 }
 
-/** Get the timestmap associated with message or throw an exception.
-  */
-blpapi_Datetime_t blpapi_Message_timeReceived_wrapper(
-    const blpapi_Message_t *message)
-{
-    blpapi_TimePoint_t value;
-    int retval = blpapi_Message_timeReceived(message, &value);
-    if (retval != 0) {
-        throw std::invalid_argument("Message has no timestamp");
-    }
-    return fromTimePoint(value);
-}
-
-/** Call blpapi_HighResolutionClock_now and convert result to blpapi_Datetime_t.
-  */
-blpapi_Datetime_t blpapi_HighResolutionClock_now_wrapper()
-{
-    blpapi_TimePoint_t timepoint;
-    int res = blpapi_HighResolutionClock_now(&timepoint);
-    if (res != 0) {
-        throw std::runtime_error("High resolution clock error");
-    }
-    return fromTimePoint(timepoint);
-}
 
 
 SWIGINTERN int
@@ -3668,7 +3590,7 @@ SWIG_AsVal_int (PyObject * obj, int *val)
     if ((v < INT_MIN || v > INT_MAX)) {
       return SWIG_OverflowError;
     } else {
-      if (val) *val = static_cast< int >(v);
+      if (val) *val = (int)(v);
     }
   }  
   return res;
@@ -3695,32 +3617,25 @@ SWIG_FromCharPtrAndSize(const char* carray, size_t size)
     if (size > INT_MAX) {
       swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
       return pchar_descriptor ? 
-	SWIG_InternalNewPointerObj(const_cast< char * >(carray), pchar_descriptor, 0) : SWIG_Py_Void();
+	SWIG_InternalNewPointerObj((char *)(carray), pchar_descriptor, 0) : SWIG_Py_Void();
     } else {
 #if PY_VERSION_HEX >= 0x03000000
 #if defined(SWIG_PYTHON_STRICT_BYTE_CHAR)
-      return PyBytes_FromStringAndSize(carray, static_cast< Py_ssize_t >(size));
+      return PyBytes_FromStringAndSize(carray, (Py_ssize_t)(size));
 #else
 #if PY_VERSION_HEX >= 0x03010000
-      return PyUnicode_DecodeUTF8(carray, static_cast< Py_ssize_t >(size), "surrogateescape");
+      return PyUnicode_DecodeUTF8(carray, (Py_ssize_t)(size), "surrogateescape");
 #else
-      return PyUnicode_FromStringAndSize(carray, static_cast< Py_ssize_t >(size));
+      return PyUnicode_FromStringAndSize(carray, (Py_ssize_t)(size));
 #endif
 #endif
 #else
-      return PyString_FromStringAndSize(carray, static_cast< Py_ssize_t >(size));
+      return PyString_FromStringAndSize(carray, (Py_ssize_t)(size));
 #endif
     }
   } else {
     return SWIG_Py_Void();
   }
-}
-
-
-SWIGINTERNINLINE PyObject *
-SWIG_From_std_string  (const std::string& s)
-{
-  return SWIG_FromCharPtrAndSize(s.data(), s.size());
 }
 
 
@@ -3771,7 +3686,7 @@ SWIG_AsCharPtrAndSize(PyObject *obj, char** cptr, size_t* psize, int *alloc)
 	if (*alloc == SWIG_NEWOBJ) 
 #endif
 	{
-	  *cptr = reinterpret_cast< char* >(memcpy(new char[len + 1], cstr, sizeof(char)*(len + 1)));
+	  *cptr = (char *)memcpy(malloc((len + 1)*sizeof(char)), cstr, sizeof(char)*(len + 1));
 	  *alloc = SWIG_NEWOBJ;
 	} else {
 	  *cptr = cstr;
@@ -3809,7 +3724,7 @@ SWIG_AsCharPtrAndSize(PyObject *obj, char** cptr, size_t* psize, int *alloc)
       if (PyString_AsStringAndSize(obj, &cstr, &len) != -1) {
         if (cptr) {
           if (alloc) *alloc = SWIG_NEWOBJ;
-          *cptr = reinterpret_cast< char* >(memcpy(new char[len + 1], cstr, sizeof(char)*(len + 1)));
+          *cptr = (char *)memcpy(malloc((len + 1)*sizeof(char)), cstr, sizeof(char)*(len + 1));
         }
         if (psize) *psize = len + 1;
 
@@ -3838,13 +3753,6 @@ SWIG_AsCharPtrAndSize(PyObject *obj, char** cptr, size_t* psize, int *alloc)
 
 
 
-
-
-SWIGINTERNINLINE PyObject*
-  SWIG_From_bool  (bool value)
-{
-  return PyBool_FromLong(value ? 1 : 0);
-}
 
 
 typedef int intArray;
@@ -3948,22 +3856,22 @@ SWIG_AsVal_size_t (PyObject * obj, size_t *val)
 #endif
     unsigned long v;
     res = SWIG_AsVal_unsigned_SS_long (obj, val ? &v : 0);
-    if (SWIG_IsOK(res) && val) *val = static_cast< size_t >(v);
+    if (SWIG_IsOK(res) && val) *val = (size_t)(v);
 #ifdef SWIG_LONG_LONG_AVAILABLE
   } else if (sizeof(size_t) <= sizeof(unsigned long long)) {
     unsigned long long v;
     res = SWIG_AsVal_unsigned_SS_long_SS_long (obj, val ? &v : 0);
-    if (SWIG_IsOK(res) && val) *val = static_cast< size_t >(v);
+    if (SWIG_IsOK(res) && val) *val = (size_t)(v);
   }
 #endif
   return res;
 }
 
 SWIGINTERN intArray *new_intArray(size_t nelements){
-    return (new int[nelements]());
+    return (int *)calloc(nelements, sizeof(int));
   }
 SWIGINTERN void delete_intArray(intArray *self){
-    delete[] self;
+    free((char*)self);
   }
 SWIGINTERN int intArray___getitem__(intArray *self,size_t index){
     return self[index];
@@ -3975,15 +3883,15 @@ SWIGINTERN int *intArray_cast(intArray *self){
     return self;
   }
 SWIGINTERN intArray *intArray_frompointer(int *t){
-    return static_cast< intArray * >(t);
+    return (intArray *)(t);
   }
 
   static blpapi_Topic_t* *new_topicPtrArray(size_t nelements) { 
-    return (new blpapi_Topic_t*[nelements]());
+    return (blpapi_Topic_t* *)calloc(nelements, sizeof(blpapi_Topic_t*));
   }
 
   static void delete_topicPtrArray(blpapi_Topic_t* *ary) {
-    delete[] ary;
+    free((char*)ary);
   }
 
   static blpapi_Topic_t* topicPtrArray_getitem(blpapi_Topic_t* *ary, size_t index) {
@@ -4006,10 +3914,10 @@ int pyObjectManagerFunc(
     if (operation == BLPAPI_MANAGEDPTR_COPY) {
         managedPtr->pointer = srcPtr->pointer;
         managedPtr->manager = srcPtr->manager;
-        Py_INCREF(reinterpret_cast<PyObject *>(managedPtr->pointer));
+        Py_INCREF((PyObject *) (managedPtr->pointer));
     }
     else if (operation == BLPAPI_MANAGEDPTR_DESTROY) {
-        Py_DECREF(reinterpret_cast<PyObject *>(managedPtr->pointer));
+        Py_DECREF((PyObject *) (managedPtr->pointer));
     }
     SWIG_PYTHON_THREAD_END_BLOCK;
 
@@ -4018,63 +3926,70 @@ int pyObjectManagerFunc(
 
 blpapi_CorrelationId_t *CorrelationId_t_createEmpty()
 {
-    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-    blpapi_CorrelationId_t *cid = new blpapi_CorrelationId_t;
-    std::memset(cid, 0, sizeof(blpapi_CorrelationId_t));
-    SWIG_PYTHON_THREAD_END_ALLOW;
+    blpapi_CorrelationId_t *cid;
+
+    Py_BEGIN_ALLOW_THREADS
+    cid = (blpapi_CorrelationId_t *) malloc(sizeof(blpapi_CorrelationId_t));
+    memset(cid, 0, sizeof(blpapi_CorrelationId_t));
+    Py_END_ALLOW_THREADS
     
     return cid;
 }
 
 blpapi_CorrelationId_t *CorrelationId_t_createFromInteger(long long value, unsigned short classId)
 {
-    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-    blpapi_CorrelationId_t *cid = new blpapi_CorrelationId_t;
-    std::memset(cid, 0, sizeof(blpapi_CorrelationId_t));
+    blpapi_CorrelationId_t *cid;
+
+    Py_BEGIN_ALLOW_THREADS
+    cid = (blpapi_CorrelationId_t *) malloc(sizeof(blpapi_CorrelationId_t));
+    memset(cid, 0, sizeof(blpapi_CorrelationId_t));
 
     cid->size = sizeof(blpapi_CorrelationId_t);
     cid->valueType = BLPAPI_CORRELATION_TYPE_INT;
     cid->classId = classId;
     cid->value.intValue = value;
-    SWIG_PYTHON_THREAD_END_ALLOW;
+    Py_END_ALLOW_THREADS
     
     return cid;
 }
 
 blpapi_CorrelationId_t *CorrelationId_t_createFromObject(PyObject *value, unsigned short classId)
 {
+    blpapi_CorrelationId_t *cid;
     if (!value) {
         value = Py_None;
     }
     
-    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-    blpapi_CorrelationId_t *cid = new blpapi_CorrelationId_t;
-    std::memset(cid, 0, sizeof(blpapi_CorrelationId_t));
-    
+    Py_BEGIN_ALLOW_THREADS
+    cid = (blpapi_CorrelationId_t *) malloc(sizeof(blpapi_CorrelationId_t));
+    memset(cid, 0, sizeof(blpapi_CorrelationId_t));
+
     cid->size = sizeof(blpapi_CorrelationId_t);
     cid->valueType = BLPAPI_CORRELATION_TYPE_POINTER;
     cid->classId = classId;
-    
+
     cid->value.ptrValue.manager = &pyObjectManagerFunc;
     cid->value.ptrValue.pointer = value;
-    SWIG_PYTHON_THREAD_END_ALLOW;
+    Py_END_ALLOW_THREADS
     
     Py_INCREF(value);
     
     return cid;
 }
 
-blpapi_CorrelationId_t *CorrelationId_t_clone(const blpapi_CorrelationId_t& original)
+blpapi_CorrelationId_t *CorrelationId_t_clone(const blpapi_CorrelationId_t *original)
 {
-    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-    blpapi_CorrelationId_t *cid = new blpapi_CorrelationId_t(original);
-    SWIG_PYTHON_THREAD_END_ALLOW;
+    blpapi_CorrelationId_t *cid;
+    Py_BEGIN_ALLOW_THREADS
+    cid = (blpapi_CorrelationId_t *) malloc(sizeof(blpapi_CorrelationId_t));
+    *cid = *original;
+    Py_END_ALLOW_THREADS
 
     if (BLPAPI_CORRELATION_TYPE_POINTER == cid->valueType) {
-        blpapi_ManagedPtr_ManagerFunction_t& manager =
+        blpapi_ManagedPtr_ManagerFunction_t manager =
             cid->value.ptrValue.manager;
         if (manager) {
-            manager(&cid->value.ptrValue, &original.value.ptrValue, 
+            manager(&cid->value.ptrValue, &original->value.ptrValue, 
                 BLPAPI_MANAGEDPTR_COPY);
         }
     }
@@ -4082,13 +3997,13 @@ blpapi_CorrelationId_t *CorrelationId_t_clone(const blpapi_CorrelationId_t& orig
     return cid;
 }
 
-void CorrelationId_t_cleanup(blpapi_CorrelationId_t& cid)
+void CorrelationId_t_cleanup(blpapi_CorrelationId_t *cid)
 {
-    if (BLPAPI_CORRELATION_TYPE_POINTER == cid.valueType) {
-        blpapi_ManagedPtr_ManagerFunction_t &manager = 
-            cid.value.ptrValue.manager;
+    if (BLPAPI_CORRELATION_TYPE_POINTER == cid->valueType) {
+        blpapi_ManagedPtr_ManagerFunction_t manager = 
+            cid->value.ptrValue.manager;
         if (manager) {
-            manager(&cid.value.ptrValue, 0, BLPAPI_MANAGEDPTR_DESTROY);
+            manager(&cid->value.ptrValue, 0, BLPAPI_MANAGEDPTR_DESTROY);
         }
     }
 }
@@ -4099,46 +4014,54 @@ void CorrelationId_t_delete(blpapi_CorrelationId_t *cid)
         return;
     }
 
-    CorrelationId_t_cleanup(*cid);
+    CorrelationId_t_cleanup(cid);
     
-    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-    delete cid;
-    SWIG_PYTHON_THREAD_END_ALLOW;
+    Py_BEGIN_ALLOW_THREADS
+    free(cid);
+    Py_END_ALLOW_THREADS
 }
 
-bool CorrelationId_t_equals(
-    const blpapi_CorrelationId_t& cid1, 
-    const blpapi_CorrelationId_t& cid2)
+int CorrelationId_t_equals(
+    const blpapi_CorrelationId_t *cid1, 
+    const blpapi_CorrelationId_t *cid2)
 {
-    if (cid1.valueType != cid2.valueType) {
-        return false;
+    if (cid1 == cid2) {
+        return 1;
     }
 
-    if (cid1.classId != cid2.classId) {
-        return false;
+    if (!cid1 || !cid2) {
+        return 0;
+    }
+
+    if (cid1->valueType != cid2->valueType) {
+        return 0;
+    }
+
+    if (cid1->classId != cid2->classId) {
+        return 0;
     }
     
-    if (cid1.valueType == BLPAPI_CORRELATION_TYPE_POINTER) {
-        return cid1.value.ptrValue.pointer == cid2.value.ptrValue.pointer;
+    if (cid1->valueType == BLPAPI_CORRELATION_TYPE_POINTER) {
+        return cid1->value.ptrValue.pointer == cid2->value.ptrValue.pointer;
     } else {
-        return cid1.value.intValue == cid2.value.intValue;
+        return cid1->value.intValue == cid2->value.intValue;
     }
 }
 
-long long CorrelationId_t_toInteger(const blpapi_CorrelationId_t& cid)
+long long CorrelationId_t_toInteger(const blpapi_CorrelationId_t *cid)
 {
-    if (cid.valueType == BLPAPI_CORRELATION_TYPE_POINTER)
-        return reinterpret_cast<long long>(cid.value.ptrValue.pointer);
-    return cid.value.intValue;
+    if (cid->valueType == BLPAPI_CORRELATION_TYPE_POINTER)
+        return (long long) (cid->value.ptrValue.pointer);
+    return cid->value.intValue;
 }
 
-PyObject *CorrelationId_t_getObject(const blpapi_CorrelationId_t& cid) {
+PyObject *CorrelationId_t_getObject(const blpapi_CorrelationId_t *cid) {
     PyObject *res;
 
-    if (BLPAPI_CORRELATION_TYPE_POINTER == cid.valueType
-        && &pyObjectManagerFunc == cid.value.ptrValue.manager)
+    if (BLPAPI_CORRELATION_TYPE_POINTER == cid->valueType
+        && &pyObjectManagerFunc == cid->value.ptrValue.manager)
     {
-        res = reinterpret_cast<PyObject *>(cid.value.ptrValue.pointer);
+        res = (PyObject *) (cid->value.ptrValue.pointer);
     }
     else {
         res = Py_None;
@@ -4149,7 +4072,12 @@ PyObject *CorrelationId_t_getObject(const blpapi_CorrelationId_t& cid) {
 }
 
 
-SWIGINTERN blpapi_CorrelationId_t_ *new_blpapi_CorrelationId_t___SWIG_0(){
+typedef union {
+  blpapi_UInt64_t      intValue;
+  blpapi_ManagedPtr_t  ptrValue;
+} blpapi_CorrelationId_t__value;
+
+SWIGINTERN struct blpapi_CorrelationId_t_ *new_blpapi_CorrelationId_t___SWIG_0(void){
         return CorrelationId_t_createEmpty();
     }
 
@@ -4204,22 +4132,22 @@ SWIG_AsVal_unsigned_SS_short (PyObject * obj, unsigned short *val)
     if ((v > USHRT_MAX)) {
       return SWIG_OverflowError;
     } else {
-      if (val) *val = static_cast< unsigned short >(v);
+      if (val) *val = (unsigned short)(v);
     }
   }  
   return res;
 }
 
-SWIGINTERN blpapi_CorrelationId_t_ *new_blpapi_CorrelationId_t___SWIG_1(long long value,unsigned short classId=0){
+SWIGINTERN struct blpapi_CorrelationId_t_ *new_blpapi_CorrelationId_t___SWIG_1(long long value,unsigned short classId){
         return CorrelationId_t_createFromInteger(value, classId);
     }
-SWIGINTERN blpapi_CorrelationId_t_ *new_blpapi_CorrelationId_t___SWIG_3(PyObject *value,unsigned short classId=0){
+SWIGINTERN struct blpapi_CorrelationId_t_ *new_blpapi_CorrelationId_t___SWIG_2(PyObject *value,unsigned short classId){
         return CorrelationId_t_createFromObject(value, classId);
     }
-SWIGINTERN void delete_blpapi_CorrelationId_t_(blpapi_CorrelationId_t_ *self){
+SWIGINTERN void delete_blpapi_CorrelationId_t_(struct blpapi_CorrelationId_t_ *self){
         CorrelationId_t_delete((self));
     }
-SWIGINTERN unsigned short blpapi_CorrelationId_t__type(blpapi_CorrelationId_t_ const *self){
+SWIGINTERN unsigned short blpapi_CorrelationId_t__type(struct blpapi_CorrelationId_t_ const *self){
         return self->valueType;
     }
 
@@ -4229,13 +4157,13 @@ SWIG_From_unsigned_SS_short  (unsigned short value)
   return SWIG_From_unsigned_SS_long  (value);
 }
 
-SWIGINTERN unsigned short blpapi_CorrelationId_t__classId(blpapi_CorrelationId_t_ const *self){
+SWIGINTERN unsigned short blpapi_CorrelationId_t__classId(struct blpapi_CorrelationId_t_ const *self){
         return self->classId;
     }
-SWIGINTERN PyObject *blpapi_CorrelationId_t____asObject(blpapi_CorrelationId_t_ const *self){
-        return CorrelationId_t_getObject(*self);
+SWIGINTERN PyObject *blpapi_CorrelationId_t____asObject(struct blpapi_CorrelationId_t_ const *self){
+        return CorrelationId_t_getObject(self);
     }
-SWIGINTERN long long blpapi_CorrelationId_t____asInteger(blpapi_CorrelationId_t_ const *self){
+SWIGINTERN long long blpapi_CorrelationId_t____asInteger(struct blpapi_CorrelationId_t_ const *self){
         return self->value.intValue;
     }
 
@@ -4244,17 +4172,16 @@ SWIGINTERNINLINE PyObject*
 SWIG_From_long_SS_long  (long long value)
 {
   return ((value < LONG_MIN) || (value > LONG_MAX)) ?
-    PyLong_FromLongLong(value) : PyInt_FromLong(static_cast< long >(value));
+    PyLong_FromLongLong(value) : PyInt_FromLong((long)(value));
 }
 #endif
 
-SWIGINTERN long long blpapi_CorrelationId_t____toInteger(blpapi_CorrelationId_t_ const *self){
-        return CorrelationId_t_toInteger(*self);
+SWIGINTERN long long blpapi_CorrelationId_t____toInteger(struct blpapi_CorrelationId_t_ const *self){
+        return CorrelationId_t_toInteger(self);
     }
 
 
 #include "blpapi_element.h"
-#include <sstream> // for std::ostringstream
 
 int blpapi_Element_setElementFloat(
         blpapi_Element_t *element,
@@ -4313,21 +4240,23 @@ int blpapi_Element_setValueFloat(
     return ret;
 }
 
-std::string blpapi_Element_printHelper(
+void blpapi_Element_printHelper(
     blpapi_Element_t *element,
     int level,
-    int spacesPerLevel)
+    int spacesPerLevel,
+    char **output_allocated,
+    int *output_size)
 {
-    std::ostringstream stream;
-
+    // StreamWriterData and cstr_StreamWriter are defined in internals.i
+    StreamWriterData stream = {0};
     blpapi_Element_print(
         element,
-        BloombergLP::blpapi::OstreamWriter,
+        cstr_StreamWriter,
         &stream,
         level,
         spacesPerLevel);
-
-    return stream.str();
+    *output_allocated = stream.stream;
+    *output_size = stream.size;
 }
 
 
@@ -4393,7 +4322,7 @@ SWIG_AsVal_unsigned_SS_int (PyObject * obj, unsigned int *val)
     if ((v > UINT_MAX)) {
       return SWIG_OverflowError;
     } else {
-      if (val) *val = static_cast< unsigned int >(v);
+      if (val) *val = (unsigned int)(v);
     }
   }  
   return res;
@@ -4414,12 +4343,12 @@ SWIG_AsCharArray(PyObject * obj, char *val, size_t size)
 	if (csize < size) memset(val + csize, 0, (size - csize)*sizeof(char));
       }
       if (alloc == SWIG_NEWOBJ) {
-	delete[] cptr;
+	free((char*)cptr);
 	res = SWIG_DelNewMask(res);
       }      
       return res;
     }
-    if (alloc == SWIG_NEWOBJ) delete[] cptr;
+    if (alloc == SWIG_NEWOBJ) free((char*)cptr);
   }
   return SWIG_TypeError;
 }
@@ -4434,7 +4363,7 @@ SWIG_AsVal_char (PyObject * obj, char *val)
     res = SWIG_AddCast(SWIG_AsVal_long (obj, &v));
     if (SWIG_IsOK(res)) {
       if ((CHAR_MIN <= v) && (v <= CHAR_MAX)) {
-	if (val) *val = static_cast< char >(v);
+	if (val) *val = (char)(v);
       } else {
 	res = SWIG_OverflowError;
       }
@@ -4446,9 +4375,10 @@ SWIG_AsVal_char (PyObject * obj, char *val)
 
 #include "blpapi_session.h"
 
-void dispatchEventProxy(blpapi_Event_t *event, blpapi_Session_t *, void *userData)
+void dispatchEventProxy(blpapi_Event_t *event, blpapi_Session_t *session, void *userData)
 {
-    PyObject *eventDispatcherFunc = reinterpret_cast<PyObject *>(userData);
+    PyObject *eventDispatcherFunc = (PyObject *) (userData);
+    PyObject *result;
     
     SWIG_PYTHON_THREAD_BEGIN_BLOCK;
 
@@ -4456,7 +4386,7 @@ void dispatchEventProxy(blpapi_Event_t *event, blpapi_Session_t *, void *userDat
     PyTuple_SET_ITEM(arglist, 0, 
         SWIG_NewPointerObj(SWIG_as_voidptr(event), SWIGTYPE_p_blpapi_Event, 0));
     
-    PyObject *result = PyEval_CallObject(eventDispatcherFunc, arglist);
+    result = PyEval_CallObject(eventDispatcherFunc, arglist);
     
     Py_DECREF(arglist);
     Py_XDECREF(result);
@@ -4469,7 +4399,7 @@ blpapi_Session_t *Session_createHelper(blpapi_SessionOptions_t *parameters,
     blpapi_EventDispatcher_t *dispatcher)
 {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-    const bool hasHandler = 
+    const int hasHandler = 
         eventHandlerFunc != 0 && eventHandlerFunc != Py_None;
 
     blpapi_Session_t *const res = blpapi_Session_create(
@@ -4501,17 +4431,19 @@ void Session_destroyHelper(blpapi_Session_t *sessionHandle, PyObject *eventHandl
 
 #include "blpapi_providersession.h"
 
-void dispatchProviderEventProxy(blpapi_Event_t *event, blpapi_ProviderSession_t *, void *userData)
+void dispatchProviderEventProxy(blpapi_Event_t *event, blpapi_ProviderSession_t *providerSession, void *userData)
 {
-    PyObject *eventDispatcherFunc = reinterpret_cast<PyObject *>(userData);
+    PyObject *eventDispatcherFunc = (PyObject *) (userData);
+    PyObject *result;
+    PyObject *arglist;
     
     SWIG_PYTHON_THREAD_BEGIN_BLOCK;
 
-    PyObject *arglist = PyTuple_New(1);
+    arglist = PyTuple_New(1);
     PyTuple_SET_ITEM(arglist, 0, 
         SWIG_NewPointerObj(SWIG_as_voidptr(event), SWIGTYPE_p_blpapi_Event, 0));
     
-    PyObject *result = PyEval_CallObject(eventDispatcherFunc, arglist);
+    result = PyEval_CallObject(eventDispatcherFunc, arglist);
     
     Py_DECREF(arglist);
     Py_XDECREF(result);
@@ -4524,7 +4456,7 @@ blpapi_ProviderSession_t *ProviderSession_createHelper(blpapi_SessionOptions_t *
     blpapi_EventDispatcher_t *dispatcher)
 {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-    const bool hasHandler = 
+    const int hasHandler = 
         eventHandlerFunc != 0 && eventHandlerFunc != Py_None;
 
     blpapi_ProviderSession_t *const res = blpapi_ProviderSession_create(
@@ -4555,26 +4487,13 @@ void ProviderSession_destroyHelper(blpapi_ProviderSession_t *sessionHandle,
 
 int ProviderSession_terminateSubscriptionsOnTopic(blpapi_ProviderSession_t *sessionHandle,
                                                   const blpapi_Topic_t *topic,
-                                                  const char *message=0)
+                                                  const char *message)
 {
     int res;
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     res = blpapi_ProviderSession_terminateSubscriptionsOnTopics(sessionHandle, &topic, 1, message);
     SWIG_PYTHON_THREAD_END_ALLOW;
     return res;
-}
-
-bool ProviderSession_flushPublishedEvents(blpapi_ProviderSession_t *handle, int timeoutMsecs) 
-{
-    int allFlushed = -1;
-    int rc = blpapi_ProviderSession_flushPublishedEvents(
-            handle,
-            &allFlushed,
-            timeoutMsecs);
-    if (rc != 0) {
-        throw std::runtime_error("Flush published events failed");
-    }
-    return static_cast<bool>(allFlushed);
 }
 
 
@@ -4626,7 +4545,7 @@ SWIG_AsVal_float (PyObject * obj, float *val)
     if (SWIG_Float_Overflow_Check(v)) {
       return SWIG_OverflowError;
     } else {
-      if (val) *val = static_cast< float >(v);
+      if (val) *val = (float)(v);
     }
   }  
   return res;
@@ -4649,7 +4568,7 @@ SWIG_AsVal_unsigned_SS_char (PyObject * obj, unsigned char *val)
     if ((v > UCHAR_MAX)) {
       return SWIG_OverflowError;
     } else {
-      if (val) *val = static_cast< unsigned char >(v);
+      if (val) *val = (unsigned char)(v);
     }
   }  
   return res;
@@ -4672,7 +4591,7 @@ SWIG_AsVal_short (PyObject * obj, short *val)
     if ((v < SHRT_MIN || v > SHRT_MAX)) {
       return SWIG_OverflowError;
     } else {
-      if (val) *val = static_cast< short >(v);
+      if (val) *val = (short)(v);
     }
   }  
   return res;
@@ -4696,6 +4615,7 @@ SWIGINTERN PyObject *_wrap_setLoggerCallbackWrapper(PyObject *SWIGUNUSEDPARM(sel
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
+  int result;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:setLoggerCallbackWrapper",&obj0,&obj1)) SWIG_fail;
   arg1 = obj0;
@@ -4703,29 +4623,45 @@ SWIGINTERN PyObject *_wrap_setLoggerCallbackWrapper(PyObject *SWIGUNUSEDPARM(sel
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "setLoggerCallbackWrapper" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      setLoggerCallbackWrapper(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (int)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)setLoggerCallbackWrapper(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
+  resultobj = SWIG_From_int((int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_blpapi_HighPrecisionDatetime_fromTimePoint_wrapper(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  blpapi_TimePoint_t arg1 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  blpapi_Datetime_t result;
   
-  resultobj = SWIG_Py_Void();
+  if (!PyArg_ParseTuple(args,(char *)"O:blpapi_HighPrecisionDatetime_fromTimePoint_wrapper",&obj0)) SWIG_fail;
+  {
+    res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_blpapi_TimePoint,  0 );
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_HighPrecisionDatetime_fromTimePoint_wrapper" "', argument " "1"" of type '" "blpapi_TimePoint_t""'"); 
+    }  
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "blpapi_HighPrecisionDatetime_fromTimePoint_wrapper" "', argument " "1"" of type '" "blpapi_TimePoint_t""'");
+    } else {
+      arg1 = *((blpapi_TimePoint_t *)(argp1));
+    }
+  }
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = blpapi_HighPrecisionDatetime_fromTimePoint_wrapper(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_NewPointerObj((blpapi_Datetime_t *)memcpy((blpapi_Datetime_t *)calloc(1,sizeof(blpapi_Datetime_t)),&result,sizeof(blpapi_Datetime_t)), SWIGTYPE_p_blpapi_Datetime_tag, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -4746,45 +4682,27 @@ SWIGINTERN PyObject *_wrap_blpapi_Logging_registerCallback(PyObject *SWIGUNUSEDP
   
   if (!PyArg_ParseTuple(args,(char *)"OO:blpapi_Logging_registerCallback",&obj0,&obj1)) SWIG_fail;
   {
-    res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_blpapi_Logging_Func_t,  0  | 0);
+    res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_blpapi_Logging_Func_t,  0 );
     if (!SWIG_IsOK(res1)) {
       SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Logging_registerCallback" "', argument " "1"" of type '" "blpapi_Logging_Func_t""'"); 
     }  
     if (!argp1) {
       SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "blpapi_Logging_registerCallback" "', argument " "1"" of type '" "blpapi_Logging_Func_t""'");
     } else {
-      blpapi_Logging_Func_t * temp = reinterpret_cast< blpapi_Logging_Func_t * >(argp1);
-      arg1 = *temp;
-      if (SWIG_IsNewObj(res1)) delete temp;
+      arg1 = *((blpapi_Logging_Func_t *)(argp1));
     }
   }
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_Logging_registerCallback" "', argument " "2"" of type '" "blpapi_Logging_Severity_t""'");
   } 
-  arg2 = static_cast< blpapi_Logging_Severity_t >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Logging_registerCallback(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (blpapi_Logging_Severity_t)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Logging_registerCallback(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -4803,28 +4721,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Logging_logTestMessage(PyObject *SWIGUNUSEDPAR
   if (!SWIG_IsOK(ecode1)) {
     SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "blpapi_Logging_logTestMessage" "', argument " "1"" of type '" "blpapi_Logging_Severity_t""'");
   } 
-  arg1 = static_cast< blpapi_Logging_Severity_t >(val1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_Logging_logTestMessage(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Logging_Severity_t)(val1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_Logging_logTestMessage(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4834,106 +4736,15 @@ fail:
 
 SWIGINTERN PyObject *_wrap_blpapi_DiagnosticsUtil_memoryInfo_wrapper(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::string result;
+  PyObject *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)":blpapi_DiagnosticsUtil_memoryInfo_wrapper")) SWIG_fail;
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = blpapi_DiagnosticsUtil_memoryInfo_wrapper();
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (PyObject *)blpapi_DiagnosticsUtil_memoryInfo_wrapper();
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_blpapi_Message_timeReceived_wrapper(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  blpapi_Message_t *arg1 = (blpapi_Message_t *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  blpapi_Datetime_t result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:blpapi_Message_timeReceived_wrapper",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Message, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Message_timeReceived_wrapper" "', argument " "1"" of type '" "blpapi_Message_t const *""'"); 
-  }
-  arg1 = reinterpret_cast< blpapi_Message_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = blpapi_Message_timeReceived_wrapper((blpapi_Message const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
-  }
-  
-  resultobj = SWIG_NewPointerObj((new blpapi_Datetime_t(static_cast< const blpapi_Datetime_t& >(result))), SWIGTYPE_p_blpapi_Datetime_tag, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_blpapi_HighResolutionClock_now_wrapper(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  blpapi_Datetime_t result;
-  
-  if (!PyArg_ParseTuple(args,(char *)":blpapi_HighResolutionClock_now_wrapper")) SWIG_fail;
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = blpapi_HighResolutionClock_now_wrapper();
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
-  }
-  
-  resultobj = SWIG_NewPointerObj((new blpapi_Datetime_t(static_cast< const blpapi_Datetime_t& >(result))), SWIGTYPE_p_blpapi_Datetime_tag, SWIG_POINTER_OWN |  0 );
+  resultobj = result;
   return resultobj;
 fail:
   return NULL;
@@ -4957,34 +4768,18 @@ SWIGINTERN PyObject *_wrap_blpapi_EventDispatcher_stop(PyObject *SWIGUNUSEDPARM(
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventDispatcher_stop" "', argument " "1"" of type '" "blpapi_EventDispatcher_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventDispatcher_t * >(argp1);
+  arg1 = (blpapi_EventDispatcher_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_EventDispatcher_stop" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventDispatcher_stop(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (int)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventDispatcher_stop(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -4996,55 +4791,47 @@ SWIGINTERN PyObject *_wrap_blpapi_Service_printHelper(PyObject *SWIGUNUSEDPARM(s
   blpapi_Service_t *arg1 = (blpapi_Service_t *) 0 ;
   int arg2 ;
   int arg3 ;
+  char **arg4 = (char **) 0 ;
+  int *arg5 = (int *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   int val2 ;
   int ecode2 = 0 ;
   int val3 ;
   int ecode3 = 0 ;
+  char *temp4 = 0 ;
+  int tempn4 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
-  std::string result;
   
+  arg4 = &temp4; arg5 = &tempn4;
   if (!PyArg_ParseTuple(args,(char *)"OOO:blpapi_Service_printHelper",&obj0,&obj1,&obj2)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Service, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Service_printHelper" "', argument " "1"" of type '" "blpapi_Service_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Service_t * >(argp1);
+  arg1 = (blpapi_Service_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_Service_printHelper" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
+  arg2 = (int)(val2);
   ecode3 = SWIG_AsVal_int(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Service_printHelper" "', argument " "3"" of type '" "int""'");
   } 
-  arg3 = static_cast< int >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = blpapi_Service_printHelper(arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (int)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_Service_printHelper(arg1,arg2,arg3,arg4,arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  resultobj = SWIG_Py_Void();
+  if (*arg4) {
+    resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_FromCharPtrAndSize(*arg4,*arg5));
+    free(*arg4);
+  }
   return resultobj;
 fail:
   return NULL;
@@ -5056,55 +4843,47 @@ SWIGINTERN PyObject *_wrap_blpapi_SchemaElementDefinition_printHelper(PyObject *
   blpapi_SchemaElementDefinition_t *arg1 = (blpapi_SchemaElementDefinition_t *) 0 ;
   int arg2 ;
   int arg3 ;
+  char **arg4 = (char **) 0 ;
+  int *arg5 = (int *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   int val2 ;
   int ecode2 = 0 ;
   int val3 ;
   int ecode3 = 0 ;
+  char *temp4 = 0 ;
+  int tempn4 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
-  std::string result;
   
+  arg4 = &temp4; arg5 = &tempn4;
   if (!PyArg_ParseTuple(args,(char *)"OOO:blpapi_SchemaElementDefinition_printHelper",&obj0,&obj1,&obj2)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_p_void, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SchemaElementDefinition_printHelper" "', argument " "1"" of type '" "blpapi_SchemaElementDefinition_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SchemaElementDefinition_t * >(argp1);
+  arg1 = (blpapi_SchemaElementDefinition_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SchemaElementDefinition_printHelper" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
+  arg2 = (int)(val2);
   ecode3 = SWIG_AsVal_int(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_SchemaElementDefinition_printHelper" "', argument " "3"" of type '" "int""'");
   } 
-  arg3 = static_cast< int >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = blpapi_SchemaElementDefinition_printHelper(arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (int)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_SchemaElementDefinition_printHelper(arg1,arg2,arg3,arg4,arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  resultobj = SWIG_Py_Void();
+  if (*arg4) {
+    resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_FromCharPtrAndSize(*arg4,*arg5));
+    free(*arg4);
+  }
   return resultobj;
 fail:
   return NULL;
@@ -5116,55 +4895,47 @@ SWIGINTERN PyObject *_wrap_blpapi_SchemaTypeDefinition_printHelper(PyObject *SWI
   blpapi_SchemaTypeDefinition_t *arg1 = (blpapi_SchemaTypeDefinition_t *) 0 ;
   int arg2 ;
   int arg3 ;
+  char **arg4 = (char **) 0 ;
+  int *arg5 = (int *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   int val2 ;
   int ecode2 = 0 ;
   int val3 ;
   int ecode3 = 0 ;
+  char *temp4 = 0 ;
+  int tempn4 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
-  std::string result;
   
+  arg4 = &temp4; arg5 = &tempn4;
   if (!PyArg_ParseTuple(args,(char *)"OOO:blpapi_SchemaTypeDefinition_printHelper",&obj0,&obj1,&obj2)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_p_void, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SchemaTypeDefinition_printHelper" "', argument " "1"" of type '" "blpapi_SchemaTypeDefinition_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SchemaTypeDefinition_t * >(argp1);
+  arg1 = (blpapi_SchemaTypeDefinition_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SchemaTypeDefinition_printHelper" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
+  arg2 = (int)(val2);
   ecode3 = SWIG_AsVal_int(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_SchemaTypeDefinition_printHelper" "', argument " "3"" of type '" "int""'");
   } 
-  arg3 = static_cast< int >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = blpapi_SchemaTypeDefinition_printHelper(arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (int)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_SchemaTypeDefinition_printHelper(arg1,arg2,arg3,arg4,arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  resultobj = SWIG_Py_Void();
+  if (*arg4) {
+    resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_FromCharPtrAndSize(*arg4,*arg5));
+    free(*arg4);
+  }
   return resultobj;
 fail:
   return NULL;
@@ -5176,55 +4947,47 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_printHelper(PyObject *SWIGUNUSE
   blpapi_SessionOptions_t *arg1 = (blpapi_SessionOptions_t *) 0 ;
   int arg2 ;
   int arg3 ;
+  char **arg4 = (char **) 0 ;
+  int *arg5 = (int *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   int val2 ;
   int ecode2 = 0 ;
   int val3 ;
   int ecode3 = 0 ;
+  char *temp4 = 0 ;
+  int tempn4 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
-  std::string result;
   
+  arg4 = &temp4; arg5 = &tempn4;
   if (!PyArg_ParseTuple(args,(char *)"OOO:blpapi_SessionOptions_printHelper",&obj0,&obj1,&obj2)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_SessionOptions, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_printHelper" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SessionOptions_printHelper" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
+  arg2 = (int)(val2);
   ecode3 = SWIG_AsVal_int(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_SessionOptions_printHelper" "', argument " "3"" of type '" "int""'");
   } 
-  arg3 = static_cast< int >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = blpapi_SessionOptions_printHelper(arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (int)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_SessionOptions_printHelper(arg1,arg2,arg3,arg4,arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  resultobj = SWIG_Py_Void();
+  if (*arg4) {
+    resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_FromCharPtrAndSize(*arg4,*arg5));
+    free(*arg4);
+  }
   return resultobj;
 fail:
   return NULL;
@@ -5246,50 +5009,34 @@ SWIGINTERN PyObject *_wrap_blpapi_SchemaTypeDefinition_hasElementDefinition(PyOb
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
-  bool result;
+  int result;
   
   if (!PyArg_ParseTuple(args,(char *)"OOO:blpapi_SchemaTypeDefinition_hasElementDefinition",&obj0,&obj1,&obj2)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_p_void, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SchemaTypeDefinition_hasElementDefinition" "', argument " "1"" of type '" "blpapi_SchemaTypeDefinition_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SchemaTypeDefinition_t * >(argp1);
+  arg1 = (blpapi_SchemaTypeDefinition_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_SchemaTypeDefinition_hasElementDefinition" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_SchemaTypeDefinition_hasElementDefinition" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (bool)blpapi_SchemaTypeDefinition_hasElementDefinition((void *const *)arg1,(char const *)arg2,(blpapi_Name const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_Name_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SchemaTypeDefinition_hasElementDefinition((void *const *)arg1,(char const *)arg2,(struct blpapi_Name const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -5309,50 +5056,34 @@ SWIGINTERN PyObject *_wrap_blpapi_ConstantList_hasConstant(PyObject *SWIGUNUSEDP
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
-  bool result;
+  int result;
   
   if (!PyArg_ParseTuple(args,(char *)"OOO:blpapi_ConstantList_hasConstant",&obj0,&obj1,&obj2)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_ConstantList, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ConstantList_hasConstant" "', argument " "1"" of type '" "blpapi_ConstantList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ConstantList_t * >(argp1);
+  arg1 = (blpapi_ConstantList_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ConstantList_hasConstant" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_ConstantList_hasConstant" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (bool)blpapi_ConstantList_hasConstant((blpapi_ConstantList const *)arg1,(char const *)arg2,(blpapi_Name const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_Name_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ConstantList_hasConstant((struct blpapi_ConstantList const *)arg1,(char const *)arg2,(struct blpapi_Name const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -5372,50 +5103,34 @@ SWIGINTERN PyObject *_wrap_blpapi_Service_hasEventDefinition(PyObject *SWIGUNUSE
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
-  bool result;
+  int result;
   
   if (!PyArg_ParseTuple(args,(char *)"OOO:blpapi_Service_hasEventDefinition",&obj0,&obj1,&obj2)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Service, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Service_hasEventDefinition" "', argument " "1"" of type '" "blpapi_Service_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Service_t * >(argp1);
+  arg1 = (blpapi_Service_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Service_hasEventDefinition" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Service_hasEventDefinition" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (bool)blpapi_Service_hasEventDefinition(arg1,(char const *)arg2,(blpapi_Name const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_Name_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Service_hasEventDefinition(arg1,(char const *)arg2,(struct blpapi_Name const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -5435,50 +5150,34 @@ SWIGINTERN PyObject *_wrap_blpapi_Service_hasOperation(PyObject *SWIGUNUSEDPARM(
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
-  bool result;
+  int result;
   
   if (!PyArg_ParseTuple(args,(char *)"OOO:blpapi_Service_hasOperation",&obj0,&obj1,&obj2)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Service, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Service_hasOperation" "', argument " "1"" of type '" "blpapi_Service_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Service_t * >(argp1);
+  arg1 = (blpapi_Service_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Service_hasOperation" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Service_hasOperation" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (bool)blpapi_Service_hasOperation(arg1,(char const *)arg2,(blpapi_Name const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_Name_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Service_hasOperation(arg1,(char const *)arg2,(struct blpapi_Name const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -5515,57 +5214,41 @@ SWIGINTERN PyObject *_wrap_blpapi_SubscriptionList_addHelper(PyObject *SWIGUNUSE
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SubscriptionList_addHelper" "', argument " "1"" of type '" "blpapi_SubscriptionList_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SubscriptionList_t * >(argp1);
+  arg1 = (blpapi_SubscriptionList_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_SubscriptionList_addHelper" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_SubscriptionList_addHelper" "', argument " "3"" of type '" "blpapi_CorrelationId_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_CorrelationId_t * >(argp3);
+  arg3 = (blpapi_CorrelationId_t *)(argp3);
   res4 = SWIG_AsCharPtrAndSize(obj3, &buf4, NULL, &alloc4);
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_SubscriptionList_addHelper" "', argument " "4"" of type '" "char const *""'");
   }
-  arg4 = reinterpret_cast< char * >(buf4);
+  arg4 = (char *)(buf4);
   res5 = SWIG_AsCharPtrAndSize(obj4, &buf5, NULL, &alloc5);
   if (!SWIG_IsOK(res5)) {
     SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "blpapi_SubscriptionList_addHelper" "', argument " "5"" of type '" "char const *""'");
   }
-  arg5 = reinterpret_cast< char * >(buf5);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SubscriptionList_addHelper(arg1,(char const *)arg2,(blpapi_CorrelationId_t_ const *)arg3,(char const *)arg4,(char const *)arg5);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg5 = (char *)(buf5);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SubscriptionList_addHelper(arg1,(char const *)arg2,(struct blpapi_CorrelationId_t_ const *)arg3,(char const *)arg4,(char const *)arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
-  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  if (alloc4 == SWIG_NEWOBJ) free((char*)buf4);
+  if (alloc5 == SWIG_NEWOBJ) free((char*)buf5);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
-  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  if (alloc4 == SWIG_NEWOBJ) free((char*)buf4);
+  if (alloc5 == SWIG_NEWOBJ) free((char*)buf5);
   return NULL;
 }
 
@@ -5577,40 +5260,24 @@ SWIGINTERN PyObject *_wrap_blpapi_Name_hasName(PyObject *SWIGUNUSEDPARM(self), P
   char *buf1 = 0 ;
   int alloc1 = 0 ;
   PyObject * obj0 = 0 ;
-  bool result;
+  int result;
   
   if (!PyArg_ParseTuple(args,(char *)"O:blpapi_Name_hasName",&obj0)) SWIG_fail;
   res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Name_hasName" "', argument " "1"" of type '" "char const *""'");
   }
-  arg1 = reinterpret_cast< char * >(buf1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (bool)blpapi_Name_hasName((char const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (char *)(buf1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Name_hasName((char const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc1 == SWIG_NEWOBJ) free((char*)buf1);
   return resultobj;
 fail:
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  if (alloc1 == SWIG_NEWOBJ) free((char*)buf1);
   return NULL;
 }
 
@@ -5628,28 +5295,12 @@ SWIGINTERN PyObject *_wrap_blpapi_TopicList_createFromResolutionList(PyObject *S
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_TopicList_createFromResolutionList" "', argument " "1"" of type '" "blpapi_ResolutionList_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ResolutionList_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_TopicList_t *)blpapi_TopicList_createFromResolutionList(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_ResolutionList_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_TopicList_t *)blpapi_TopicList_createFromResolutionList(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_TopicList, 0 |  0 );
   return resultobj;
 fail:
@@ -5670,28 +5321,12 @@ SWIGINTERN PyObject *_wrap_new_intArray(PyObject *SWIGUNUSEDPARM(self), PyObject
   if (!SWIG_IsOK(ecode1)) {
     SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_intArray" "', argument " "1"" of type '" "size_t""'");
   } 
-  arg1 = static_cast< size_t >(val1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (intArray *)new_intArray(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (size_t)(val1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (intArray *)new_intArray(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_intArray, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
@@ -5711,28 +5346,12 @@ SWIGINTERN PyObject *_wrap_delete_intArray(PyObject *SWIGUNUSEDPARM(self), PyObj
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_intArray" "', argument " "1"" of type '" "intArray *""'"); 
   }
-  arg1 = reinterpret_cast< intArray * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      delete_intArray(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (intArray *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    delete_intArray(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -5757,34 +5376,18 @@ SWIGINTERN PyObject *_wrap_intArray___getitem__(PyObject *SWIGUNUSEDPARM(self), 
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "intArray___getitem__" "', argument " "1"" of type '" "intArray *""'"); 
   }
-  arg1 = reinterpret_cast< intArray * >(argp1);
+  arg1 = (intArray *)(argp1);
   ecode2 = SWIG_AsVal_size_t(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "intArray___getitem__" "', argument " "2"" of type '" "size_t""'");
   } 
-  arg2 = static_cast< size_t >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)intArray___getitem__(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (size_t)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)intArray___getitem__(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -5811,38 +5414,22 @@ SWIGINTERN PyObject *_wrap_intArray___setitem__(PyObject *SWIGUNUSEDPARM(self), 
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "intArray___setitem__" "', argument " "1"" of type '" "intArray *""'"); 
   }
-  arg1 = reinterpret_cast< intArray * >(argp1);
+  arg1 = (intArray *)(argp1);
   ecode2 = SWIG_AsVal_size_t(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "intArray___setitem__" "', argument " "2"" of type '" "size_t""'");
   } 
-  arg2 = static_cast< size_t >(val2);
+  arg2 = (size_t)(val2);
   ecode3 = SWIG_AsVal_int(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "intArray___setitem__" "', argument " "3"" of type '" "int""'");
   } 
-  arg3 = static_cast< int >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      intArray___setitem__(arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (int)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    intArray___setitem__(arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -5863,28 +5450,12 @@ SWIGINTERN PyObject *_wrap_intArray_cast(PyObject *SWIGUNUSEDPARM(self), PyObjec
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "intArray_cast" "', argument " "1"" of type '" "intArray *""'"); 
   }
-  arg1 = reinterpret_cast< intArray * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int *)intArray_cast(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (intArray *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int *)intArray_cast(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_int, 0 |  0 );
   return resultobj;
 fail:
@@ -5905,28 +5476,12 @@ SWIGINTERN PyObject *_wrap_intArray_frompointer(PyObject *SWIGUNUSEDPARM(self), 
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "intArray_frompointer" "', argument " "1"" of type '" "int *""'"); 
   }
-  arg1 = reinterpret_cast< int * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (intArray *)intArray_frompointer(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (int *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (intArray *)intArray_frompointer(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_intArray, 0 |  0 );
   return resultobj;
 fail:
@@ -5954,28 +5509,12 @@ SWIGINTERN PyObject *_wrap_new_topicPtrArray(PyObject *SWIGUNUSEDPARM(self), PyO
   if (!SWIG_IsOK(ecode1)) {
     SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_topicPtrArray" "', argument " "1"" of type '" "size_t""'");
   } 
-  arg1 = static_cast< size_t >(val1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_Topic_t **)new_topicPtrArray(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (size_t)(val1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_Topic_t **)new_topicPtrArray(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_p_blpapi_Topic, 0 |  0 );
   return resultobj;
 fail:
@@ -5995,28 +5534,12 @@ SWIGINTERN PyObject *_wrap_delete_topicPtrArray(PyObject *SWIGUNUSEDPARM(self), 
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_topicPtrArray" "', argument " "1"" of type '" "blpapi_Topic_t **""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Topic_t ** >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      delete_topicPtrArray(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Topic_t **)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    delete_topicPtrArray(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6041,33 +5564,17 @@ SWIGINTERN PyObject *_wrap_topicPtrArray_getitem(PyObject *SWIGUNUSEDPARM(self),
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "topicPtrArray_getitem" "', argument " "1"" of type '" "blpapi_Topic_t **""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Topic_t ** >(argp1);
+  arg1 = (blpapi_Topic_t **)(argp1);
   ecode2 = SWIG_AsVal_size_t(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "topicPtrArray_getitem" "', argument " "2"" of type '" "size_t""'");
   } 
-  arg2 = static_cast< size_t >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_Topic_t *)topicPtrArray_getitem(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (size_t)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_Topic_t *)topicPtrArray_getitem(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_Topic, 0 |  0 );
   return resultobj;
 fail:
@@ -6095,38 +5602,22 @@ SWIGINTERN PyObject *_wrap_topicPtrArray_setitem(PyObject *SWIGUNUSEDPARM(self),
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "topicPtrArray_setitem" "', argument " "1"" of type '" "blpapi_Topic_t **""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Topic_t ** >(argp1);
+  arg1 = (blpapi_Topic_t **)(argp1);
   ecode2 = SWIG_AsVal_size_t(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "topicPtrArray_setitem" "', argument " "2"" of type '" "size_t""'");
   } 
-  arg2 = static_cast< size_t >(val2);
+  arg2 = (size_t)(val2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Topic, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "topicPtrArray_setitem" "', argument " "3"" of type '" "blpapi_Topic_t *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Topic_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      topicPtrArray_setitem(arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_Topic_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    topicPtrArray_setitem(arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6136,51 +5627,55 @@ fail:
 
 SWIGINTERN PyObject *_wrap_CorrelationId_t_equals(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_CorrelationId_t *arg1 = 0 ;
-  blpapi_CorrelationId_t *arg2 = 0 ;
+  blpapi_CorrelationId_t *arg1 = (blpapi_CorrelationId_t *) 0 ;
+  blpapi_CorrelationId_t *arg2 = (blpapi_CorrelationId_t *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  bool result;
+  int result;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:CorrelationId_t_equals",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_blpapi_CorrelationId_t_,  0  | 0);
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CorrelationId_t_equals" "', argument " "1"" of type '" "blpapi_CorrelationId_t const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CorrelationId_t_equals" "', argument " "1"" of type '" "blpapi_CorrelationId_t const *""'"); 
   }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "CorrelationId_t_equals" "', argument " "1"" of type '" "blpapi_CorrelationId_t const &""'"); 
-  }
-  arg1 = reinterpret_cast< blpapi_CorrelationId_t * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_blpapi_CorrelationId_t_,  0  | 0);
+  arg1 = (blpapi_CorrelationId_t *)(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "CorrelationId_t_equals" "', argument " "2"" of type '" "blpapi_CorrelationId_t const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "CorrelationId_t_equals" "', argument " "2"" of type '" "blpapi_CorrelationId_t const *""'"); 
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "CorrelationId_t_equals" "', argument " "2"" of type '" "blpapi_CorrelationId_t const &""'"); 
-  }
-  arg2 = reinterpret_cast< blpapi_CorrelationId_t * >(argp2);
+  arg2 = (blpapi_CorrelationId_t *)(argp2);
+  result = (int)CorrelationId_t_equals((struct blpapi_CorrelationId_t_ const *)arg1,(struct blpapi_CorrelationId_t_ const *)arg2);
+  resultobj = SWIG_From_int((int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_CorrelationId_value_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct blpapi_CorrelationId_t_ *arg1 = (struct blpapi_CorrelationId_t_ *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  blpapi_CorrelationId_t__value *result = 0 ;
   
-  try {
-    result = (bool)CorrelationId_t_equals((blpapi_CorrelationId_t_ const &)*arg1,(blpapi_CorrelationId_t_ const &)*arg2);
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  if (!PyArg_ParseTuple(args,(char *)"O:CorrelationId_value_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CorrelationId_value_get" "', argument " "1"" of type '" "struct blpapi_CorrelationId_t_ *""'"); 
   }
-  
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  arg1 = (struct blpapi_CorrelationId_t_ *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_CorrelationId_t__value *)& ((arg1)->value);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_CorrelationId_t__value, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -6189,26 +5684,10 @@ fail:
 
 SWIGINTERN PyObject *_wrap_new_CorrelationId__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_CorrelationId_t_ *result = 0 ;
+  struct blpapi_CorrelationId_t_ *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)":new_CorrelationId")) SWIG_fail;
-  
-  try {
-    result = (blpapi_CorrelationId_t_ *)new_blpapi_CorrelationId_t___SWIG_0();
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
-  }
-  
+  result = (struct blpapi_CorrelationId_t_ *)new_blpapi_CorrelationId_t___SWIG_0();
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_CorrelationId_t_, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
@@ -6219,43 +5698,29 @@ fail:
 SWIGINTERN PyObject *_wrap_new_CorrelationId__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   long long arg1 ;
-  unsigned short arg2 ;
+  unsigned short arg2 = (unsigned short) 0 ;
   long long val1 ;
   int ecode1 = 0 ;
   unsigned short val2 ;
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  blpapi_CorrelationId_t_ *result = 0 ;
+  struct blpapi_CorrelationId_t_ *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:new_CorrelationId",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O|O:new_CorrelationId",&obj0,&obj1)) SWIG_fail;
   ecode1 = SWIG_AsVal_long_SS_long(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
     SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_CorrelationId" "', argument " "1"" of type '" "long long""'");
   } 
-  arg1 = static_cast< long long >(val1);
-  ecode2 = SWIG_AsVal_unsigned_SS_short(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_CorrelationId" "', argument " "2"" of type '" "unsigned short""'");
-  } 
-  arg2 = static_cast< unsigned short >(val2);
-  
-  try {
-    result = (blpapi_CorrelationId_t_ *)new_blpapi_CorrelationId_t___SWIG_1(arg1,arg2);
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (long long)(val1);
+  if (obj1) {
+    ecode2 = SWIG_AsVal_unsigned_SS_short(obj1, &val2);
+    if (!SWIG_IsOK(ecode2)) {
+      SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_CorrelationId" "', argument " "2"" of type '" "unsigned short""'");
+    } 
+    arg2 = (unsigned short)(val2);
   }
-  
+  result = (struct blpapi_CorrelationId_t_ *)new_blpapi_CorrelationId_t___SWIG_1(arg1,arg2);
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_CorrelationId_t_, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
@@ -6265,112 +5730,26 @@ fail:
 
 SWIGINTERN PyObject *_wrap_new_CorrelationId__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  long long arg1 ;
-  long long val1 ;
-  int ecode1 = 0 ;
-  PyObject * obj0 = 0 ;
-  blpapi_CorrelationId_t_ *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:new_CorrelationId",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_long_SS_long(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_CorrelationId" "', argument " "1"" of type '" "long long""'");
-  } 
-  arg1 = static_cast< long long >(val1);
-  
-  try {
-    result = (blpapi_CorrelationId_t_ *)new_blpapi_CorrelationId_t___SWIG_1(arg1);
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
-  }
-  
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_CorrelationId_t_, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_CorrelationId__SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
   PyObject *arg1 = (PyObject *) 0 ;
-  unsigned short arg2 ;
+  unsigned short arg2 = (unsigned short) 0 ;
   unsigned short val2 ;
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  blpapi_CorrelationId_t_ *result = 0 ;
+  struct blpapi_CorrelationId_t_ *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:new_CorrelationId",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O|O:new_CorrelationId",&obj0,&obj1)) SWIG_fail;
   {
     arg1 = obj0;
   }
-  ecode2 = SWIG_AsVal_unsigned_SS_short(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_CorrelationId" "', argument " "2"" of type '" "unsigned short""'");
-  } 
-  arg2 = static_cast< unsigned short >(val2);
-  
-  try {
-    result = (blpapi_CorrelationId_t_ *)new_blpapi_CorrelationId_t___SWIG_3(arg1,arg2);
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  if (obj1) {
+    ecode2 = SWIG_AsVal_unsigned_SS_short(obj1, &val2);
+    if (!SWIG_IsOK(ecode2)) {
+      SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_CorrelationId" "', argument " "2"" of type '" "unsigned short""'");
+    } 
+    arg2 = (unsigned short)(val2);
   }
-  
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_CorrelationId_t_, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_CorrelationId__SWIG_4(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  PyObject *arg1 = (PyObject *) 0 ;
-  PyObject * obj0 = 0 ;
-  blpapi_CorrelationId_t_ *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:new_CorrelationId",&obj0)) SWIG_fail;
-  {
-    arg1 = obj0;
-  }
-  
-  try {
-    result = (blpapi_CorrelationId_t_ *)new_blpapi_CorrelationId_t___SWIG_3(arg1);
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
-  }
-  
+  result = (struct blpapi_CorrelationId_t_ *)new_blpapi_CorrelationId_t___SWIG_2(arg1,arg2);
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_CorrelationId_t_, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
@@ -6393,30 +5772,16 @@ SWIGINTERN PyObject *_wrap_new_CorrelationId(PyObject *self, PyObject *args) {
   if (argc == 0) {
     return _wrap_new_CorrelationId__SWIG_0(self, args);
   }
-  if (argc == 1) {
+  if ((argc >= 1) && (argc <= 2)) {
     int _v;
     {
       int res = SWIG_AsVal_long_SS_long(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
-      return _wrap_new_CorrelationId__SWIG_2(self, args);
-    }
-  }
-  if (argc == 1) {
-    int _v;
-    _v = (argv[0] != 0);
-    if (_v) {
-      return _wrap_new_CorrelationId__SWIG_4(self, args);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      int res = SWIG_AsVal_long_SS_long(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
+      if (argc <= 1) {
+        return _wrap_new_CorrelationId__SWIG_1(self, args);
+      }
       {
         int res = SWIG_AsVal_unsigned_SS_short(argv[1], NULL);
         _v = SWIG_CheckState(res);
@@ -6426,16 +5791,19 @@ SWIGINTERN PyObject *_wrap_new_CorrelationId(PyObject *self, PyObject *args) {
       }
     }
   }
-  if (argc == 2) {
+  if ((argc >= 1) && (argc <= 2)) {
     int _v;
     _v = (argv[0] != 0);
     if (_v) {
+      if (argc <= 1) {
+        return _wrap_new_CorrelationId__SWIG_2(self, args);
+      }
       {
         int res = SWIG_AsVal_unsigned_SS_short(argv[1], NULL);
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_new_CorrelationId__SWIG_3(self, args);
+        return _wrap_new_CorrelationId__SWIG_2(self, args);
       }
     }
   }
@@ -6445,16 +5813,14 @@ fail:
     "  Possible C/C++ prototypes are:\n"
     "    blpapi_CorrelationId_t_::blpapi_CorrelationId_t_()\n"
     "    blpapi_CorrelationId_t_::blpapi_CorrelationId_t_(long long,unsigned short)\n"
-    "    blpapi_CorrelationId_t_::blpapi_CorrelationId_t_(long long)\n"
-    "    blpapi_CorrelationId_t_::blpapi_CorrelationId_t_(PyObject *,unsigned short)\n"
-    "    blpapi_CorrelationId_t_::blpapi_CorrelationId_t_(PyObject *)\n");
+    "    blpapi_CorrelationId_t_::blpapi_CorrelationId_t_(PyObject *,unsigned short)\n");
   return 0;
 }
 
 
 SWIGINTERN PyObject *_wrap_delete_CorrelationId(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_CorrelationId_t_ *arg1 = (blpapi_CorrelationId_t_ *) 0 ;
+  struct blpapi_CorrelationId_t_ *arg1 = (struct blpapi_CorrelationId_t_ *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
@@ -6462,26 +5828,10 @@ SWIGINTERN PyObject *_wrap_delete_CorrelationId(PyObject *SWIGUNUSEDPARM(self), 
   if (!PyArg_ParseTuple(args,(char *)"O:delete_CorrelationId",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_CorrelationId_t_, SWIG_POINTER_DISOWN |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_CorrelationId" "', argument " "1"" of type '" "blpapi_CorrelationId_t_ *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_CorrelationId" "', argument " "1"" of type '" "struct blpapi_CorrelationId_t_ *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_CorrelationId_t_ * >(argp1);
-  
-  try {
-    delete_blpapi_CorrelationId_t_(arg1);
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
-  }
-  
+  arg1 = (struct blpapi_CorrelationId_t_ *)(argp1);
+  delete_blpapi_CorrelationId_t_(arg1);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6491,7 +5841,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_CorrelationId_type(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_CorrelationId_t_ *arg1 = (blpapi_CorrelationId_t_ *) 0 ;
+  struct blpapi_CorrelationId_t_ *arg1 = (struct blpapi_CorrelationId_t_ *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
@@ -6500,27 +5850,11 @@ SWIGINTERN PyObject *_wrap_CorrelationId_type(PyObject *SWIGUNUSEDPARM(self), Py
   if (!PyArg_ParseTuple(args,(char *)"O:CorrelationId_type",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CorrelationId_type" "', argument " "1"" of type '" "blpapi_CorrelationId_t_ const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CorrelationId_type" "', argument " "1"" of type '" "struct blpapi_CorrelationId_t_ const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_CorrelationId_t_ * >(argp1);
-  
-  try {
-    result = (unsigned short)blpapi_CorrelationId_t__type((blpapi_CorrelationId_t_ const *)arg1);
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
-  }
-  
-  resultobj = SWIG_From_unsigned_SS_short(static_cast< unsigned short >(result));
+  arg1 = (struct blpapi_CorrelationId_t_ *)(argp1);
+  result = (unsigned short)blpapi_CorrelationId_t__type((struct blpapi_CorrelationId_t_ const *)arg1);
+  resultobj = SWIG_From_unsigned_SS_short((unsigned short)(result));
   return resultobj;
 fail:
   return NULL;
@@ -6529,7 +5863,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_CorrelationId_classId(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_CorrelationId_t_ *arg1 = (blpapi_CorrelationId_t_ *) 0 ;
+  struct blpapi_CorrelationId_t_ *arg1 = (struct blpapi_CorrelationId_t_ *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
@@ -6538,27 +5872,11 @@ SWIGINTERN PyObject *_wrap_CorrelationId_classId(PyObject *SWIGUNUSEDPARM(self),
   if (!PyArg_ParseTuple(args,(char *)"O:CorrelationId_classId",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CorrelationId_classId" "', argument " "1"" of type '" "blpapi_CorrelationId_t_ const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CorrelationId_classId" "', argument " "1"" of type '" "struct blpapi_CorrelationId_t_ const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_CorrelationId_t_ * >(argp1);
-  
-  try {
-    result = (unsigned short)blpapi_CorrelationId_t__classId((blpapi_CorrelationId_t_ const *)arg1);
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
-  }
-  
-  resultobj = SWIG_From_unsigned_SS_short(static_cast< unsigned short >(result));
+  arg1 = (struct blpapi_CorrelationId_t_ *)(argp1);
+  result = (unsigned short)blpapi_CorrelationId_t__classId((struct blpapi_CorrelationId_t_ const *)arg1);
+  resultobj = SWIG_From_unsigned_SS_short((unsigned short)(result));
   return resultobj;
 fail:
   return NULL;
@@ -6567,7 +5885,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_CorrelationId___asObject(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_CorrelationId_t_ *arg1 = (blpapi_CorrelationId_t_ *) 0 ;
+  struct blpapi_CorrelationId_t_ *arg1 = (struct blpapi_CorrelationId_t_ *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
@@ -6576,26 +5894,10 @@ SWIGINTERN PyObject *_wrap_CorrelationId___asObject(PyObject *SWIGUNUSEDPARM(sel
   if (!PyArg_ParseTuple(args,(char *)"O:CorrelationId___asObject",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CorrelationId___asObject" "', argument " "1"" of type '" "blpapi_CorrelationId_t_ const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CorrelationId___asObject" "', argument " "1"" of type '" "struct blpapi_CorrelationId_t_ const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_CorrelationId_t_ * >(argp1);
-  
-  try {
-    result = (PyObject *)blpapi_CorrelationId_t____asObject((blpapi_CorrelationId_t_ const *)arg1);
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
-  }
-  
+  arg1 = (struct blpapi_CorrelationId_t_ *)(argp1);
+  result = (PyObject *)blpapi_CorrelationId_t____asObject((struct blpapi_CorrelationId_t_ const *)arg1);
   {
     resultobj = result;
   }
@@ -6607,7 +5909,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_CorrelationId___asInteger(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_CorrelationId_t_ *arg1 = (blpapi_CorrelationId_t_ *) 0 ;
+  struct blpapi_CorrelationId_t_ *arg1 = (struct blpapi_CorrelationId_t_ *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
@@ -6616,27 +5918,11 @@ SWIGINTERN PyObject *_wrap_CorrelationId___asInteger(PyObject *SWIGUNUSEDPARM(se
   if (!PyArg_ParseTuple(args,(char *)"O:CorrelationId___asInteger",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CorrelationId___asInteger" "', argument " "1"" of type '" "blpapi_CorrelationId_t_ const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CorrelationId___asInteger" "', argument " "1"" of type '" "struct blpapi_CorrelationId_t_ const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_CorrelationId_t_ * >(argp1);
-  
-  try {
-    result = (long long)blpapi_CorrelationId_t____asInteger((blpapi_CorrelationId_t_ const *)arg1);
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
-  }
-  
-  resultobj = SWIG_From_long_SS_long(static_cast< long long >(result));
+  arg1 = (struct blpapi_CorrelationId_t_ *)(argp1);
+  result = (long long)blpapi_CorrelationId_t____asInteger((struct blpapi_CorrelationId_t_ const *)arg1);
+  resultobj = SWIG_From_long_SS_long((long long)(result));
   return resultobj;
 fail:
   return NULL;
@@ -6645,7 +5931,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_CorrelationId___toInteger(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_CorrelationId_t_ *arg1 = (blpapi_CorrelationId_t_ *) 0 ;
+  struct blpapi_CorrelationId_t_ *arg1 = (struct blpapi_CorrelationId_t_ *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
@@ -6654,27 +5940,11 @@ SWIGINTERN PyObject *_wrap_CorrelationId___toInteger(PyObject *SWIGUNUSEDPARM(se
   if (!PyArg_ParseTuple(args,(char *)"O:CorrelationId___toInteger",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CorrelationId___toInteger" "', argument " "1"" of type '" "blpapi_CorrelationId_t_ const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CorrelationId___toInteger" "', argument " "1"" of type '" "struct blpapi_CorrelationId_t_ const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_CorrelationId_t_ * >(argp1);
-  
-  try {
-    result = (long long)blpapi_CorrelationId_t____toInteger((blpapi_CorrelationId_t_ const *)arg1);
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
-  }
-  
-  resultobj = SWIG_From_long_SS_long(static_cast< long long >(result));
+  arg1 = (struct blpapi_CorrelationId_t_ *)(argp1);
+  result = (long long)blpapi_CorrelationId_t____toInteger((struct blpapi_CorrelationId_t_ const *)arg1);
+  resultobj = SWIG_From_long_SS_long((long long)(result));
   return resultobj;
 fail:
   return NULL;
@@ -6685,6 +5955,55 @@ SWIGINTERN PyObject *CorrelationId_swigregister(PyObject *SWIGUNUSEDPARM(self), 
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char *)"O:swigregister", &obj)) return NULL;
   SWIG_TypeNewClientData(SWIGTYPE_p_blpapi_CorrelationId_t_, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_blpapi_CorrelationId_t__value(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  blpapi_CorrelationId_t__value *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_blpapi_CorrelationId_t__value")) SWIG_fail;
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_CorrelationId_t__value *)calloc(1, sizeof(blpapi_CorrelationId_t__value));
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_CorrelationId_t__value, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_blpapi_CorrelationId_t__value(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  blpapi_CorrelationId_t__value *arg1 = (blpapi_CorrelationId_t__value *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_blpapi_CorrelationId_t__value",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_CorrelationId_t__value, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_blpapi_CorrelationId_t__value" "', argument " "1"" of type '" "blpapi_CorrelationId_t__value *""'"); 
+  }
+  arg1 = (blpapi_CorrelationId_t__value *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    free((char *) arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *blpapi_CorrelationId_t__value_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char *)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_blpapi_CorrelationId_t__value, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
@@ -6714,48 +6033,32 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_setElementFloat(PyObject *SWIGUNUSEDPA
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_setElementFloat" "', argument " "1"" of type '" "blpapi_Element_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Element_setElementFloat" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Element_setElementFloat" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
+  arg3 = (blpapi_Name_t *)(argp3);
   ecode4 = SWIG_AsVal_double(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "blpapi_Element_setElementFloat" "', argument " "4"" of type '" "blpapi_Float64_t""'");
   } 
-  arg4 = static_cast< blpapi_Float64_t >(val4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_setElementFloat(arg1,(char const *)arg2,(blpapi_Name const *)arg3,arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_Float64_t)(val4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_setElementFloat(arg1,(char const *)arg2,(struct blpapi_Name const *)arg3,arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -6781,39 +6084,23 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_setValueFloat(PyObject *SWIGUNUSEDPARM
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_setValueFloat" "', argument " "1"" of type '" "blpapi_Element_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   ecode2 = SWIG_AsVal_double(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_Element_setValueFloat" "', argument " "2"" of type '" "blpapi_Float64_t""'");
   } 
-  arg2 = static_cast< blpapi_Float64_t >(val2);
+  arg2 = (blpapi_Float64_t)(val2);
   ecode3 = SWIG_AsVal_size_t(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Element_setValueFloat" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_setValueFloat(arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_setValueFloat(arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -6825,55 +6112,47 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_printHelper(PyObject *SWIGUNUSEDPARM(s
   blpapi_Element_t *arg1 = (blpapi_Element_t *) 0 ;
   int arg2 ;
   int arg3 ;
+  char **arg4 = (char **) 0 ;
+  int *arg5 = (int *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   int val2 ;
   int ecode2 = 0 ;
   int val3 ;
   int ecode3 = 0 ;
+  char *temp4 = 0 ;
+  int tempn4 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
-  std::string result;
   
+  arg4 = &temp4; arg5 = &tempn4;
   if (!PyArg_ParseTuple(args,(char *)"OOO:blpapi_Element_printHelper",&obj0,&obj1,&obj2)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Element, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_printHelper" "', argument " "1"" of type '" "blpapi_Element_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_Element_printHelper" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
+  arg2 = (int)(val2);
   ecode3 = SWIG_AsVal_int(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Element_printHelper" "', argument " "3"" of type '" "int""'");
   } 
-  arg3 = static_cast< int >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = blpapi_Element_printHelper(arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (int)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_Element_printHelper(arg1,arg2,arg3,arg4,arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  resultobj = SWIG_Py_Void();
+  if (*arg4) {
+    resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_FromCharPtrAndSize(*arg4,*arg5));
+    free(*arg4);
+  }
   return resultobj;
 fail:
   return NULL;
@@ -6893,28 +6172,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_name(PyObject *SWIGUNUSEDPARM(self), P
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_name" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_Name_t *)blpapi_Element_name((blpapi_Element const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Element_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_Name_t *)blpapi_Element_name((struct blpapi_Element const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_Name, 0 |  0 );
   return resultobj;
 fail:
@@ -6935,28 +6198,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_nameString(PyObject *SWIGUNUSEDPARM(se
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_nameString" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (char *)blpapi_Element_nameString((blpapi_Element const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Element_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (char *)blpapi_Element_nameString((struct blpapi_Element const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -6977,28 +6224,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_definition(PyObject *SWIGUNUSEDPARM(se
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_definition" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_SchemaElementDefinition_t *)blpapi_Element_definition((blpapi_Element const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Element_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_SchemaElementDefinition_t *)blpapi_Element_definition((struct blpapi_Element const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_p_void, 0 |  0 );
   return resultobj;
 fail:
@@ -7019,29 +6250,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_datatype(PyObject *SWIGUNUSEDPARM(self
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_datatype" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_datatype((blpapi_Element const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Element_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_datatype((struct blpapi_Element const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -7061,29 +6276,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_isComplexType(PyObject *SWIGUNUSEDPARM
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_isComplexType" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_isComplexType((blpapi_Element const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Element_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_isComplexType((struct blpapi_Element const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -7103,29 +6302,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_isArray(PyObject *SWIGUNUSEDPARM(self)
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_isArray" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_isArray((blpapi_Element const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Element_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_isArray((struct blpapi_Element const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -7145,29 +6328,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_isReadOnly(PyObject *SWIGUNUSEDPARM(se
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_isReadOnly" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_isReadOnly((blpapi_Element const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Element_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_isReadOnly((struct blpapi_Element const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -7187,29 +6354,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_numValues(PyObject *SWIGUNUSEDPARM(sel
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_numValues" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = blpapi_Element_numValues((blpapi_Element const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Element_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = blpapi_Element_numValues((struct blpapi_Element const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_size_t(static_cast< size_t >(result));
+  resultobj = SWIG_From_size_t((size_t)(result));
   return resultobj;
 fail:
   return NULL;
@@ -7229,29 +6380,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_numElements(PyObject *SWIGUNUSEDPARM(s
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_numElements" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = blpapi_Element_numElements((blpapi_Element const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Element_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = blpapi_Element_numElements((struct blpapi_Element const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_size_t(static_cast< size_t >(result));
+  resultobj = SWIG_From_size_t((size_t)(result));
   return resultobj;
 fail:
   return NULL;
@@ -7275,34 +6410,18 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_isNullValue(PyObject *SWIGUNUSEDPARM(s
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_isNullValue" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   ecode2 = SWIG_AsVal_size_t(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_Element_isNullValue" "', argument " "2"" of type '" "size_t""'");
   } 
-  arg2 = static_cast< size_t >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_isNullValue((blpapi_Element const *)arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (size_t)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_isNullValue((struct blpapi_Element const *)arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -7322,29 +6441,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_isNull(PyObject *SWIGUNUSEDPARM(self),
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_isNull" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_isNull((blpapi_Element const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Element_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_isNull((struct blpapi_Element const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -7371,34 +6474,18 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_getElementAt(PyObject *SWIGUNUSEDPARM(
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_getElementAt" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Element_getElementAt" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_getElementAt((blpapi_Element const *)arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_getElementAt((struct blpapi_Element const *)arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Element, 0));
   return resultobj;
 fail:
@@ -7431,44 +6518,28 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_getElement(PyObject *SWIGUNUSEDPARM(se
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_getElement" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   res3 = SWIG_AsCharPtrAndSize(obj1, &buf3, NULL, &alloc3);
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Element_getElement" "', argument " "3"" of type '" "char const *""'");
   }
-  arg3 = reinterpret_cast< char * >(buf3);
+  arg3 = (char *)(buf3);
   res4 = SWIG_ConvertPtr(obj2, &argp4,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_Element_getElement" "', argument " "4"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_Name_t * >(argp4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_getElement((blpapi_Element const *)arg1,arg2,(char const *)arg3,(blpapi_Name const *)arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_Name_t *)(argp4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_getElement((struct blpapi_Element const *)arg1,arg2,(char const *)arg3,(struct blpapi_Name const *)arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Element, 0));
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return resultobj;
 fail:
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return NULL;
 }
 
@@ -7503,53 +6574,37 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_hasElementEx(PyObject *SWIGUNUSEDPARM(
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_hasElementEx" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Element_hasElementEx" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Element_hasElementEx" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
+  arg3 = (blpapi_Name_t *)(argp3);
   ecode4 = SWIG_AsVal_int(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "blpapi_Element_hasElementEx" "', argument " "4"" of type '" "int""'");
   } 
-  arg4 = static_cast< int >(val4);
+  arg4 = (int)(val4);
   ecode5 = SWIG_AsVal_int(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "blpapi_Element_hasElementEx" "', argument " "5"" of type '" "int""'");
   } 
-  arg5 = static_cast< int >(val5);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_hasElementEx((blpapi_Element const *)arg1,(char const *)arg2,(blpapi_Name const *)arg3,arg4,arg5);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg5 = (int)(val5);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_hasElementEx((struct blpapi_Element const *)arg1,(char const *)arg2,(struct blpapi_Name const *)arg3,arg4,arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -7575,34 +6630,18 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_getValueAsBool(PyObject *SWIGUNUSEDPAR
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_getValueAsBool" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Element_getValueAsBool" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_getValueAsBool((blpapi_Element const *)arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_getValueAsBool((struct blpapi_Element const *)arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   if (SWIG_IsTmpObj(res2)) {
     resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_From_int((*arg2)));
   } else {
@@ -7637,43 +6676,27 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_getValueAsChar(PyObject *SWIGUNUSEDPAR
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_getValueAsChar" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Element_getValueAsChar" "', argument " "2"" of type '" "blpapi_Char_t *""'");
   }
-  arg2 = reinterpret_cast< blpapi_Char_t * >(buf2);
+  arg2 = (blpapi_Char_t *)(buf2);
   ecode3 = SWIG_AsVal_size_t(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Element_getValueAsChar" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_getValueAsChar((blpapi_Element const *)arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_getValueAsChar((struct blpapi_Element const *)arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -7699,39 +6722,23 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_getValueAsInt32(PyObject *SWIGUNUSEDPA
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_getValueAsInt32" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_int, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Element_getValueAsInt32" "', argument " "2"" of type '" "blpapi_Int32_t *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Int32_t * >(argp2);
+  arg2 = (blpapi_Int32_t *)(argp2);
   ecode3 = SWIG_AsVal_size_t(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Element_getValueAsInt32" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_getValueAsInt32((blpapi_Element const *)arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_getValueAsInt32((struct blpapi_Element const *)arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -7759,34 +6766,18 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_getValueAsInt64(PyObject *SWIGUNUSEDPA
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_getValueAsInt64" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Element_getValueAsInt64" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_getValueAsInt64((blpapi_Element const *)arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_getValueAsInt64((struct blpapi_Element const *)arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   if (SWIG_IsTmpObj(res2)) {
     resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_From_long_SS_long((*arg2)));
   } else {
@@ -7820,34 +6811,18 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_getValueAsFloat64(PyObject *SWIGUNUSED
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_getValueAsFloat64" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Element_getValueAsFloat64" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_getValueAsFloat64((blpapi_Element const *)arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_getValueAsFloat64((struct blpapi_Element const *)arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   if (SWIG_IsTmpObj(res2)) {
     resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_From_double((*arg2)));
   } else {
@@ -7880,34 +6855,18 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_getValueAsString(PyObject *SWIGUNUSEDP
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_getValueAsString" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Element_getValueAsString" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_getValueAsString((blpapi_Element const *)arg1,(char const **)arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_getValueAsString((struct blpapi_Element const *)arg1,(char const **)arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_FromCharPtr(*arg2));
   return resultobj;
 fail:
@@ -7922,52 +6881,38 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_getValueAsDatetime(PyObject *SWIGUNUSE
   size_t arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  blpapi_Datetime_t temp2 ;
   size_t val3 ;
   int ecode3 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   int result;
   
-  arg2 = new blpapi_Datetime_t;
+  arg2 = &temp2;
   if (!PyArg_ParseTuple(args,(char *)"OO:blpapi_Element_getValueAsDatetime",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Element, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_getValueAsDatetime" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Element_getValueAsDatetime" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_getValueAsDatetime((blpapi_Element const *)arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_getValueAsDatetime((struct blpapi_Element const *)arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((arg2), SWIGTYPE_p_blpapi_Datetime_tag, SWIG_POINTER_OWN));
-  arg2 = 0;
-  if(arg2) delete arg2;
+  resultobj = SWIG_From_int((int)(result));
+  {
+    blpapi_Datetime_t *outputPtr = (blpapi_Datetime_t *) malloc(sizeof(blpapi_Datetime_t));
+    *outputPtr = *arg2;
+    resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj(outputPtr, SWIGTYPE_p_blpapi_Datetime_tag, SWIG_POINTER_OWN));
+  }
   return resultobj;
 fail:
-  if(arg2) delete arg2;
   return NULL;
 }
 
@@ -7979,52 +6924,38 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_getValueAsHighPrecisionDatetime(PyObje
   size_t arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  blpapi_HighPrecisionDatetime_t temp2 ;
   size_t val3 ;
   int ecode3 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   int result;
   
-  arg2 = new blpapi_HighPrecisionDatetime_t;
+  arg2 = &temp2;
   if (!PyArg_ParseTuple(args,(char *)"OO:blpapi_Element_getValueAsHighPrecisionDatetime",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Element, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_getValueAsHighPrecisionDatetime" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Element_getValueAsHighPrecisionDatetime" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_getValueAsHighPrecisionDatetime((blpapi_Element const *)arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_getValueAsHighPrecisionDatetime((struct blpapi_Element const *)arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((arg2), SWIGTYPE_p_blpapi_HighPrecisionDatetime_tag, SWIG_POINTER_OWN));
-  arg2 = 0;
-  if(arg2) delete arg2;
+  resultobj = SWIG_From_int((int)(result));
+  {
+    blpapi_HighPrecisionDatetime_t *outputPtr = (blpapi_HighPrecisionDatetime_t *) malloc(sizeof(blpapi_HighPrecisionDatetime_t));
+    *outputPtr = *arg2;
+    resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj(outputPtr, SWIGTYPE_p_blpapi_HighPrecisionDatetime_tag, SWIG_POINTER_OWN));
+  }
   return resultobj;
 fail:
-  if(arg2) delete arg2;
   return NULL;
 }
 
@@ -8049,34 +6980,18 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_getValueAsElement(PyObject *SWIGUNUSED
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_getValueAsElement" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Element_getValueAsElement" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_getValueAsElement((blpapi_Element const *)arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_getValueAsElement((struct blpapi_Element const *)arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Element, 0));
   return resultobj;
 fail:
@@ -8104,34 +7019,18 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_getValueAsName(PyObject *SWIGUNUSEDPAR
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_getValueAsName" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Element_getValueAsName" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_getValueAsName((blpapi_Element const *)arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_getValueAsName((struct blpapi_Element const *)arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Name, 0));
   return resultobj;
 fail:
@@ -8155,29 +7054,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_getChoice(PyObject *SWIGUNUSEDPARM(sel
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_getChoice" "', argument " "1"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_getChoice((blpapi_Element const *)arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Element_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_getChoice((struct blpapi_Element const *)arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Element, 0));
   return resultobj;
 fail:
@@ -8206,39 +7089,23 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_setValueBool(PyObject *SWIGUNUSEDPARM(
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_setValueBool" "', argument " "1"" of type '" "blpapi_Element_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_Element_setValueBool" "', argument " "2"" of type '" "blpapi_Bool_t""'");
   } 
-  arg2 = static_cast< blpapi_Bool_t >(val2);
+  arg2 = (blpapi_Bool_t)(val2);
   ecode3 = SWIG_AsVal_size_t(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Element_setValueBool" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_setValueBool(arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_setValueBool(arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -8266,39 +7133,23 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_setValueInt32(PyObject *SWIGUNUSEDPARM
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_setValueInt32" "', argument " "1"" of type '" "blpapi_Element_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_Element_setValueInt32" "', argument " "2"" of type '" "blpapi_Int32_t""'");
   } 
-  arg2 = static_cast< blpapi_Int32_t >(val2);
+  arg2 = (blpapi_Int32_t)(val2);
   ecode3 = SWIG_AsVal_size_t(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Element_setValueInt32" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_setValueInt32(arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_setValueInt32(arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -8326,39 +7177,23 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_setValueInt64(PyObject *SWIGUNUSEDPARM
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_setValueInt64" "', argument " "1"" of type '" "blpapi_Element_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   ecode2 = SWIG_AsVal_long_SS_long(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_Element_setValueInt64" "', argument " "2"" of type '" "blpapi_Int64_t""'");
   } 
-  arg2 = static_cast< blpapi_Int64_t >(val2);
+  arg2 = (blpapi_Int64_t)(val2);
   ecode3 = SWIG_AsVal_size_t(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Element_setValueInt64" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_setValueInt64(arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_setValueInt64(arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -8387,43 +7222,27 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_setValueString(PyObject *SWIGUNUSEDPAR
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_setValueString" "', argument " "1"" of type '" "blpapi_Element_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Element_setValueString" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   ecode3 = SWIG_AsVal_size_t(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Element_setValueString" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_setValueString(arg1,(char const *)arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_setValueString(arg1,(char const *)arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -8449,39 +7268,23 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_setValueDatetime(PyObject *SWIGUNUSEDP
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_setValueDatetime" "', argument " "1"" of type '" "blpapi_Element_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Element_setValueDatetime" "', argument " "2"" of type '" "blpapi_Datetime_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Datetime_t * >(argp2);
+  arg2 = (blpapi_Datetime_t *)(argp2);
   ecode3 = SWIG_AsVal_size_t(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Element_setValueDatetime" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_setValueDatetime(arg1,(blpapi_Datetime_tag const *)arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_setValueDatetime(arg1,(struct blpapi_Datetime_tag const *)arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -8509,39 +7312,23 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_setValueFromName(PyObject *SWIGUNUSEDP
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_setValueFromName" "', argument " "1"" of type '" "blpapi_Element_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Element_setValueFromName" "', argument " "2"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Name_t * >(argp2);
+  arg2 = (blpapi_Name_t *)(argp2);
   ecode3 = SWIG_AsVal_size_t(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Element_setValueFromName" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_setValueFromName(arg1,(blpapi_Name const *)arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_setValueFromName(arg1,(struct blpapi_Name const *)arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -8574,48 +7361,32 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_setElementBool(PyObject *SWIGUNUSEDPAR
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_setElementBool" "', argument " "1"" of type '" "blpapi_Element_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Element_setElementBool" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Element_setElementBool" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
+  arg3 = (blpapi_Name_t *)(argp3);
   ecode4 = SWIG_AsVal_int(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "blpapi_Element_setElementBool" "', argument " "4"" of type '" "blpapi_Bool_t""'");
   } 
-  arg4 = static_cast< blpapi_Bool_t >(val4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_setElementBool(arg1,(char const *)arg2,(blpapi_Name const *)arg3,arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_Bool_t)(val4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_setElementBool(arg1,(char const *)arg2,(struct blpapi_Name const *)arg3,arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -8646,48 +7417,32 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_setElementInt32(PyObject *SWIGUNUSEDPA
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_setElementInt32" "', argument " "1"" of type '" "blpapi_Element_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Element_setElementInt32" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Element_setElementInt32" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
+  arg3 = (blpapi_Name_t *)(argp3);
   ecode4 = SWIG_AsVal_int(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "blpapi_Element_setElementInt32" "', argument " "4"" of type '" "blpapi_Int32_t""'");
   } 
-  arg4 = static_cast< blpapi_Int32_t >(val4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_setElementInt32(arg1,(char const *)arg2,(blpapi_Name const *)arg3,arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_Int32_t)(val4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_setElementInt32(arg1,(char const *)arg2,(struct blpapi_Name const *)arg3,arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -8718,48 +7473,32 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_setElementInt64(PyObject *SWIGUNUSEDPA
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_setElementInt64" "', argument " "1"" of type '" "blpapi_Element_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Element_setElementInt64" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Element_setElementInt64" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
+  arg3 = (blpapi_Name_t *)(argp3);
   ecode4 = SWIG_AsVal_long_SS_long(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "blpapi_Element_setElementInt64" "', argument " "4"" of type '" "blpapi_Int64_t""'");
   } 
-  arg4 = static_cast< blpapi_Int64_t >(val4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_setElementInt64(arg1,(char const *)arg2,(blpapi_Name const *)arg3,arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_Int64_t)(val4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_setElementInt64(arg1,(char const *)arg2,(struct blpapi_Name const *)arg3,arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -8791,50 +7530,34 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_setElementString(PyObject *SWIGUNUSEDP
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_setElementString" "', argument " "1"" of type '" "blpapi_Element_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Element_setElementString" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Element_setElementString" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
+  arg3 = (blpapi_Name_t *)(argp3);
   res4 = SWIG_AsCharPtrAndSize(obj3, &buf4, NULL, &alloc4);
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_Element_setElementString" "', argument " "4"" of type '" "char const *""'");
   }
-  arg4 = reinterpret_cast< char * >(buf4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_setElementString(arg1,(char const *)arg2,(blpapi_Name const *)arg3,(char const *)arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (char *)(buf4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_setElementString(arg1,(char const *)arg2,(struct blpapi_Name const *)arg3,(char const *)arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  if (alloc4 == SWIG_NEWOBJ) free((char*)buf4);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  if (alloc4 == SWIG_NEWOBJ) free((char*)buf4);
   return NULL;
 }
 
@@ -8865,48 +7588,32 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_setElementDatetime(PyObject *SWIGUNUSE
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_setElementDatetime" "', argument " "1"" of type '" "blpapi_Element_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Element_setElementDatetime" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Element_setElementDatetime" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
+  arg3 = (blpapi_Name_t *)(argp3);
   res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_Element_setElementDatetime" "', argument " "4"" of type '" "blpapi_Datetime_t const *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_Datetime_t * >(argp4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_setElementDatetime(arg1,(char const *)arg2,(blpapi_Name const *)arg3,(blpapi_Datetime_tag const *)arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_Datetime_t *)(argp4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_setElementDatetime(arg1,(char const *)arg2,(struct blpapi_Name const *)arg3,(struct blpapi_Datetime_tag const *)arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -8937,48 +7644,32 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_setElementFromName(PyObject *SWIGUNUSE
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_setElementFromName" "', argument " "1"" of type '" "blpapi_Element_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Element_setElementFromName" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Element_setElementFromName" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
+  arg3 = (blpapi_Name_t *)(argp3);
   res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_Element_setElementFromName" "', argument " "4"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_Name_t * >(argp4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_setElementFromName(arg1,(char const *)arg2,(blpapi_Name const *)arg3,(blpapi_Name const *)arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_Name_t *)(argp4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_setElementFromName(arg1,(char const *)arg2,(struct blpapi_Name const *)arg3,(struct blpapi_Name const *)arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -8999,29 +7690,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_appendElement(PyObject *SWIGUNUSEDPARM
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_appendElement" "', argument " "1"" of type '" "blpapi_Element_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_appendElement(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Element_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_appendElement(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Element, 0));
   return resultobj;
 fail:
@@ -9058,49 +7733,33 @@ SWIGINTERN PyObject *_wrap_blpapi_Element_setChoice(PyObject *SWIGUNUSEDPARM(sel
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Element_setChoice" "', argument " "1"" of type '" "blpapi_Element_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Element_t * >(argp1);
+  arg1 = (blpapi_Element_t *)(argp1);
   res3 = SWIG_AsCharPtrAndSize(obj1, &buf3, NULL, &alloc3);
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Element_setChoice" "', argument " "3"" of type '" "char const *""'");
   }
-  arg3 = reinterpret_cast< char * >(buf3);
+  arg3 = (char *)(buf3);
   res4 = SWIG_ConvertPtr(obj2, &argp4,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_Element_setChoice" "', argument " "4"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_Name_t * >(argp4);
+  arg4 = (blpapi_Name_t *)(argp4);
   ecode5 = SWIG_AsVal_size_t(obj3, &val5);
   if (!SWIG_IsOK(ecode5)) {
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "blpapi_Element_setChoice" "', argument " "5"" of type '" "size_t""'");
   } 
-  arg5 = static_cast< size_t >(val5);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Element_setChoice(arg1,arg2,(char const *)arg3,(blpapi_Name const *)arg4,arg5);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg5 = (size_t)(val5);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Element_setChoice(arg1,arg2,(char const *)arg3,(struct blpapi_Name const *)arg4,arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Element, 0));
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return resultobj;
 fail:
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return NULL;
 }
 
@@ -9131,48 +7790,32 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_setValueFloat(PyObject *SWIGUNU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_setValueFloat" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_EventFormatter_setValueFloat" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_EventFormatter_setValueFloat" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
+  arg3 = (blpapi_Name_t *)(argp3);
   ecode4 = SWIG_AsVal_double(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "blpapi_EventFormatter_setValueFloat" "', argument " "4"" of type '" "blpapi_Float64_t""'");
   } 
-  arg4 = static_cast< blpapi_Float64_t >(val4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_setValueFloat(arg1,(char const *)arg2,(blpapi_Name const *)arg3,arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_Float64_t)(val4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_setValueFloat(arg1,(char const *)arg2,(struct blpapi_Name const *)arg3,arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -9194,34 +7837,18 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_appendValueFloat(PyObject *SWIG
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_appendValueFloat" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   ecode2 = SWIG_AsVal_double(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_EventFormatter_appendValueFloat" "', argument " "2"" of type '" "blpapi_Float64_t""'");
   } 
-  arg2 = static_cast< blpapi_Float64_t >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_appendValueFloat(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (blpapi_Float64_t)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_appendValueFloat(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -9241,28 +7868,12 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_create(PyObject *SWIGUNUSEDPARM
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_create" "', argument " "1"" of type '" "blpapi_Event_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Event_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_EventFormatter_t *)blpapi_EventFormatter_create(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Event_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_EventFormatter_t *)blpapi_EventFormatter_create(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_EventFormatter, 0 |  0 );
   return resultobj;
 fail:
@@ -9282,28 +7893,12 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_destroy(PyObject *SWIGUNUSEDPAR
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_destroy" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_EventFormatter_destroy(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_EventFormatter_destroy(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -9337,48 +7932,32 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_appendMessage(PyObject *SWIGUNU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_appendMessage" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_EventFormatter_appendMessage" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_EventFormatter_appendMessage" "', argument " "3"" of type '" "blpapi_Name_t *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
+  arg3 = (blpapi_Name_t *)(argp3);
   res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_blpapi_Topic, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_EventFormatter_appendMessage" "', argument " "4"" of type '" "blpapi_Topic_t const *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_Topic_t * >(argp4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_appendMessage(arg1,(char const *)arg2,arg3,(blpapi_Topic const *)arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_Topic_t *)(argp4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_appendMessage(arg1,(char const *)arg2,arg3,(struct blpapi_Topic const *)arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -9417,58 +7996,42 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_appendMessageSeq(PyObject *SWIG
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_appendMessageSeq" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_EventFormatter_appendMessageSeq" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_EventFormatter_appendMessageSeq" "', argument " "3"" of type '" "blpapi_Name_t *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
+  arg3 = (blpapi_Name_t *)(argp3);
   res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_blpapi_Topic, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_EventFormatter_appendMessageSeq" "', argument " "4"" of type '" "blpapi_Topic_t const *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_Topic_t * >(argp4);
+  arg4 = (blpapi_Topic_t *)(argp4);
   ecode5 = SWIG_AsVal_unsigned_SS_int(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "blpapi_EventFormatter_appendMessageSeq" "', argument " "5"" of type '" "unsigned int""'");
   } 
-  arg5 = static_cast< unsigned int >(val5);
+  arg5 = (unsigned int)(val5);
   ecode6 = SWIG_AsVal_unsigned_SS_int(obj5, &val6);
   if (!SWIG_IsOK(ecode6)) {
     SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "blpapi_EventFormatter_appendMessageSeq" "', argument " "6"" of type '" "unsigned int""'");
   } 
-  arg6 = static_cast< unsigned int >(val6);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_appendMessageSeq(arg1,(char const *)arg2,arg3,(blpapi_Topic const *)arg4,arg5,arg6);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg6 = (unsigned int)(val6);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_appendMessageSeq(arg1,(char const *)arg2,arg3,(struct blpapi_Topic const *)arg4,arg5,arg6);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -9495,43 +8058,27 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_appendResponse(PyObject *SWIGUN
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_appendResponse" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_EventFormatter_appendResponse" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_EventFormatter_appendResponse" "', argument " "3"" of type '" "blpapi_Name_t *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_appendResponse(arg1,(char const *)arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_Name_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_appendResponse(arg1,(char const *)arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -9557,39 +8104,23 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_appendRecapMessage(PyObject *SW
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_appendRecapMessage" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Topic, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_EventFormatter_appendRecapMessage" "', argument " "2"" of type '" "blpapi_Topic_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Topic_t * >(argp2);
+  arg2 = (blpapi_Topic_t *)(argp2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_EventFormatter_appendRecapMessage" "', argument " "3"" of type '" "blpapi_CorrelationId_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_CorrelationId_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_appendRecapMessage(arg1,(blpapi_Topic const *)arg2,(blpapi_CorrelationId_t_ const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_CorrelationId_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_appendRecapMessage(arg1,(struct blpapi_Topic const *)arg2,(struct blpapi_CorrelationId_t_ const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -9625,49 +8156,33 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_appendRecapMessageSeq(PyObject 
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_appendRecapMessageSeq" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Topic, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_EventFormatter_appendRecapMessageSeq" "', argument " "2"" of type '" "blpapi_Topic_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Topic_t * >(argp2);
+  arg2 = (blpapi_Topic_t *)(argp2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_EventFormatter_appendRecapMessageSeq" "', argument " "3"" of type '" "blpapi_CorrelationId_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_CorrelationId_t * >(argp3);
+  arg3 = (blpapi_CorrelationId_t *)(argp3);
   ecode4 = SWIG_AsVal_unsigned_SS_int(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "blpapi_EventFormatter_appendRecapMessageSeq" "', argument " "4"" of type '" "unsigned int""'");
   } 
-  arg4 = static_cast< unsigned int >(val4);
+  arg4 = (unsigned int)(val4);
   ecode5 = SWIG_AsVal_unsigned_SS_int(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "blpapi_EventFormatter_appendRecapMessageSeq" "', argument " "5"" of type '" "unsigned int""'");
   } 
-  arg5 = static_cast< unsigned int >(val5);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_appendRecapMessageSeq(arg1,(blpapi_Topic const *)arg2,(blpapi_CorrelationId_t_ const *)arg3,arg4,arg5);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg5 = (unsigned int)(val5);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_appendRecapMessageSeq(arg1,(struct blpapi_Topic const *)arg2,(struct blpapi_CorrelationId_t_ const *)arg3,arg4,arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -9708,58 +8223,42 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_appendFragmentedRecapMessage(Py
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_appendFragmentedRecapMessage" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_EventFormatter_appendFragmentedRecapMessage" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_EventFormatter_appendFragmentedRecapMessage" "', argument " "3"" of type '" "blpapi_Name_t *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
+  arg3 = (blpapi_Name_t *)(argp3);
   res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_blpapi_Topic, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_EventFormatter_appendFragmentedRecapMessage" "', argument " "4"" of type '" "blpapi_Topic_t const *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_Topic_t * >(argp4);
+  arg4 = (blpapi_Topic_t *)(argp4);
   res5 = SWIG_ConvertPtr(obj4, &argp5,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res5)) {
     SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "blpapi_EventFormatter_appendFragmentedRecapMessage" "', argument " "5"" of type '" "blpapi_CorrelationId_t const *""'"); 
   }
-  arg5 = reinterpret_cast< blpapi_CorrelationId_t * >(argp5);
+  arg5 = (blpapi_CorrelationId_t *)(argp5);
   ecode6 = SWIG_AsVal_int(obj5, &val6);
   if (!SWIG_IsOK(ecode6)) {
     SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "blpapi_EventFormatter_appendFragmentedRecapMessage" "', argument " "6"" of type '" "int""'");
   } 
-  arg6 = static_cast< int >(val6);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_appendFragmentedRecapMessage(arg1,(char const *)arg2,arg3,(blpapi_Topic const *)arg4,(blpapi_CorrelationId_t_ const *)arg5,arg6);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg6 = (int)(val6);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_appendFragmentedRecapMessage(arg1,(char const *)arg2,arg3,(struct blpapi_Topic const *)arg4,(struct blpapi_CorrelationId_t_ const *)arg5,arg6);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -9798,58 +8297,42 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_appendFragmentedRecapMessageSeq
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_appendFragmentedRecapMessageSeq" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_EventFormatter_appendFragmentedRecapMessageSeq" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_EventFormatter_appendFragmentedRecapMessageSeq" "', argument " "3"" of type '" "blpapi_Name_t *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
+  arg3 = (blpapi_Name_t *)(argp3);
   res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_blpapi_Topic, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_EventFormatter_appendFragmentedRecapMessageSeq" "', argument " "4"" of type '" "blpapi_Topic_t const *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_Topic_t * >(argp4);
+  arg4 = (blpapi_Topic_t *)(argp4);
   ecode5 = SWIG_AsVal_int(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "blpapi_EventFormatter_appendFragmentedRecapMessageSeq" "', argument " "5"" of type '" "int""'");
   } 
-  arg5 = static_cast< int >(val5);
+  arg5 = (int)(val5);
   ecode6 = SWIG_AsVal_unsigned_SS_int(obj5, &val6);
   if (!SWIG_IsOK(ecode6)) {
     SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "blpapi_EventFormatter_appendFragmentedRecapMessageSeq" "', argument " "6"" of type '" "unsigned int""'");
   } 
-  arg6 = static_cast< unsigned int >(val6);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_appendFragmentedRecapMessageSeq(arg1,(char const *)arg2,arg3,(blpapi_Topic const *)arg4,arg5,arg6);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg6 = (unsigned int)(val6);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_appendFragmentedRecapMessageSeq(arg1,(char const *)arg2,arg3,(struct blpapi_Topic const *)arg4,arg5,arg6);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -9880,48 +8363,32 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_setValueBool(PyObject *SWIGUNUS
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_setValueBool" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_EventFormatter_setValueBool" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_EventFormatter_setValueBool" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
+  arg3 = (blpapi_Name_t *)(argp3);
   ecode4 = SWIG_AsVal_int(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "blpapi_EventFormatter_setValueBool" "', argument " "4"" of type '" "blpapi_Bool_t""'");
   } 
-  arg4 = static_cast< blpapi_Bool_t >(val4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_setValueBool(arg1,(char const *)arg2,(blpapi_Name const *)arg3,arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_Bool_t)(val4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_setValueBool(arg1,(char const *)arg2,(struct blpapi_Name const *)arg3,arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -9952,48 +8419,32 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_setValueChar(PyObject *SWIGUNUS
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_setValueChar" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_EventFormatter_setValueChar" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_EventFormatter_setValueChar" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
+  arg3 = (blpapi_Name_t *)(argp3);
   ecode4 = SWIG_AsVal_char(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "blpapi_EventFormatter_setValueChar" "', argument " "4"" of type '" "char""'");
   } 
-  arg4 = static_cast< char >(val4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_setValueChar(arg1,(char const *)arg2,(blpapi_Name const *)arg3,arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (char)(val4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_setValueChar(arg1,(char const *)arg2,(struct blpapi_Name const *)arg3,arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -10024,48 +8475,32 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_setValueInt32(PyObject *SWIGUNU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_setValueInt32" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_EventFormatter_setValueInt32" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_EventFormatter_setValueInt32" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
+  arg3 = (blpapi_Name_t *)(argp3);
   ecode4 = SWIG_AsVal_int(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "blpapi_EventFormatter_setValueInt32" "', argument " "4"" of type '" "blpapi_Int32_t""'");
   } 
-  arg4 = static_cast< blpapi_Int32_t >(val4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_setValueInt32(arg1,(char const *)arg2,(blpapi_Name const *)arg3,arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_Int32_t)(val4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_setValueInt32(arg1,(char const *)arg2,(struct blpapi_Name const *)arg3,arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -10096,48 +8531,32 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_setValueInt64(PyObject *SWIGUNU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_setValueInt64" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_EventFormatter_setValueInt64" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_EventFormatter_setValueInt64" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
+  arg3 = (blpapi_Name_t *)(argp3);
   ecode4 = SWIG_AsVal_long_SS_long(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "blpapi_EventFormatter_setValueInt64" "', argument " "4"" of type '" "blpapi_Int64_t""'");
   } 
-  arg4 = static_cast< blpapi_Int64_t >(val4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_setValueInt64(arg1,(char const *)arg2,(blpapi_Name const *)arg3,arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_Int64_t)(val4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_setValueInt64(arg1,(char const *)arg2,(struct blpapi_Name const *)arg3,arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -10168,48 +8587,32 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_setValueDatetime(PyObject *SWIG
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_setValueDatetime" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_EventFormatter_setValueDatetime" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_EventFormatter_setValueDatetime" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
+  arg3 = (blpapi_Name_t *)(argp3);
   res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_EventFormatter_setValueDatetime" "', argument " "4"" of type '" "blpapi_Datetime_t const *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_Datetime_t * >(argp4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_setValueDatetime(arg1,(char const *)arg2,(blpapi_Name const *)arg3,(blpapi_Datetime_tag const *)arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_Datetime_t *)(argp4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_setValueDatetime(arg1,(char const *)arg2,(struct blpapi_Name const *)arg3,(struct blpapi_Datetime_tag const *)arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -10241,50 +8644,34 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_setValueString(PyObject *SWIGUN
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_setValueString" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_EventFormatter_setValueString" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_EventFormatter_setValueString" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
+  arg3 = (blpapi_Name_t *)(argp3);
   res4 = SWIG_AsCharPtrAndSize(obj3, &buf4, NULL, &alloc4);
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_EventFormatter_setValueString" "', argument " "4"" of type '" "char const *""'");
   }
-  arg4 = reinterpret_cast< char * >(buf4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_setValueString(arg1,(char const *)arg2,(blpapi_Name const *)arg3,(char const *)arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (char *)(buf4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_setValueString(arg1,(char const *)arg2,(struct blpapi_Name const *)arg3,(char const *)arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  if (alloc4 == SWIG_NEWOBJ) free((char*)buf4);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  if (alloc4 == SWIG_NEWOBJ) free((char*)buf4);
   return NULL;
 }
 
@@ -10315,48 +8702,32 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_setValueFromName(PyObject *SWIG
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_setValueFromName" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_EventFormatter_setValueFromName" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_EventFormatter_setValueFromName" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
+  arg3 = (blpapi_Name_t *)(argp3);
   res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_EventFormatter_setValueFromName" "', argument " "4"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_Name_t * >(argp4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_setValueFromName(arg1,(char const *)arg2,(blpapi_Name const *)arg3,(blpapi_Name const *)arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_Name_t *)(argp4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_setValueFromName(arg1,(char const *)arg2,(struct blpapi_Name const *)arg3,(struct blpapi_Name const *)arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -10383,43 +8754,27 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_setValueNull(PyObject *SWIGUNUS
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_setValueNull" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_EventFormatter_setValueNull" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_EventFormatter_setValueNull" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_setValueNull(arg1,(char const *)arg2,(blpapi_Name const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_Name_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_setValueNull(arg1,(char const *)arg2,(struct blpapi_Name const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -10446,43 +8801,27 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_pushElement(PyObject *SWIGUNUSE
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_pushElement" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_EventFormatter_pushElement" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_EventFormatter_pushElement" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_pushElement(arg1,(char const *)arg2,(blpapi_Name const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_Name_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_pushElement(arg1,(char const *)arg2,(struct blpapi_Name const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -10500,29 +8839,13 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_popElement(PyObject *SWIGUNUSED
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_popElement" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_popElement(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_popElement(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -10546,34 +8869,18 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_appendValueBool(PyObject *SWIGU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_appendValueBool" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_EventFormatter_appendValueBool" "', argument " "2"" of type '" "blpapi_Bool_t""'");
   } 
-  arg2 = static_cast< blpapi_Bool_t >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_appendValueBool(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (blpapi_Bool_t)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_appendValueBool(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -10597,34 +8904,18 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_appendValueChar(PyObject *SWIGU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_appendValueChar" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   ecode2 = SWIG_AsVal_char(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_EventFormatter_appendValueChar" "', argument " "2"" of type '" "char""'");
   } 
-  arg2 = static_cast< char >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_appendValueChar(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (char)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_appendValueChar(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -10648,34 +8939,18 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_appendValueInt32(PyObject *SWIG
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_appendValueInt32" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_EventFormatter_appendValueInt32" "', argument " "2"" of type '" "blpapi_Int32_t""'");
   } 
-  arg2 = static_cast< blpapi_Int32_t >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_appendValueInt32(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (blpapi_Int32_t)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_appendValueInt32(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -10699,34 +8974,18 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_appendValueInt64(PyObject *SWIG
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_appendValueInt64" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   ecode2 = SWIG_AsVal_long_SS_long(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_EventFormatter_appendValueInt64" "', argument " "2"" of type '" "blpapi_Int64_t""'");
   } 
-  arg2 = static_cast< blpapi_Int64_t >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_appendValueInt64(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (blpapi_Int64_t)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_appendValueInt64(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -10750,34 +9009,18 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_appendValueDatetime(PyObject *S
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_appendValueDatetime" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_EventFormatter_appendValueDatetime" "', argument " "2"" of type '" "blpapi_Datetime_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Datetime_t * >(argp2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_appendValueDatetime(arg1,(blpapi_Datetime_tag const *)arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (blpapi_Datetime_t *)(argp2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_appendValueDatetime(arg1,(struct blpapi_Datetime_tag const *)arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -10802,38 +9045,22 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_appendValueString(PyObject *SWI
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_appendValueString" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_EventFormatter_appendValueString" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_appendValueString(arg1,(char const *)arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (char *)(buf2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_appendValueString(arg1,(char const *)arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -10855,34 +9082,18 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_appendValueFromName(PyObject *S
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_appendValueFromName" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_EventFormatter_appendValueFromName" "', argument " "2"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Name_t * >(argp2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_appendValueFromName(arg1,(blpapi_Name const *)arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (blpapi_Name_t *)(argp2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_appendValueFromName(arg1,(struct blpapi_Name const *)arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -10902,29 +9113,13 @@ SWIGINTERN PyObject *_wrap_blpapi_EventFormatter_appendElement(PyObject *SWIGUNU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventFormatter_appendElement" "', argument " "1"" of type '" "blpapi_EventFormatter_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventFormatter_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventFormatter_appendElement(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_EventFormatter_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventFormatter_appendElement(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -10950,7 +9145,7 @@ SWIGINTERN PyObject *_wrap_Session_createHelper(PyObject *SWIGUNUSEDPARM(self), 
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Session_createHelper" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   {
     arg2 = obj1;
   }
@@ -10958,24 +9153,8 @@ SWIGINTERN PyObject *_wrap_Session_createHelper(PyObject *SWIGUNUSEDPARM(self), 
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Session_createHelper" "', argument " "3"" of type '" "blpapi_EventDispatcher_t *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_EventDispatcher_t * >(argp3);
-  
-  try {
-    result = (blpapi_Session_t *)Session_createHelper(arg1,arg2,arg3);
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
-  }
-  
+  arg3 = (blpapi_EventDispatcher_t *)(argp3);
+  result = (blpapi_Session_t *)Session_createHelper(arg1,arg2,arg3);
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_Session, 0 |  0 );
   return resultobj;
 fail:
@@ -10997,27 +9176,11 @@ SWIGINTERN PyObject *_wrap_Session_destroyHelper(PyObject *SWIGUNUSEDPARM(self),
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Session_destroyHelper" "', argument " "1"" of type '" "blpapi_Session_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Session_t * >(argp1);
+  arg1 = (blpapi_Session_t *)(argp1);
   {
     arg2 = obj1;
   }
-  
-  try {
-    Session_destroyHelper(arg1,arg2);
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
-  }
-  
+  Session_destroyHelper(arg1,arg2);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -11038,28 +9201,12 @@ SWIGINTERN PyObject *_wrap_blpapi_EventDispatcher_create(PyObject *SWIGUNUSEDPAR
   if (!SWIG_IsOK(ecode1)) {
     SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "blpapi_EventDispatcher_create" "', argument " "1"" of type '" "size_t""'");
   } 
-  arg1 = static_cast< size_t >(val1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_EventDispatcher_t *)blpapi_EventDispatcher_create(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (size_t)(val1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_EventDispatcher_t *)blpapi_EventDispatcher_create(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_EventDispatcher, 0 |  0 );
   return resultobj;
 fail:
@@ -11079,28 +9226,12 @@ SWIGINTERN PyObject *_wrap_blpapi_EventDispatcher_destroy(PyObject *SWIGUNUSEDPA
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventDispatcher_destroy" "', argument " "1"" of type '" "blpapi_EventDispatcher_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventDispatcher_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_EventDispatcher_destroy(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_EventDispatcher_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_EventDispatcher_destroy(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -11121,29 +9252,13 @@ SWIGINTERN PyObject *_wrap_blpapi_EventDispatcher_start(PyObject *SWIGUNUSEDPARM
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventDispatcher_start" "', argument " "1"" of type '" "blpapi_EventDispatcher_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventDispatcher_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventDispatcher_start(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_EventDispatcher_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventDispatcher_start(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -11169,7 +9284,7 @@ SWIGINTERN PyObject *_wrap_ProviderSession_createHelper(PyObject *SWIGUNUSEDPARM
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ProviderSession_createHelper" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   {
     arg2 = obj1;
   }
@@ -11177,24 +9292,8 @@ SWIGINTERN PyObject *_wrap_ProviderSession_createHelper(PyObject *SWIGUNUSEDPARM
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "ProviderSession_createHelper" "', argument " "3"" of type '" "blpapi_EventDispatcher_t *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_EventDispatcher_t * >(argp3);
-  
-  try {
-    result = (blpapi_ProviderSession_t *)ProviderSession_createHelper(arg1,arg2,arg3);
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
-  }
-  
+  arg3 = (blpapi_EventDispatcher_t *)(argp3);
+  result = (blpapi_ProviderSession_t *)ProviderSession_createHelper(arg1,arg2,arg3);
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_ProviderSession, 0 |  0 );
   return resultobj;
 fail:
@@ -11216,27 +9315,11 @@ SWIGINTERN PyObject *_wrap_ProviderSession_destroyHelper(PyObject *SWIGUNUSEDPAR
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ProviderSession_destroyHelper" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
   {
     arg2 = obj1;
   }
-  
-  try {
-    ProviderSession_destroyHelper(arg1,arg2);
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
-  }
-  
+  ProviderSession_destroyHelper(arg1,arg2);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -11266,90 +9349,23 @@ SWIGINTERN PyObject *_wrap_ProviderSession_terminateSubscriptionsOnTopic(PyObjec
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ProviderSession_terminateSubscriptionsOnTopic" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Topic, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "ProviderSession_terminateSubscriptionsOnTopic" "', argument " "2"" of type '" "blpapi_Topic_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Topic_t * >(argp2);
+  arg2 = (blpapi_Topic_t *)(argp2);
   res3 = SWIG_AsCharPtrAndSize(obj2, &buf3, NULL, &alloc3);
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "ProviderSession_terminateSubscriptionsOnTopic" "', argument " "3"" of type '" "char const *""'");
   }
-  arg3 = reinterpret_cast< char * >(buf3);
-  
-  try {
-    result = (int)ProviderSession_terminateSubscriptionsOnTopic(arg1,(blpapi_Topic const *)arg2,(char const *)arg3);
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
-  }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  arg3 = (char *)(buf3);
+  result = (int)ProviderSession_terminateSubscriptionsOnTopic(arg1,(struct blpapi_Topic const *)arg2,(char const *)arg3);
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return resultobj;
 fail:
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_ProviderSession_flushPublishedEvents(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  blpapi_ProviderSession_t *arg1 = (blpapi_ProviderSession_t *) 0 ;
-  int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  bool result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:ProviderSession_flushPublishedEvents",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_ProviderSession, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ProviderSession_flushPublishedEvents" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
-  }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "ProviderSession_flushPublishedEvents" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (bool)ProviderSession_flushPublishedEvents(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
-  }
-  
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
-  return resultobj;
-fail:
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return NULL;
 }
 
@@ -11367,28 +9383,12 @@ SWIGINTERN PyObject *_wrap_blpapi_getLastErrorDescription(PyObject *SWIGUNUSEDPA
   if (!SWIG_IsOK(ecode1)) {
     SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "blpapi_getLastErrorDescription" "', argument " "1"" of type '" "int""'");
   } 
-  arg1 = static_cast< int >(val1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (char *)blpapi_getLastErrorDescription(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (int)(val1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (char *)blpapi_getLastErrorDescription(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -11401,27 +9401,11 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_create(PyObject *SWIGUNUSEDPARM
   blpapi_SessionOptions_t *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)":blpapi_SessionOptions_create")) SWIG_fail;
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_SessionOptions_t *)blpapi_SessionOptions_create();
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_SessionOptions_t *)blpapi_SessionOptions_create();
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_SessionOptions, 0 |  0 );
   return resultobj;
 fail:
@@ -11441,28 +9425,12 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_destroy(PyObject *SWIGUNUSEDPAR
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_destroy" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_SessionOptions_destroy(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_SessionOptions_destroy(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -11488,38 +9456,22 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setServerHost(PyObject *SWIGUNU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setServerHost" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_SessionOptions_setServerHost" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_setServerHost(arg1,(char const *)arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (char *)(buf2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_setServerHost(arg1,(char const *)arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -11541,34 +9493,18 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setServerPort(PyObject *SWIGUNU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setServerPort" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_short(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SessionOptions_setServerPort" "', argument " "2"" of type '" "unsigned short""'");
   } 
-  arg2 = static_cast< unsigned short >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_setServerPort(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (unsigned short)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_setServerPort(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -11601,48 +9537,32 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setServerAddress(PyObject *SWIG
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setServerAddress" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_SessionOptions_setServerAddress" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   ecode3 = SWIG_AsVal_unsigned_SS_short(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_SessionOptions_setServerAddress" "', argument " "3"" of type '" "unsigned short""'");
   } 
-  arg3 = static_cast< unsigned short >(val3);
+  arg3 = (unsigned short)(val3);
   ecode4 = SWIG_AsVal_size_t(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "blpapi_SessionOptions_setServerAddress" "', argument " "4"" of type '" "size_t""'");
   } 
-  arg4 = static_cast< size_t >(val4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_setServerAddress(arg1,(char const *)arg2,arg3,arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (size_t)(val4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_setServerAddress(arg1,(char const *)arg2,arg3,arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -11664,34 +9584,18 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_removeServerAddress(PyObject *S
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_removeServerAddress" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_size_t(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SessionOptions_removeServerAddress" "', argument " "2"" of type '" "size_t""'");
   } 
-  arg2 = static_cast< size_t >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_removeServerAddress(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (size_t)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_removeServerAddress(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -11715,34 +9619,18 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setConnectTimeout(PyObject *SWI
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setConnectTimeout" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SessionOptions_setConnectTimeout" "', argument " "2"" of type '" "unsigned int""'");
   } 
-  arg2 = static_cast< unsigned int >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_setConnectTimeout(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (unsigned int)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_setConnectTimeout(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -11767,38 +9655,22 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setDefaultServices(PyObject *SW
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setDefaultServices" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_SessionOptions_setDefaultServices" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_setDefaultServices(arg1,(char const *)arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (char *)(buf2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_setDefaultServices(arg1,(char const *)arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -11821,38 +9693,22 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setDefaultSubscriptionService(P
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setDefaultSubscriptionService" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_SessionOptions_setDefaultSubscriptionService" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_setDefaultSubscriptionService(arg1,(char const *)arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (char *)(buf2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_setDefaultSubscriptionService(arg1,(char const *)arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -11874,38 +9730,22 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setDefaultTopicPrefix(PyObject 
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setDefaultTopicPrefix" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_SessionOptions_setDefaultTopicPrefix" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_SessionOptions_setDefaultTopicPrefix(arg1,(char const *)arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (char *)(buf2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_SessionOptions_setDefaultTopicPrefix(arg1,(char const *)arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -11926,33 +9766,17 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setAllowMultipleCorrelatorsPerM
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setAllowMultipleCorrelatorsPerMsg" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SessionOptions_setAllowMultipleCorrelatorsPerMsg" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_SessionOptions_setAllowMultipleCorrelatorsPerMsg(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (int)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_SessionOptions_setAllowMultipleCorrelatorsPerMsg(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -11976,33 +9800,17 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setClientMode(PyObject *SWIGUNU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setClientMode" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SessionOptions_setClientMode" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_SessionOptions_setClientMode(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (int)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_SessionOptions_setClientMode(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -12026,33 +9834,17 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setMaxPendingRequests(PyObject 
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setMaxPendingRequests" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SessionOptions_setMaxPendingRequests" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_SessionOptions_setMaxPendingRequests(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (int)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_SessionOptions_setMaxPendingRequests(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -12076,33 +9868,17 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setAutoRestartOnDisconnection(P
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setAutoRestartOnDisconnection" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SessionOptions_setAutoRestartOnDisconnection" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_SessionOptions_setAutoRestartOnDisconnection(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (int)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_SessionOptions_setAutoRestartOnDisconnection(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -12127,38 +9903,22 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setAuthenticationOptions(PyObje
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setAuthenticationOptions" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_SessionOptions_setAuthenticationOptions" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_SessionOptions_setAuthenticationOptions(arg1,(char const *)arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (char *)(buf2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_SessionOptions_setAuthenticationOptions(arg1,(char const *)arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -12179,33 +9939,17 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setNumStartAttempts(PyObject *S
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setNumStartAttempts" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SessionOptions_setNumStartAttempts" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_SessionOptions_setNumStartAttempts(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (int)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_SessionOptions_setNumStartAttempts(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -12229,33 +9973,17 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setMaxEventQueueSize(PyObject *
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setMaxEventQueueSize" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_size_t(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SessionOptions_setMaxEventQueueSize" "', argument " "2"" of type '" "size_t""'");
   } 
-  arg2 = static_cast< size_t >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_SessionOptions_setMaxEventQueueSize(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (size_t)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_SessionOptions_setMaxEventQueueSize(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -12280,34 +10008,18 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setSlowConsumerWarningHiWaterMa
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setSlowConsumerWarningHiWaterMark" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_float(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SessionOptions_setSlowConsumerWarningHiWaterMark" "', argument " "2"" of type '" "float""'");
   } 
-  arg2 = static_cast< float >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_setSlowConsumerWarningHiWaterMark(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (float)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_setSlowConsumerWarningHiWaterMark(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -12331,34 +10043,18 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setSlowConsumerWarningLoWaterMa
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setSlowConsumerWarningLoWaterMark" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_float(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SessionOptions_setSlowConsumerWarningLoWaterMark" "', argument " "2"" of type '" "float""'");
   } 
-  arg2 = static_cast< float >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_setSlowConsumerWarningLoWaterMark(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (float)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_setSlowConsumerWarningLoWaterMark(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -12382,34 +10078,18 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setDefaultKeepAliveInactivityTi
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setDefaultKeepAliveInactivityTime" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SessionOptions_setDefaultKeepAliveInactivityTime" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_setDefaultKeepAliveInactivityTime(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (int)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_setDefaultKeepAliveInactivityTime(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -12433,34 +10113,18 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setDefaultKeepAliveResponseTime
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setDefaultKeepAliveResponseTimeout" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SessionOptions_setDefaultKeepAliveResponseTimeout" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_setDefaultKeepAliveResponseTimeout(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (int)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_setDefaultKeepAliveResponseTimeout(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -12484,34 +10148,18 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setKeepAliveEnabled(PyObject *S
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setKeepAliveEnabled" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SessionOptions_setKeepAliveEnabled" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_setKeepAliveEnabled(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (int)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_setKeepAliveEnabled(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -12534,33 +10182,17 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setRecordSubscriptionDataReceiv
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setRecordSubscriptionDataReceiveTimes" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SessionOptions_setRecordSubscriptionDataReceiveTimes" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_SessionOptions_setRecordSubscriptionDataReceiveTimes(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (int)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_SessionOptions_setRecordSubscriptionDataReceiveTimes(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -12585,34 +10217,18 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setServiceCheckTimeout(PyObject
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setServiceCheckTimeout" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SessionOptions_setServiceCheckTimeout" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_setServiceCheckTimeout(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (int)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_setServiceCheckTimeout(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -12636,34 +10252,18 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setServiceDownloadTimeout(PyObj
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setServiceDownloadTimeout" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SessionOptions_setServiceDownloadTimeout" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_setServiceDownloadTimeout(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (int)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_setServiceDownloadTimeout(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -12686,33 +10286,17 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setTlsOptions(PyObject *SWIGUNU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setTlsOptions" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_TlsOptions, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_SessionOptions_setTlsOptions" "', argument " "2"" of type '" "blpapi_TlsOptions_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_TlsOptions_t * >(argp2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_SessionOptions_setTlsOptions(arg1,(blpapi_TlsOptions const *)arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (blpapi_TlsOptions_t *)(argp2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_SessionOptions_setTlsOptions(arg1,(struct blpapi_TlsOptions const *)arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -12737,34 +10321,53 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setFlushPublishedEventsTimeout(
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setFlushPublishedEventsTimeout" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SessionOptions_setFlushPublishedEventsTimeout" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_setFlushPublishedEventsTimeout(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (int)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_setFlushPublishedEventsTimeout(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
+  resultobj = SWIG_From_int((int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_setBandwidthSaveModeDisabled(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  blpapi_SessionOptions_t *arg1 = (blpapi_SessionOptions_t *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  int result;
   
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (!PyArg_ParseTuple(args,(char *)"OO:blpapi_SessionOptions_setBandwidthSaveModeDisabled",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_SessionOptions, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_setBandwidthSaveModeDisabled" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
+  }
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SessionOptions_setBandwidthSaveModeDisabled" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = (int)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_setBandwidthSaveModeDisabled(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -12784,28 +10387,12 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_serverHost(PyObject *SWIGUNUSED
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_serverHost" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (char *)blpapi_SessionOptions_serverHost(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (char *)blpapi_SessionOptions_serverHost(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -12826,29 +10413,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_serverPort(PyObject *SWIGUNUSED
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_serverPort" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (unsigned int)blpapi_SessionOptions_serverPort(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (unsigned int)blpapi_SessionOptions_serverPort(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
+  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -12868,29 +10439,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_numServerAddresses(PyObject *SW
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_numServerAddresses" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_numServerAddresses(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_numServerAddresses(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -12920,34 +10475,18 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_getServerAddress(PyObject *SWIG
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_getServerAddress" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   ecode4 = SWIG_AsVal_size_t(obj1, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "blpapi_SessionOptions_getServerAddress" "', argument " "4"" of type '" "size_t""'");
   } 
-  arg4 = static_cast< size_t >(val4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_getServerAddress(arg1,(char const **)arg2,arg3,arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (size_t)(val4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_getServerAddress(arg1,(char const **)arg2,arg3,arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   {
     resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_FromCharPtr(*arg2));
     resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_From_int(*arg3));
@@ -12971,29 +10510,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_connectTimeout(PyObject *SWIGUN
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_connectTimeout" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (unsigned int)blpapi_SessionOptions_connectTimeout(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (unsigned int)blpapi_SessionOptions_connectTimeout(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
+  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -13013,28 +10536,12 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_defaultServices(PyObject *SWIGU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_defaultServices" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (char *)blpapi_SessionOptions_defaultServices(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (char *)blpapi_SessionOptions_defaultServices(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -13055,28 +10562,12 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_defaultSubscriptionService(PyOb
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_defaultSubscriptionService" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (char *)blpapi_SessionOptions_defaultSubscriptionService(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (char *)blpapi_SessionOptions_defaultSubscriptionService(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -13097,28 +10588,12 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_defaultTopicPrefix(PyObject *SW
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_defaultTopicPrefix" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (char *)blpapi_SessionOptions_defaultTopicPrefix(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (char *)blpapi_SessionOptions_defaultTopicPrefix(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -13139,29 +10614,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_allowMultipleCorrelatorsPerMsg(
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_allowMultipleCorrelatorsPerMsg" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_allowMultipleCorrelatorsPerMsg(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_allowMultipleCorrelatorsPerMsg(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -13181,29 +10640,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_clientMode(PyObject *SWIGUNUSED
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_clientMode" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_clientMode(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_clientMode(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -13223,29 +10666,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_maxPendingRequests(PyObject *SW
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_maxPendingRequests" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_maxPendingRequests(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_maxPendingRequests(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -13265,29 +10692,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_autoRestartOnDisconnection(PyOb
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_autoRestartOnDisconnection" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_autoRestartOnDisconnection(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_autoRestartOnDisconnection(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -13307,28 +10718,12 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_authenticationOptions(PyObject 
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_authenticationOptions" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (char *)blpapi_SessionOptions_authenticationOptions(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (char *)blpapi_SessionOptions_authenticationOptions(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -13349,29 +10744,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_numStartAttempts(PyObject *SWIG
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_numStartAttempts" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_numStartAttempts(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_numStartAttempts(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -13391,29 +10770,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_maxEventQueueSize(PyObject *SWI
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_maxEventQueueSize" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = blpapi_SessionOptions_maxEventQueueSize(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = blpapi_SessionOptions_maxEventQueueSize(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_size_t(static_cast< size_t >(result));
+  resultobj = SWIG_From_size_t((size_t)(result));
   return resultobj;
 fail:
   return NULL;
@@ -13433,29 +10796,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_slowConsumerWarningHiWaterMark(
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_slowConsumerWarningHiWaterMark" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (float)blpapi_SessionOptions_slowConsumerWarningHiWaterMark(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)blpapi_SessionOptions_slowConsumerWarningHiWaterMark(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_float(static_cast< float >(result));
+  resultobj = SWIG_From_float((float)(result));
   return resultobj;
 fail:
   return NULL;
@@ -13475,29 +10822,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_slowConsumerWarningLoWaterMark(
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_slowConsumerWarningLoWaterMark" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (float)blpapi_SessionOptions_slowConsumerWarningLoWaterMark(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)blpapi_SessionOptions_slowConsumerWarningLoWaterMark(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_float(static_cast< float >(result));
+  resultobj = SWIG_From_float((float)(result));
   return resultobj;
 fail:
   return NULL;
@@ -13517,29 +10848,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_defaultKeepAliveInactivityTime(
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_defaultKeepAliveInactivityTime" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_defaultKeepAliveInactivityTime(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_defaultKeepAliveInactivityTime(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -13559,29 +10874,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_defaultKeepAliveResponseTimeout
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_defaultKeepAliveResponseTimeout" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_defaultKeepAliveResponseTimeout(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_defaultKeepAliveResponseTimeout(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -13601,29 +10900,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_keepAliveEnabled(PyObject *SWIG
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_keepAliveEnabled" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_keepAliveEnabled(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_keepAliveEnabled(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -13643,29 +10926,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_recordSubscriptionDataReceiveTi
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_recordSubscriptionDataReceiveTimes" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_recordSubscriptionDataReceiveTimes(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_recordSubscriptionDataReceiveTimes(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -13685,29 +10952,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_serviceCheckTimeout(PyObject *S
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_serviceCheckTimeout" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_serviceCheckTimeout(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_serviceCheckTimeout(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -13727,29 +10978,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_serviceDownloadTimeout(PyObject
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_serviceDownloadTimeout" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_serviceDownloadTimeout(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_serviceDownloadTimeout(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -13769,29 +11004,39 @@ SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_flushPublishedEventsTimeout(PyO
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_flushPublishedEventsTimeout" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SessionOptions_flushPublishedEventsTimeout(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_flushPublishedEventsTimeout(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
+  resultobj = SWIG_From_int((int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_blpapi_SessionOptions_bandwidthSaveModeDisabled(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  blpapi_SessionOptions_t *arg1 = (blpapi_SessionOptions_t *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  int result;
   
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (!PyArg_ParseTuple(args,(char *)"O:blpapi_SessionOptions_bandwidthSaveModeDisabled",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_SessionOptions, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SessionOptions_bandwidthSaveModeDisabled" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
+  }
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SessionOptions_bandwidthSaveModeDisabled(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -13810,28 +11055,12 @@ SWIGINTERN PyObject *_wrap_blpapi_TlsOptions_destroy(PyObject *SWIGUNUSEDPARM(se
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_TlsOptions_destroy" "', argument " "1"" of type '" "blpapi_TlsOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_TlsOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_TlsOptions_destroy(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_TlsOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_TlsOptions_destroy(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -13863,47 +11092,31 @@ SWIGINTERN PyObject *_wrap_blpapi_TlsOptions_createFromFiles(PyObject *SWIGUNUSE
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_TlsOptions_createFromFiles" "', argument " "1"" of type '" "char const *""'");
   }
-  arg1 = reinterpret_cast< char * >(buf1);
+  arg1 = (char *)(buf1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_TlsOptions_createFromFiles" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_AsCharPtrAndSize(obj2, &buf3, NULL, &alloc3);
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_TlsOptions_createFromFiles" "', argument " "3"" of type '" "char const *""'");
   }
-  arg3 = reinterpret_cast< char * >(buf3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_TlsOptions_t *)blpapi_TlsOptions_createFromFiles((char const *)arg1,(char const *)arg2,(char const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (char *)(buf3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_TlsOptions_t *)blpapi_TlsOptions_createFromFiles((char const *)arg1,(char const *)arg2,(char const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_TlsOptions, 0 |  0 );
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc1 == SWIG_NEWOBJ) free((char*)buf1);
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return resultobj;
 fail:
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc1 == SWIG_NEWOBJ) free((char*)buf1);
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return NULL;
 }
 
@@ -13943,7 +11156,7 @@ SWIGINTERN PyObject *_wrap_blpapi_TlsOptions_createFromBlobs(PyObject *SWIGUNUSE
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_TlsOptions_createFromBlobs" "', argument " "3"" of type '" "char const *""'");
   }
-  arg3 = reinterpret_cast< char * >(buf3);
+  arg3 = (char *)(buf3);
   {
     res4 = PyObject_AsReadBuffer(obj2, &buf4, &size4);
     if (res4<0) {
@@ -13953,32 +11166,16 @@ SWIGINTERN PyObject *_wrap_blpapi_TlsOptions_createFromBlobs(PyObject *SWIGUNUSE
     arg4 = (char *) buf4;
     arg5 = (int) (size4 / sizeof(char const));
   }
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_TlsOptions_t *)blpapi_TlsOptions_createFromBlobs((char const *)arg1,arg2,(char const *)arg3,(char const *)arg4,arg5);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_TlsOptions_t *)blpapi_TlsOptions_createFromBlobs((char const *)arg1,arg2,(char const *)arg3,(char const *)arg4,arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_TlsOptions, 0 |  0 );
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return resultobj;
 fail:
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return NULL;
 }
 
@@ -13999,33 +11196,17 @@ SWIGINTERN PyObject *_wrap_blpapi_TlsOptions_setTlsHandshakeTimeoutMs(PyObject *
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_TlsOptions_setTlsHandshakeTimeoutMs" "', argument " "1"" of type '" "blpapi_TlsOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_TlsOptions_t * >(argp1);
+  arg1 = (blpapi_TlsOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_TlsOptions_setTlsHandshakeTimeoutMs" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_TlsOptions_setTlsHandshakeTimeoutMs(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (int)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_TlsOptions_setTlsHandshakeTimeoutMs(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -14049,33 +11230,17 @@ SWIGINTERN PyObject *_wrap_blpapi_TlsOptions_setCrlFetchTimeoutMs(PyObject *SWIG
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_TlsOptions_setCrlFetchTimeoutMs" "', argument " "1"" of type '" "blpapi_TlsOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_TlsOptions_t * >(argp1);
+  arg1 = (blpapi_TlsOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_TlsOptions_setCrlFetchTimeoutMs" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_TlsOptions_setCrlFetchTimeoutMs(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (int)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_TlsOptions_setCrlFetchTimeoutMs(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -14097,33 +11262,17 @@ SWIGINTERN PyObject *_wrap_blpapi_Name_create(PyObject *SWIGUNUSEDPARM(self), Py
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Name_create" "', argument " "1"" of type '" "char const *""'");
   }
-  arg1 = reinterpret_cast< char * >(buf1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_Name_t *)blpapi_Name_create((char const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (char *)(buf1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_Name_t *)blpapi_Name_create((char const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_Name, 0 |  0 );
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  if (alloc1 == SWIG_NEWOBJ) free((char*)buf1);
   return resultobj;
 fail:
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  if (alloc1 == SWIG_NEWOBJ) free((char*)buf1);
   return NULL;
 }
 
@@ -14140,28 +11289,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Name_destroy(PyObject *SWIGUNUSEDPARM(self), P
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Name_destroy" "', argument " "1"" of type '" "blpapi_Name_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Name_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_Name_destroy(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Name_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_Name_destroy(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -14187,38 +11320,22 @@ SWIGINTERN PyObject *_wrap_blpapi_Name_equalsStr(PyObject *SWIGUNUSEDPARM(self),
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Name_equalsStr" "', argument " "1"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Name_t * >(argp1);
+  arg1 = (blpapi_Name_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Name_equalsStr" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Name_equalsStr((blpapi_Name const *)arg1,(char const *)arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (char *)(buf2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Name_equalsStr((struct blpapi_Name const *)arg1,(char const *)arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -14236,28 +11353,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Name_string(PyObject *SWIGUNUSEDPARM(self), Py
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Name_string" "', argument " "1"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Name_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (char *)blpapi_Name_string((blpapi_Name const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Name_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (char *)blpapi_Name_string((struct blpapi_Name const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -14278,29 +11379,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Name_length(PyObject *SWIGUNUSEDPARM(self), Py
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Name_length" "', argument " "1"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Name_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = blpapi_Name_length((blpapi_Name const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Name_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = blpapi_Name_length((struct blpapi_Name const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_size_t(static_cast< size_t >(result));
+  resultobj = SWIG_From_size_t((size_t)(result));
   return resultobj;
 fail:
   return NULL;
@@ -14321,33 +11406,17 @@ SWIGINTERN PyObject *_wrap_blpapi_Name_findName(PyObject *SWIGUNUSEDPARM(self), 
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Name_findName" "', argument " "1"" of type '" "char const *""'");
   }
-  arg1 = reinterpret_cast< char * >(buf1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_Name_t *)blpapi_Name_findName((char const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (char *)(buf1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_Name_t *)blpapi_Name_findName((char const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_Name, 0 |  0 );
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  if (alloc1 == SWIG_NEWOBJ) free((char*)buf1);
   return resultobj;
 fail:
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  if (alloc1 == SWIG_NEWOBJ) free((char*)buf1);
   return NULL;
 }
 
@@ -14357,27 +11426,11 @@ SWIGINTERN PyObject *_wrap_blpapi_SubscriptionList_create(PyObject *SWIGUNUSEDPA
   blpapi_SubscriptionList_t *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)":blpapi_SubscriptionList_create")) SWIG_fail;
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_SubscriptionList_t *)blpapi_SubscriptionList_create();
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_SubscriptionList_t *)blpapi_SubscriptionList_create();
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_SubscriptionList, 0 |  0 );
   return resultobj;
 fail:
@@ -14397,28 +11450,12 @@ SWIGINTERN PyObject *_wrap_blpapi_SubscriptionList_destroy(PyObject *SWIGUNUSEDP
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SubscriptionList_destroy" "', argument " "1"" of type '" "blpapi_SubscriptionList_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SubscriptionList_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_SubscriptionList_destroy(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SubscriptionList_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_SubscriptionList_destroy(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -14448,43 +11485,27 @@ SWIGINTERN PyObject *_wrap_blpapi_SubscriptionList_addResolved(PyObject *SWIGUNU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SubscriptionList_addResolved" "', argument " "1"" of type '" "blpapi_SubscriptionList_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SubscriptionList_t * >(argp1);
+  arg1 = (blpapi_SubscriptionList_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_SubscriptionList_addResolved" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_SubscriptionList_addResolved" "', argument " "3"" of type '" "blpapi_CorrelationId_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_CorrelationId_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SubscriptionList_addResolved(arg1,(char const *)arg2,(blpapi_CorrelationId_t_ const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_CorrelationId_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SubscriptionList_addResolved(arg1,(char const *)arg2,(struct blpapi_CorrelationId_t_ const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -14502,29 +11523,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SubscriptionList_clear(PyObject *SWIGUNUSEDPAR
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SubscriptionList_clear" "', argument " "1"" of type '" "blpapi_SubscriptionList_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SubscriptionList_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SubscriptionList_clear(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SubscriptionList_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SubscriptionList_clear(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -14548,34 +11553,18 @@ SWIGINTERN PyObject *_wrap_blpapi_SubscriptionList_append(PyObject *SWIGUNUSEDPA
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SubscriptionList_append" "', argument " "1"" of type '" "blpapi_SubscriptionList_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SubscriptionList_t * >(argp1);
+  arg1 = (blpapi_SubscriptionList_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_SubscriptionList, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_SubscriptionList_append" "', argument " "2"" of type '" "blpapi_SubscriptionList_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_SubscriptionList_t * >(argp2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SubscriptionList_append(arg1,(blpapi_SubscriptionList const *)arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (blpapi_SubscriptionList_t *)(argp2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SubscriptionList_append(arg1,(struct blpapi_SubscriptionList const *)arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -14595,29 +11584,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SubscriptionList_size(PyObject *SWIGUNUSEDPARM
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SubscriptionList_size" "', argument " "1"" of type '" "blpapi_SubscriptionList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SubscriptionList_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SubscriptionList_size((blpapi_SubscriptionList const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SubscriptionList_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SubscriptionList_size((struct blpapi_SubscriptionList const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -14644,35 +11617,23 @@ SWIGINTERN PyObject *_wrap_blpapi_SubscriptionList_correlationIdAt(PyObject *SWI
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SubscriptionList_correlationIdAt" "', argument " "1"" of type '" "blpapi_SubscriptionList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SubscriptionList_t * >(argp1);
+  arg1 = (blpapi_SubscriptionList_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_SubscriptionList_correlationIdAt" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SubscriptionList_correlationIdAt((blpapi_SubscriptionList const *)arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SubscriptionList_correlationIdAt((struct blpapi_SubscriptionList const *)arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj(CorrelationId_t_clone(*arg2), SWIGTYPE_p_blpapi_CorrelationId_t_, SWIG_POINTER_OWN));
+  resultobj = SWIG_From_int((int)(result));
+  if (!result) {
+    resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj(CorrelationId_t_clone(arg2), SWIGTYPE_p_blpapi_CorrelationId_t_, SWIG_POINTER_OWN));
+  } else {
+    resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_Py_Void());
+  }
   return resultobj;
 fail:
   return NULL;
@@ -14699,34 +11660,18 @@ SWIGINTERN PyObject *_wrap_blpapi_SubscriptionList_topicStringAt(PyObject *SWIGU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SubscriptionList_topicStringAt" "', argument " "1"" of type '" "blpapi_SubscriptionList_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SubscriptionList_t * >(argp1);
+  arg1 = (blpapi_SubscriptionList_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_SubscriptionList_topicStringAt" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SubscriptionList_topicStringAt(arg1,(char const **)arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SubscriptionList_topicStringAt(arg1,(char const **)arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_FromCharPtr(*arg2));
   return resultobj;
 fail:
@@ -14755,34 +11700,18 @@ SWIGINTERN PyObject *_wrap_blpapi_SubscriptionList_isResolvedAt(PyObject *SWIGUN
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SubscriptionList_isResolvedAt" "', argument " "1"" of type '" "blpapi_SubscriptionList_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SubscriptionList_t * >(argp1);
+  arg1 = (blpapi_SubscriptionList_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_SubscriptionList_isResolvedAt" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SubscriptionList_isResolvedAt(arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SubscriptionList_isResolvedAt(arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   if (SWIG_IsTmpObj(res2)) {
     resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_From_int((*arg2)));
   } else {
@@ -14795,9 +11724,153 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_blpapi_TimePoint_d_value_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct blpapi_TimePoint *arg1 = (struct blpapi_TimePoint *) 0 ;
+  blpapi_Int64_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  long long val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:blpapi_TimePoint_d_value_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_TimePoint, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_TimePoint_d_value_set" "', argument " "1"" of type '" "struct blpapi_TimePoint *""'"); 
+  }
+  arg1 = (struct blpapi_TimePoint *)(argp1);
+  ecode2 = SWIG_AsVal_long_SS_long(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_TimePoint_d_value_set" "', argument " "2"" of type '" "blpapi_Int64_t""'");
+  } 
+  arg2 = (blpapi_Int64_t)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    if (arg1) (arg1)->d_value = arg2;
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_blpapi_TimePoint_d_value_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct blpapi_TimePoint *arg1 = (struct blpapi_TimePoint *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  blpapi_Int64_t result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:blpapi_TimePoint_d_value_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_TimePoint, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_TimePoint_d_value_get" "', argument " "1"" of type '" "struct blpapi_TimePoint *""'"); 
+  }
+  arg1 = (struct blpapi_TimePoint *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_Int64_t) ((arg1)->d_value);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_From_long_SS_long((long long)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_blpapi_TimePoint(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct blpapi_TimePoint *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_blpapi_TimePoint")) SWIG_fail;
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (struct blpapi_TimePoint *)calloc(1, sizeof(struct blpapi_TimePoint));
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_TimePoint, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_blpapi_TimePoint(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct blpapi_TimePoint *arg1 = (struct blpapi_TimePoint *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_blpapi_TimePoint",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_TimePoint, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_blpapi_TimePoint" "', argument " "1"" of type '" "struct blpapi_TimePoint *""'"); 
+  }
+  arg1 = (struct blpapi_TimePoint *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    free((char *) arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *blpapi_TimePoint_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char *)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_blpapi_TimePoint, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_blpapi_TimePointUtil_nanosecondsBetween(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  blpapi_TimePoint_t *arg1 = (blpapi_TimePoint_t *) 0 ;
+  blpapi_TimePoint_t *arg2 = (blpapi_TimePoint_t *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  long long result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:blpapi_TimePointUtil_nanosecondsBetween",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_TimePoint, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_TimePointUtil_nanosecondsBetween" "', argument " "1"" of type '" "blpapi_TimePoint_t const *""'"); 
+  }
+  arg1 = (blpapi_TimePoint_t *)(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_TimePoint, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_TimePointUtil_nanosecondsBetween" "', argument " "2"" of type '" "blpapi_TimePoint_t const *""'"); 
+  }
+  arg2 = (blpapi_TimePoint_t *)(argp2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (long long)blpapi_TimePointUtil_nanosecondsBetween((struct blpapi_TimePoint const *)arg1,(struct blpapi_TimePoint const *)arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_From_long_SS_long((long long)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_parts_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_Datetime_tag *arg1 = (blpapi_Datetime_tag *) 0 ;
+  struct blpapi_Datetime_tag *arg1 = (struct blpapi_Datetime_tag *) 0 ;
   blpapi_UChar_t arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -14809,14 +11882,14 @@ SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_parts_set(PyObject *SWIGUNUSEDPAR
   if (!PyArg_ParseTuple(args,(char *)"OO:blpapi_Datetime_tag_parts_set",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_parts_set" "', argument " "1"" of type '" "blpapi_Datetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_parts_set" "', argument " "1"" of type '" "struct blpapi_Datetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Datetime_tag * >(argp1);
+  arg1 = (struct blpapi_Datetime_tag *)(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_char(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_Datetime_tag_parts_set" "', argument " "2"" of type '" "blpapi_UChar_t""'");
   } 
-  arg2 = static_cast< blpapi_UChar_t >(val2);
+  arg2 = (blpapi_UChar_t)(val2);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     if (arg1) (arg1)->parts = arg2;
@@ -14831,7 +11904,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_parts_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_Datetime_tag *arg1 = (blpapi_Datetime_tag *) 0 ;
+  struct blpapi_Datetime_tag *arg1 = (struct blpapi_Datetime_tag *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
@@ -14840,15 +11913,15 @@ SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_parts_get(PyObject *SWIGUNUSEDPAR
   if (!PyArg_ParseTuple(args,(char *)"O:blpapi_Datetime_tag_parts_get",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_parts_get" "', argument " "1"" of type '" "blpapi_Datetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_parts_get" "', argument " "1"" of type '" "struct blpapi_Datetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Datetime_tag * >(argp1);
+  arg1 = (struct blpapi_Datetime_tag *)(argp1);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     result = (blpapi_UChar_t) ((arg1)->parts);
     SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  resultobj = SWIG_From_unsigned_SS_char(static_cast< unsigned char >(result));
+  resultobj = SWIG_From_unsigned_SS_char((unsigned char)(result));
   return resultobj;
 fail:
   return NULL;
@@ -14857,7 +11930,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_hours_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_Datetime_tag *arg1 = (blpapi_Datetime_tag *) 0 ;
+  struct blpapi_Datetime_tag *arg1 = (struct blpapi_Datetime_tag *) 0 ;
   blpapi_UChar_t arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -14869,14 +11942,14 @@ SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_hours_set(PyObject *SWIGUNUSEDPAR
   if (!PyArg_ParseTuple(args,(char *)"OO:blpapi_Datetime_tag_hours_set",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_hours_set" "', argument " "1"" of type '" "blpapi_Datetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_hours_set" "', argument " "1"" of type '" "struct blpapi_Datetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Datetime_tag * >(argp1);
+  arg1 = (struct blpapi_Datetime_tag *)(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_char(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_Datetime_tag_hours_set" "', argument " "2"" of type '" "blpapi_UChar_t""'");
   } 
-  arg2 = static_cast< blpapi_UChar_t >(val2);
+  arg2 = (blpapi_UChar_t)(val2);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     if (arg1) (arg1)->hours = arg2;
@@ -14891,7 +11964,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_hours_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_Datetime_tag *arg1 = (blpapi_Datetime_tag *) 0 ;
+  struct blpapi_Datetime_tag *arg1 = (struct blpapi_Datetime_tag *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
@@ -14900,15 +11973,15 @@ SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_hours_get(PyObject *SWIGUNUSEDPAR
   if (!PyArg_ParseTuple(args,(char *)"O:blpapi_Datetime_tag_hours_get",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_hours_get" "', argument " "1"" of type '" "blpapi_Datetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_hours_get" "', argument " "1"" of type '" "struct blpapi_Datetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Datetime_tag * >(argp1);
+  arg1 = (struct blpapi_Datetime_tag *)(argp1);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     result = (blpapi_UChar_t) ((arg1)->hours);
     SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  resultobj = SWIG_From_unsigned_SS_char(static_cast< unsigned char >(result));
+  resultobj = SWIG_From_unsigned_SS_char((unsigned char)(result));
   return resultobj;
 fail:
   return NULL;
@@ -14917,7 +11990,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_minutes_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_Datetime_tag *arg1 = (blpapi_Datetime_tag *) 0 ;
+  struct blpapi_Datetime_tag *arg1 = (struct blpapi_Datetime_tag *) 0 ;
   blpapi_UChar_t arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -14929,14 +12002,14 @@ SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_minutes_set(PyObject *SWIGUNUSEDP
   if (!PyArg_ParseTuple(args,(char *)"OO:blpapi_Datetime_tag_minutes_set",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_minutes_set" "', argument " "1"" of type '" "blpapi_Datetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_minutes_set" "', argument " "1"" of type '" "struct blpapi_Datetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Datetime_tag * >(argp1);
+  arg1 = (struct blpapi_Datetime_tag *)(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_char(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_Datetime_tag_minutes_set" "', argument " "2"" of type '" "blpapi_UChar_t""'");
   } 
-  arg2 = static_cast< blpapi_UChar_t >(val2);
+  arg2 = (blpapi_UChar_t)(val2);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     if (arg1) (arg1)->minutes = arg2;
@@ -14951,7 +12024,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_minutes_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_Datetime_tag *arg1 = (blpapi_Datetime_tag *) 0 ;
+  struct blpapi_Datetime_tag *arg1 = (struct blpapi_Datetime_tag *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
@@ -14960,15 +12033,15 @@ SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_minutes_get(PyObject *SWIGUNUSEDP
   if (!PyArg_ParseTuple(args,(char *)"O:blpapi_Datetime_tag_minutes_get",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_minutes_get" "', argument " "1"" of type '" "blpapi_Datetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_minutes_get" "', argument " "1"" of type '" "struct blpapi_Datetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Datetime_tag * >(argp1);
+  arg1 = (struct blpapi_Datetime_tag *)(argp1);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     result = (blpapi_UChar_t) ((arg1)->minutes);
     SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  resultobj = SWIG_From_unsigned_SS_char(static_cast< unsigned char >(result));
+  resultobj = SWIG_From_unsigned_SS_char((unsigned char)(result));
   return resultobj;
 fail:
   return NULL;
@@ -14977,7 +12050,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_seconds_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_Datetime_tag *arg1 = (blpapi_Datetime_tag *) 0 ;
+  struct blpapi_Datetime_tag *arg1 = (struct blpapi_Datetime_tag *) 0 ;
   blpapi_UChar_t arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -14989,14 +12062,14 @@ SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_seconds_set(PyObject *SWIGUNUSEDP
   if (!PyArg_ParseTuple(args,(char *)"OO:blpapi_Datetime_tag_seconds_set",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_seconds_set" "', argument " "1"" of type '" "blpapi_Datetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_seconds_set" "', argument " "1"" of type '" "struct blpapi_Datetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Datetime_tag * >(argp1);
+  arg1 = (struct blpapi_Datetime_tag *)(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_char(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_Datetime_tag_seconds_set" "', argument " "2"" of type '" "blpapi_UChar_t""'");
   } 
-  arg2 = static_cast< blpapi_UChar_t >(val2);
+  arg2 = (blpapi_UChar_t)(val2);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     if (arg1) (arg1)->seconds = arg2;
@@ -15011,7 +12084,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_seconds_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_Datetime_tag *arg1 = (blpapi_Datetime_tag *) 0 ;
+  struct blpapi_Datetime_tag *arg1 = (struct blpapi_Datetime_tag *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
@@ -15020,15 +12093,15 @@ SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_seconds_get(PyObject *SWIGUNUSEDP
   if (!PyArg_ParseTuple(args,(char *)"O:blpapi_Datetime_tag_seconds_get",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_seconds_get" "', argument " "1"" of type '" "blpapi_Datetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_seconds_get" "', argument " "1"" of type '" "struct blpapi_Datetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Datetime_tag * >(argp1);
+  arg1 = (struct blpapi_Datetime_tag *)(argp1);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     result = (blpapi_UChar_t) ((arg1)->seconds);
     SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  resultobj = SWIG_From_unsigned_SS_char(static_cast< unsigned char >(result));
+  resultobj = SWIG_From_unsigned_SS_char((unsigned char)(result));
   return resultobj;
 fail:
   return NULL;
@@ -15037,7 +12110,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_milliSeconds_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_Datetime_tag *arg1 = (blpapi_Datetime_tag *) 0 ;
+  struct blpapi_Datetime_tag *arg1 = (struct blpapi_Datetime_tag *) 0 ;
   blpapi_UInt16_t arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -15049,14 +12122,14 @@ SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_milliSeconds_set(PyObject *SWIGUN
   if (!PyArg_ParseTuple(args,(char *)"OO:blpapi_Datetime_tag_milliSeconds_set",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_milliSeconds_set" "', argument " "1"" of type '" "blpapi_Datetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_milliSeconds_set" "', argument " "1"" of type '" "struct blpapi_Datetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Datetime_tag * >(argp1);
+  arg1 = (struct blpapi_Datetime_tag *)(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_short(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_Datetime_tag_milliSeconds_set" "', argument " "2"" of type '" "blpapi_UInt16_t""'");
   } 
-  arg2 = static_cast< blpapi_UInt16_t >(val2);
+  arg2 = (blpapi_UInt16_t)(val2);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     if (arg1) (arg1)->milliSeconds = arg2;
@@ -15071,7 +12144,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_milliSeconds_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_Datetime_tag *arg1 = (blpapi_Datetime_tag *) 0 ;
+  struct blpapi_Datetime_tag *arg1 = (struct blpapi_Datetime_tag *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
@@ -15080,15 +12153,15 @@ SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_milliSeconds_get(PyObject *SWIGUN
   if (!PyArg_ParseTuple(args,(char *)"O:blpapi_Datetime_tag_milliSeconds_get",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_milliSeconds_get" "', argument " "1"" of type '" "blpapi_Datetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_milliSeconds_get" "', argument " "1"" of type '" "struct blpapi_Datetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Datetime_tag * >(argp1);
+  arg1 = (struct blpapi_Datetime_tag *)(argp1);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     result = (blpapi_UInt16_t) ((arg1)->milliSeconds);
     SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  resultobj = SWIG_From_unsigned_SS_short(static_cast< unsigned short >(result));
+  resultobj = SWIG_From_unsigned_SS_short((unsigned short)(result));
   return resultobj;
 fail:
   return NULL;
@@ -15097,7 +12170,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_month_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_Datetime_tag *arg1 = (blpapi_Datetime_tag *) 0 ;
+  struct blpapi_Datetime_tag *arg1 = (struct blpapi_Datetime_tag *) 0 ;
   blpapi_UChar_t arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -15109,14 +12182,14 @@ SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_month_set(PyObject *SWIGUNUSEDPAR
   if (!PyArg_ParseTuple(args,(char *)"OO:blpapi_Datetime_tag_month_set",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_month_set" "', argument " "1"" of type '" "blpapi_Datetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_month_set" "', argument " "1"" of type '" "struct blpapi_Datetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Datetime_tag * >(argp1);
+  arg1 = (struct blpapi_Datetime_tag *)(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_char(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_Datetime_tag_month_set" "', argument " "2"" of type '" "blpapi_UChar_t""'");
   } 
-  arg2 = static_cast< blpapi_UChar_t >(val2);
+  arg2 = (blpapi_UChar_t)(val2);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     if (arg1) (arg1)->month = arg2;
@@ -15131,7 +12204,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_month_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_Datetime_tag *arg1 = (blpapi_Datetime_tag *) 0 ;
+  struct blpapi_Datetime_tag *arg1 = (struct blpapi_Datetime_tag *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
@@ -15140,15 +12213,15 @@ SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_month_get(PyObject *SWIGUNUSEDPAR
   if (!PyArg_ParseTuple(args,(char *)"O:blpapi_Datetime_tag_month_get",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_month_get" "', argument " "1"" of type '" "blpapi_Datetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_month_get" "', argument " "1"" of type '" "struct blpapi_Datetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Datetime_tag * >(argp1);
+  arg1 = (struct blpapi_Datetime_tag *)(argp1);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     result = (blpapi_UChar_t) ((arg1)->month);
     SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  resultobj = SWIG_From_unsigned_SS_char(static_cast< unsigned char >(result));
+  resultobj = SWIG_From_unsigned_SS_char((unsigned char)(result));
   return resultobj;
 fail:
   return NULL;
@@ -15157,7 +12230,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_day_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_Datetime_tag *arg1 = (blpapi_Datetime_tag *) 0 ;
+  struct blpapi_Datetime_tag *arg1 = (struct blpapi_Datetime_tag *) 0 ;
   blpapi_UChar_t arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -15169,14 +12242,14 @@ SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_day_set(PyObject *SWIGUNUSEDPARM(
   if (!PyArg_ParseTuple(args,(char *)"OO:blpapi_Datetime_tag_day_set",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_day_set" "', argument " "1"" of type '" "blpapi_Datetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_day_set" "', argument " "1"" of type '" "struct blpapi_Datetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Datetime_tag * >(argp1);
+  arg1 = (struct blpapi_Datetime_tag *)(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_char(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_Datetime_tag_day_set" "', argument " "2"" of type '" "blpapi_UChar_t""'");
   } 
-  arg2 = static_cast< blpapi_UChar_t >(val2);
+  arg2 = (blpapi_UChar_t)(val2);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     if (arg1) (arg1)->day = arg2;
@@ -15191,7 +12264,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_day_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_Datetime_tag *arg1 = (blpapi_Datetime_tag *) 0 ;
+  struct blpapi_Datetime_tag *arg1 = (struct blpapi_Datetime_tag *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
@@ -15200,15 +12273,15 @@ SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_day_get(PyObject *SWIGUNUSEDPARM(
   if (!PyArg_ParseTuple(args,(char *)"O:blpapi_Datetime_tag_day_get",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_day_get" "', argument " "1"" of type '" "blpapi_Datetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_day_get" "', argument " "1"" of type '" "struct blpapi_Datetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Datetime_tag * >(argp1);
+  arg1 = (struct blpapi_Datetime_tag *)(argp1);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     result = (blpapi_UChar_t) ((arg1)->day);
     SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  resultobj = SWIG_From_unsigned_SS_char(static_cast< unsigned char >(result));
+  resultobj = SWIG_From_unsigned_SS_char((unsigned char)(result));
   return resultobj;
 fail:
   return NULL;
@@ -15217,7 +12290,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_year_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_Datetime_tag *arg1 = (blpapi_Datetime_tag *) 0 ;
+  struct blpapi_Datetime_tag *arg1 = (struct blpapi_Datetime_tag *) 0 ;
   blpapi_UInt16_t arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -15229,14 +12302,14 @@ SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_year_set(PyObject *SWIGUNUSEDPARM
   if (!PyArg_ParseTuple(args,(char *)"OO:blpapi_Datetime_tag_year_set",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_year_set" "', argument " "1"" of type '" "blpapi_Datetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_year_set" "', argument " "1"" of type '" "struct blpapi_Datetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Datetime_tag * >(argp1);
+  arg1 = (struct blpapi_Datetime_tag *)(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_short(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_Datetime_tag_year_set" "', argument " "2"" of type '" "blpapi_UInt16_t""'");
   } 
-  arg2 = static_cast< blpapi_UInt16_t >(val2);
+  arg2 = (blpapi_UInt16_t)(val2);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     if (arg1) (arg1)->year = arg2;
@@ -15251,7 +12324,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_year_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_Datetime_tag *arg1 = (blpapi_Datetime_tag *) 0 ;
+  struct blpapi_Datetime_tag *arg1 = (struct blpapi_Datetime_tag *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
@@ -15260,15 +12333,15 @@ SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_year_get(PyObject *SWIGUNUSEDPARM
   if (!PyArg_ParseTuple(args,(char *)"O:blpapi_Datetime_tag_year_get",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_year_get" "', argument " "1"" of type '" "blpapi_Datetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_year_get" "', argument " "1"" of type '" "struct blpapi_Datetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Datetime_tag * >(argp1);
+  arg1 = (struct blpapi_Datetime_tag *)(argp1);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     result = (blpapi_UInt16_t) ((arg1)->year);
     SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  resultobj = SWIG_From_unsigned_SS_short(static_cast< unsigned short >(result));
+  resultobj = SWIG_From_unsigned_SS_short((unsigned short)(result));
   return resultobj;
 fail:
   return NULL;
@@ -15277,7 +12350,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_offset_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_Datetime_tag *arg1 = (blpapi_Datetime_tag *) 0 ;
+  struct blpapi_Datetime_tag *arg1 = (struct blpapi_Datetime_tag *) 0 ;
   blpapi_Int16_t arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -15289,14 +12362,14 @@ SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_offset_set(PyObject *SWIGUNUSEDPA
   if (!PyArg_ParseTuple(args,(char *)"OO:blpapi_Datetime_tag_offset_set",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_offset_set" "', argument " "1"" of type '" "blpapi_Datetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_offset_set" "', argument " "1"" of type '" "struct blpapi_Datetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Datetime_tag * >(argp1);
+  arg1 = (struct blpapi_Datetime_tag *)(argp1);
   ecode2 = SWIG_AsVal_short(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_Datetime_tag_offset_set" "', argument " "2"" of type '" "blpapi_Int16_t""'");
   } 
-  arg2 = static_cast< blpapi_Int16_t >(val2);
+  arg2 = (blpapi_Int16_t)(val2);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     if (arg1) (arg1)->offset = arg2;
@@ -15311,7 +12384,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_offset_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_Datetime_tag *arg1 = (blpapi_Datetime_tag *) 0 ;
+  struct blpapi_Datetime_tag *arg1 = (struct blpapi_Datetime_tag *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
@@ -15320,15 +12393,15 @@ SWIGINTERN PyObject *_wrap_blpapi_Datetime_tag_offset_get(PyObject *SWIGUNUSEDPA
   if (!PyArg_ParseTuple(args,(char *)"O:blpapi_Datetime_tag_offset_get",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_offset_get" "', argument " "1"" of type '" "blpapi_Datetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Datetime_tag_offset_get" "', argument " "1"" of type '" "struct blpapi_Datetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Datetime_tag * >(argp1);
+  arg1 = (struct blpapi_Datetime_tag *)(argp1);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     result = (blpapi_Int16_t) ((arg1)->offset);
     SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  resultobj = SWIG_From_short(static_cast< short >(result));
+  resultobj = SWIG_From_short((short)(result));
   return resultobj;
 fail:
   return NULL;
@@ -15337,30 +12410,14 @@ fail:
 
 SWIGINTERN PyObject *_wrap_new_blpapi_Datetime_tag(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_Datetime_tag *result = 0 ;
+  struct blpapi_Datetime_tag *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)":new_blpapi_Datetime_tag")) SWIG_fail;
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_Datetime_tag *)new blpapi_Datetime_tag();
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (struct blpapi_Datetime_tag *)calloc(1, sizeof(struct blpapi_Datetime_tag));
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_Datetime_tag, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
@@ -15370,7 +12427,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_delete_blpapi_Datetime_tag(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_Datetime_tag *arg1 = (blpapi_Datetime_tag *) 0 ;
+  struct blpapi_Datetime_tag *arg1 = (struct blpapi_Datetime_tag *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
@@ -15378,30 +12435,14 @@ SWIGINTERN PyObject *_wrap_delete_blpapi_Datetime_tag(PyObject *SWIGUNUSEDPARM(s
   if (!PyArg_ParseTuple(args,(char *)"O:delete_blpapi_Datetime_tag",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Datetime_tag, SWIG_POINTER_DISOWN |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_blpapi_Datetime_tag" "', argument " "1"" of type '" "blpapi_Datetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_blpapi_Datetime_tag" "', argument " "1"" of type '" "struct blpapi_Datetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Datetime_tag * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      delete arg1;
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (struct blpapi_Datetime_tag *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    free((char *) arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -15418,7 +12459,7 @@ SWIGINTERN PyObject *blpapi_Datetime_tag_swigregister(PyObject *SWIGUNUSEDPARM(s
 
 SWIGINTERN PyObject *_wrap_blpapi_HighPrecisionDatetime_tag_datetime_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_HighPrecisionDatetime_tag *arg1 = (blpapi_HighPrecisionDatetime_tag *) 0 ;
+  struct blpapi_HighPrecisionDatetime_tag *arg1 = (struct blpapi_HighPrecisionDatetime_tag *) 0 ;
   blpapi_Datetime_t *arg2 = (blpapi_Datetime_t *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -15430,14 +12471,14 @@ SWIGINTERN PyObject *_wrap_blpapi_HighPrecisionDatetime_tag_datetime_set(PyObjec
   if (!PyArg_ParseTuple(args,(char *)"OO:blpapi_HighPrecisionDatetime_tag_datetime_set",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_HighPrecisionDatetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_HighPrecisionDatetime_tag_datetime_set" "', argument " "1"" of type '" "blpapi_HighPrecisionDatetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_HighPrecisionDatetime_tag_datetime_set" "', argument " "1"" of type '" "struct blpapi_HighPrecisionDatetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_HighPrecisionDatetime_tag * >(argp1);
+  arg1 = (struct blpapi_HighPrecisionDatetime_tag *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Datetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_HighPrecisionDatetime_tag_datetime_set" "', argument " "2"" of type '" "blpapi_Datetime_t *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Datetime_t * >(argp2);
+  arg2 = (blpapi_Datetime_t *)(argp2);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     if (arg1) (arg1)->datetime = *arg2;
@@ -15452,7 +12493,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_blpapi_HighPrecisionDatetime_tag_datetime_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_HighPrecisionDatetime_tag *arg1 = (blpapi_HighPrecisionDatetime_tag *) 0 ;
+  struct blpapi_HighPrecisionDatetime_tag *arg1 = (struct blpapi_HighPrecisionDatetime_tag *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
@@ -15461,9 +12502,9 @@ SWIGINTERN PyObject *_wrap_blpapi_HighPrecisionDatetime_tag_datetime_get(PyObjec
   if (!PyArg_ParseTuple(args,(char *)"O:blpapi_HighPrecisionDatetime_tag_datetime_get",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_HighPrecisionDatetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_HighPrecisionDatetime_tag_datetime_get" "', argument " "1"" of type '" "blpapi_HighPrecisionDatetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_HighPrecisionDatetime_tag_datetime_get" "', argument " "1"" of type '" "struct blpapi_HighPrecisionDatetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_HighPrecisionDatetime_tag * >(argp1);
+  arg1 = (struct blpapi_HighPrecisionDatetime_tag *)(argp1);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     result = (blpapi_Datetime_t *)& ((arg1)->datetime);
@@ -15478,7 +12519,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_blpapi_HighPrecisionDatetime_tag_picoseconds_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_HighPrecisionDatetime_tag *arg1 = (blpapi_HighPrecisionDatetime_tag *) 0 ;
+  struct blpapi_HighPrecisionDatetime_tag *arg1 = (struct blpapi_HighPrecisionDatetime_tag *) 0 ;
   blpapi_UInt32_t arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -15490,14 +12531,14 @@ SWIGINTERN PyObject *_wrap_blpapi_HighPrecisionDatetime_tag_picoseconds_set(PyOb
   if (!PyArg_ParseTuple(args,(char *)"OO:blpapi_HighPrecisionDatetime_tag_picoseconds_set",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_HighPrecisionDatetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_HighPrecisionDatetime_tag_picoseconds_set" "', argument " "1"" of type '" "blpapi_HighPrecisionDatetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_HighPrecisionDatetime_tag_picoseconds_set" "', argument " "1"" of type '" "struct blpapi_HighPrecisionDatetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_HighPrecisionDatetime_tag * >(argp1);
+  arg1 = (struct blpapi_HighPrecisionDatetime_tag *)(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_HighPrecisionDatetime_tag_picoseconds_set" "', argument " "2"" of type '" "blpapi_UInt32_t""'");
   } 
-  arg2 = static_cast< blpapi_UInt32_t >(val2);
+  arg2 = (blpapi_UInt32_t)(val2);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     if (arg1) (arg1)->picoseconds = arg2;
@@ -15512,7 +12553,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_blpapi_HighPrecisionDatetime_tag_picoseconds_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_HighPrecisionDatetime_tag *arg1 = (blpapi_HighPrecisionDatetime_tag *) 0 ;
+  struct blpapi_HighPrecisionDatetime_tag *arg1 = (struct blpapi_HighPrecisionDatetime_tag *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
@@ -15521,15 +12562,15 @@ SWIGINTERN PyObject *_wrap_blpapi_HighPrecisionDatetime_tag_picoseconds_get(PyOb
   if (!PyArg_ParseTuple(args,(char *)"O:blpapi_HighPrecisionDatetime_tag_picoseconds_get",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_HighPrecisionDatetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_HighPrecisionDatetime_tag_picoseconds_get" "', argument " "1"" of type '" "blpapi_HighPrecisionDatetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_HighPrecisionDatetime_tag_picoseconds_get" "', argument " "1"" of type '" "struct blpapi_HighPrecisionDatetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_HighPrecisionDatetime_tag * >(argp1);
+  arg1 = (struct blpapi_HighPrecisionDatetime_tag *)(argp1);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
     result = (blpapi_UInt32_t) ((arg1)->picoseconds);
     SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
+  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -15538,30 +12579,14 @@ fail:
 
 SWIGINTERN PyObject *_wrap_new_blpapi_HighPrecisionDatetime_tag(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_HighPrecisionDatetime_tag *result = 0 ;
+  struct blpapi_HighPrecisionDatetime_tag *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)":new_blpapi_HighPrecisionDatetime_tag")) SWIG_fail;
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_HighPrecisionDatetime_tag *)new blpapi_HighPrecisionDatetime_tag();
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (struct blpapi_HighPrecisionDatetime_tag *)calloc(1, sizeof(struct blpapi_HighPrecisionDatetime_tag));
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_HighPrecisionDatetime_tag, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
@@ -15571,7 +12596,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_delete_blpapi_HighPrecisionDatetime_tag(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  blpapi_HighPrecisionDatetime_tag *arg1 = (blpapi_HighPrecisionDatetime_tag *) 0 ;
+  struct blpapi_HighPrecisionDatetime_tag *arg1 = (struct blpapi_HighPrecisionDatetime_tag *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
@@ -15579,30 +12604,14 @@ SWIGINTERN PyObject *_wrap_delete_blpapi_HighPrecisionDatetime_tag(PyObject *SWI
   if (!PyArg_ParseTuple(args,(char *)"O:delete_blpapi_HighPrecisionDatetime_tag",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_HighPrecisionDatetime_tag, SWIG_POINTER_DISOWN |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_blpapi_HighPrecisionDatetime_tag" "', argument " "1"" of type '" "blpapi_HighPrecisionDatetime_tag *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_blpapi_HighPrecisionDatetime_tag" "', argument " "1"" of type '" "struct blpapi_HighPrecisionDatetime_tag *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_HighPrecisionDatetime_tag * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      delete arg1;
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (struct blpapi_HighPrecisionDatetime_tag *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    free((char *) arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -15634,34 +12643,18 @@ SWIGINTERN PyObject *_wrap_blpapi_HighPrecisionDatetime_compare(PyObject *SWIGUN
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_HighPrecisionDatetime_compare" "', argument " "1"" of type '" "blpapi_HighPrecisionDatetime_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_HighPrecisionDatetime_t * >(argp1);
+  arg1 = (blpapi_HighPrecisionDatetime_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_HighPrecisionDatetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_HighPrecisionDatetime_compare" "', argument " "2"" of type '" "blpapi_HighPrecisionDatetime_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_HighPrecisionDatetime_t * >(argp2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_HighPrecisionDatetime_compare((blpapi_HighPrecisionDatetime_tag const *)arg1,(blpapi_HighPrecisionDatetime_tag const *)arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (blpapi_HighPrecisionDatetime_t *)(argp2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_HighPrecisionDatetime_compare((struct blpapi_HighPrecisionDatetime_tag const *)arg1,(struct blpapi_HighPrecisionDatetime_tag const *)arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -15696,18 +12689,16 @@ SWIGINTERN PyObject *_wrap_blpapi_HighPrecisionDatetime_print(PyObject *SWIGUNUS
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_HighPrecisionDatetime_print" "', argument " "1"" of type '" "blpapi_HighPrecisionDatetime_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_HighPrecisionDatetime_t * >(argp1);
+  arg1 = (blpapi_HighPrecisionDatetime_t *)(argp1);
   {
-    res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_blpapi_StreamWriter_t,  0  | 0);
+    res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_blpapi_StreamWriter_t,  0 );
     if (!SWIG_IsOK(res2)) {
       SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_HighPrecisionDatetime_print" "', argument " "2"" of type '" "blpapi_StreamWriter_t""'"); 
     }  
     if (!argp2) {
       SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "blpapi_HighPrecisionDatetime_print" "', argument " "2"" of type '" "blpapi_StreamWriter_t""'");
     } else {
-      blpapi_StreamWriter_t * temp = reinterpret_cast< blpapi_StreamWriter_t * >(argp2);
-      arg2 = *temp;
-      if (SWIG_IsNewObj(res2)) delete temp;
+      arg2 = *((blpapi_StreamWriter_t *)(argp2));
     }
   }
   res3 = SWIG_ConvertPtr(obj2,SWIG_as_voidptrptr(&arg3), 0, 0);
@@ -15718,34 +12709,18 @@ SWIGINTERN PyObject *_wrap_blpapi_HighPrecisionDatetime_print(PyObject *SWIGUNUS
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "blpapi_HighPrecisionDatetime_print" "', argument " "4"" of type '" "int""'");
   } 
-  arg4 = static_cast< int >(val4);
+  arg4 = (int)(val4);
   ecode5 = SWIG_AsVal_int(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "blpapi_HighPrecisionDatetime_print" "', argument " "5"" of type '" "int""'");
   } 
-  arg5 = static_cast< int >(val5);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_HighPrecisionDatetime_print((blpapi_HighPrecisionDatetime_tag const *)arg1,arg2,arg3,arg4,arg5);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg5 = (int)(val5);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_HighPrecisionDatetime_print((struct blpapi_HighPrecisionDatetime_tag const *)arg1,arg2,arg3,arg4,arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -15759,53 +12734,36 @@ SWIGINTERN PyObject *_wrap_blpapi_HighPrecisionDatetime_fromTimePoint(PyObject *
   short arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
+  blpapi_TimePoint_t temp2 ;
   short val3 ;
   int ecode3 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
   int result;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOO:blpapi_HighPrecisionDatetime_fromTimePoint",&obj0,&obj1,&obj2)) SWIG_fail;
+  arg2 = &temp2;
+  if (!PyArg_ParseTuple(args,(char *)"OO:blpapi_HighPrecisionDatetime_fromTimePoint",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_HighPrecisionDatetime_tag, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_HighPrecisionDatetime_fromTimePoint" "', argument " "1"" of type '" "blpapi_HighPrecisionDatetime_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_HighPrecisionDatetime_t * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_TimePoint_t, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_HighPrecisionDatetime_fromTimePoint" "', argument " "2"" of type '" "blpapi_TimePoint_t const *""'"); 
-  }
-  arg2 = reinterpret_cast< blpapi_TimePoint_t * >(argp2);
-  ecode3 = SWIG_AsVal_short(obj2, &val3);
+  arg1 = (blpapi_HighPrecisionDatetime_t *)(argp1);
+  ecode3 = SWIG_AsVal_short(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_HighPrecisionDatetime_fromTimePoint" "', argument " "3"" of type '" "short""'");
   } 
-  arg3 = static_cast< short >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_HighPrecisionDatetime_fromTimePoint(arg1,(blpapi_TimePoint_t const *)arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (short)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_HighPrecisionDatetime_fromTimePoint(arg1,(struct blpapi_TimePoint const *)arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
+  {
+    blpapi_TimePoint_t *outputPtr = (blpapi_TimePoint_t *) malloc(sizeof(blpapi_TimePoint_t));
+    *outputPtr = *arg2;
+    resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj(outputPtr, SWIGTYPE_p_blpapi_TimePoint, SWIG_POINTER_OWN));
+  }
   return resultobj;
 fail:
   return NULL;
@@ -15825,28 +12783,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Constant_name(PyObject *SWIGUNUSEDPARM(self), 
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Constant_name" "', argument " "1"" of type '" "blpapi_Constant_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Constant_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_Name_t *)blpapi_Constant_name((blpapi_Constant const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Constant_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_Name_t *)blpapi_Constant_name((struct blpapi_Constant const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_Name, 0 |  0 );
   return resultobj;
 fail:
@@ -15867,28 +12809,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Constant_description(PyObject *SWIGUNUSEDPARM(
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Constant_description" "', argument " "1"" of type '" "blpapi_Constant_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Constant_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (char *)blpapi_Constant_description((blpapi_Constant const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Constant_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (char *)blpapi_Constant_description((struct blpapi_Constant const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -15909,29 +12835,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Constant_status(PyObject *SWIGUNUSEDPARM(self)
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Constant_status" "', argument " "1"" of type '" "blpapi_Constant_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Constant_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Constant_status((blpapi_Constant const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Constant_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Constant_status((struct blpapi_Constant const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -15951,29 +12861,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Constant_datatype(PyObject *SWIGUNUSEDPARM(sel
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Constant_datatype" "', argument " "1"" of type '" "blpapi_Constant_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Constant_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Constant_datatype((blpapi_Constant const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Constant_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Constant_datatype((struct blpapi_Constant const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -15997,29 +12891,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Constant_getValueAsInt64(PyObject *SWIGUNUSEDP
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Constant_getValueAsInt64" "', argument " "1"" of type '" "blpapi_Constant_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Constant_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Constant_getValueAsInt64((blpapi_Constant const *)arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Constant_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Constant_getValueAsInt64((struct blpapi_Constant const *)arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   if (SWIG_IsTmpObj(res2)) {
     resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_From_long_SS_long((*arg2)));
   } else {
@@ -16049,29 +12927,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Constant_getValueAsFloat64(PyObject *SWIGUNUSE
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Constant_getValueAsFloat64" "', argument " "1"" of type '" "blpapi_Constant_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Constant_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Constant_getValueAsFloat64((blpapi_Constant const *)arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Constant_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Constant_getValueAsFloat64((struct blpapi_Constant const *)arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   if (SWIG_IsTmpObj(res2)) {
     resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_From_double((*arg2)));
   } else {
@@ -16090,44 +12952,30 @@ SWIGINTERN PyObject *_wrap_blpapi_Constant_getValueAsDatetime(PyObject *SWIGUNUS
   blpapi_Datetime_t *arg2 = (blpapi_Datetime_t *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  blpapi_Datetime_t temp2 ;
   PyObject * obj0 = 0 ;
   int result;
   
-  arg2 = new blpapi_Datetime_t;
+  arg2 = &temp2;
   if (!PyArg_ParseTuple(args,(char *)"O:blpapi_Constant_getValueAsDatetime",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Constant, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Constant_getValueAsDatetime" "', argument " "1"" of type '" "blpapi_Constant_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Constant_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Constant_getValueAsDatetime((blpapi_Constant const *)arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Constant_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Constant_getValueAsDatetime((struct blpapi_Constant const *)arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((arg2), SWIGTYPE_p_blpapi_Datetime_tag, SWIG_POINTER_OWN));
-  arg2 = 0;
-  if(arg2) delete arg2;
+  resultobj = SWIG_From_int((int)(result));
+  {
+    blpapi_Datetime_t *outputPtr = (blpapi_Datetime_t *) malloc(sizeof(blpapi_Datetime_t));
+    *outputPtr = *arg2;
+    resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj(outputPtr, SWIGTYPE_p_blpapi_Datetime_tag, SWIG_POINTER_OWN));
+  }
   return resultobj;
 fail:
-  if(arg2) delete arg2;
   return NULL;
 }
 
@@ -16148,29 +12996,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Constant_getValueAsString(PyObject *SWIGUNUSED
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Constant_getValueAsString" "', argument " "1"" of type '" "blpapi_Constant_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Constant_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Constant_getValueAsString((blpapi_Constant const *)arg1,(char const **)arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Constant_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Constant_getValueAsString((struct blpapi_Constant const *)arg1,(char const **)arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_FromCharPtr(*arg2));
   return resultobj;
 fail:
@@ -16191,28 +13023,12 @@ SWIGINTERN PyObject *_wrap_blpapi_ConstantList_name(PyObject *SWIGUNUSEDPARM(sel
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ConstantList_name" "', argument " "1"" of type '" "blpapi_ConstantList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ConstantList_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_Name_t *)blpapi_ConstantList_name((blpapi_ConstantList const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_ConstantList_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_Name_t *)blpapi_ConstantList_name((struct blpapi_ConstantList const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_Name, 0 |  0 );
   return resultobj;
 fail:
@@ -16233,28 +13049,12 @@ SWIGINTERN PyObject *_wrap_blpapi_ConstantList_description(PyObject *SWIGUNUSEDP
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ConstantList_description" "', argument " "1"" of type '" "blpapi_ConstantList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ConstantList_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (char *)blpapi_ConstantList_description((blpapi_ConstantList const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_ConstantList_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (char *)blpapi_ConstantList_description((struct blpapi_ConstantList const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -16275,29 +13075,13 @@ SWIGINTERN PyObject *_wrap_blpapi_ConstantList_numConstants(PyObject *SWIGUNUSED
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ConstantList_numConstants" "', argument " "1"" of type '" "blpapi_ConstantList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ConstantList_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ConstantList_numConstants((blpapi_ConstantList const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_ConstantList_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ConstantList_numConstants((struct blpapi_ConstantList const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -16317,29 +13101,13 @@ SWIGINTERN PyObject *_wrap_blpapi_ConstantList_datatype(PyObject *SWIGUNUSEDPARM
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ConstantList_datatype" "', argument " "1"" of type '" "blpapi_ConstantList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ConstantList_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ConstantList_datatype((blpapi_ConstantList const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_ConstantList_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ConstantList_datatype((struct blpapi_ConstantList const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -16359,29 +13127,13 @@ SWIGINTERN PyObject *_wrap_blpapi_ConstantList_status(PyObject *SWIGUNUSEDPARM(s
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ConstantList_status" "', argument " "1"" of type '" "blpapi_ConstantList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ConstantList_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ConstantList_status((blpapi_ConstantList const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_ConstantList_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ConstantList_status((struct blpapi_ConstantList const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -16410,43 +13162,27 @@ SWIGINTERN PyObject *_wrap_blpapi_ConstantList_getConstant(PyObject *SWIGUNUSEDP
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ConstantList_getConstant" "', argument " "1"" of type '" "blpapi_ConstantList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ConstantList_t * >(argp1);
+  arg1 = (blpapi_ConstantList_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ConstantList_getConstant" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_ConstantList_getConstant" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_Constant_t *)blpapi_ConstantList_getConstant((blpapi_ConstantList const *)arg1,(char const *)arg2,(blpapi_Name const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_Name_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_Constant_t *)blpapi_ConstantList_getConstant((struct blpapi_ConstantList const *)arg1,(char const *)arg2,(struct blpapi_Name const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_Constant, 0 |  0 );
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -16468,33 +13204,17 @@ SWIGINTERN PyObject *_wrap_blpapi_ConstantList_getConstantAt(PyObject *SWIGUNUSE
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ConstantList_getConstantAt" "', argument " "1"" of type '" "blpapi_ConstantList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ConstantList_t * >(argp1);
+  arg1 = (blpapi_ConstantList_t *)(argp1);
   ecode2 = SWIG_AsVal_size_t(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_ConstantList_getConstantAt" "', argument " "2"" of type '" "size_t""'");
   } 
-  arg2 = static_cast< size_t >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_Constant_t *)blpapi_ConstantList_getConstantAt((blpapi_ConstantList const *)arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (size_t)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_Constant_t *)blpapi_ConstantList_getConstantAt((struct blpapi_ConstantList const *)arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_Constant, 0 |  0 );
   return resultobj;
 fail:
@@ -16515,28 +13235,12 @@ SWIGINTERN PyObject *_wrap_blpapi_SchemaElementDefinition_name(PyObject *SWIGUNU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SchemaElementDefinition_name" "', argument " "1"" of type '" "blpapi_SchemaElementDefinition_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SchemaElementDefinition_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_Name_t *)blpapi_SchemaElementDefinition_name((void *const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SchemaElementDefinition_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_Name_t *)blpapi_SchemaElementDefinition_name((void *const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_Name, 0 |  0 );
   return resultobj;
 fail:
@@ -16557,28 +13261,12 @@ SWIGINTERN PyObject *_wrap_blpapi_SchemaElementDefinition_description(PyObject *
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SchemaElementDefinition_description" "', argument " "1"" of type '" "blpapi_SchemaElementDefinition_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SchemaElementDefinition_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (char *)blpapi_SchemaElementDefinition_description((void *const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SchemaElementDefinition_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (char *)blpapi_SchemaElementDefinition_description((void *const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -16599,29 +13287,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SchemaElementDefinition_status(PyObject *SWIGU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SchemaElementDefinition_status" "', argument " "1"" of type '" "blpapi_SchemaElementDefinition_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SchemaElementDefinition_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SchemaElementDefinition_status((void *const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SchemaElementDefinition_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SchemaElementDefinition_status((void *const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -16641,28 +13313,12 @@ SWIGINTERN PyObject *_wrap_blpapi_SchemaElementDefinition_type(PyObject *SWIGUNU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SchemaElementDefinition_type" "', argument " "1"" of type '" "blpapi_SchemaElementDefinition_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SchemaElementDefinition_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_SchemaTypeDefinition_t *)blpapi_SchemaElementDefinition_type((void *const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SchemaElementDefinition_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_SchemaTypeDefinition_t *)blpapi_SchemaElementDefinition_type((void *const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_p_void, 0 |  0 );
   return resultobj;
 fail:
@@ -16683,29 +13339,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SchemaElementDefinition_numAlternateNames(PyOb
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SchemaElementDefinition_numAlternateNames" "', argument " "1"" of type '" "blpapi_SchemaElementDefinition_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SchemaElementDefinition_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = blpapi_SchemaElementDefinition_numAlternateNames((void *const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SchemaElementDefinition_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = blpapi_SchemaElementDefinition_numAlternateNames((void *const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_size_t(static_cast< size_t >(result));
+  resultobj = SWIG_From_size_t((size_t)(result));
   return resultobj;
 fail:
   return NULL;
@@ -16729,33 +13369,17 @@ SWIGINTERN PyObject *_wrap_blpapi_SchemaElementDefinition_getAlternateName(PyObj
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SchemaElementDefinition_getAlternateName" "', argument " "1"" of type '" "blpapi_SchemaElementDefinition_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SchemaElementDefinition_t * >(argp1);
+  arg1 = (blpapi_SchemaElementDefinition_t *)(argp1);
   ecode2 = SWIG_AsVal_size_t(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SchemaElementDefinition_getAlternateName" "', argument " "2"" of type '" "size_t""'");
   } 
-  arg2 = static_cast< size_t >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_Name_t *)blpapi_SchemaElementDefinition_getAlternateName((void *const *)arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (size_t)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_Name_t *)blpapi_SchemaElementDefinition_getAlternateName((void *const *)arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_Name, 0 |  0 );
   return resultobj;
 fail:
@@ -16776,29 +13400,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SchemaElementDefinition_minValues(PyObject *SW
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SchemaElementDefinition_minValues" "', argument " "1"" of type '" "blpapi_SchemaElementDefinition_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SchemaElementDefinition_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = blpapi_SchemaElementDefinition_minValues((void *const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SchemaElementDefinition_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = blpapi_SchemaElementDefinition_minValues((void *const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_size_t(static_cast< size_t >(result));
+  resultobj = SWIG_From_size_t((size_t)(result));
   return resultobj;
 fail:
   return NULL;
@@ -16818,29 +13426,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SchemaElementDefinition_maxValues(PyObject *SW
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SchemaElementDefinition_maxValues" "', argument " "1"" of type '" "blpapi_SchemaElementDefinition_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SchemaElementDefinition_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = blpapi_SchemaElementDefinition_maxValues((void *const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SchemaElementDefinition_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = blpapi_SchemaElementDefinition_maxValues((void *const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_size_t(static_cast< size_t >(result));
+  resultobj = SWIG_From_size_t((size_t)(result));
   return resultobj;
 fail:
   return NULL;
@@ -16860,28 +13452,12 @@ SWIGINTERN PyObject *_wrap_blpapi_SchemaTypeDefinition_name(PyObject *SWIGUNUSED
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SchemaTypeDefinition_name" "', argument " "1"" of type '" "blpapi_SchemaTypeDefinition_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SchemaTypeDefinition_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_Name_t *)blpapi_SchemaTypeDefinition_name((void *const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SchemaTypeDefinition_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_Name_t *)blpapi_SchemaTypeDefinition_name((void *const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_Name, 0 |  0 );
   return resultobj;
 fail:
@@ -16902,28 +13478,12 @@ SWIGINTERN PyObject *_wrap_blpapi_SchemaTypeDefinition_description(PyObject *SWI
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SchemaTypeDefinition_description" "', argument " "1"" of type '" "blpapi_SchemaTypeDefinition_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SchemaTypeDefinition_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (char *)blpapi_SchemaTypeDefinition_description((void *const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SchemaTypeDefinition_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (char *)blpapi_SchemaTypeDefinition_description((void *const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -16944,29 +13504,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SchemaTypeDefinition_status(PyObject *SWIGUNUS
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SchemaTypeDefinition_status" "', argument " "1"" of type '" "blpapi_SchemaTypeDefinition_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SchemaTypeDefinition_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SchemaTypeDefinition_status((void *const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SchemaTypeDefinition_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SchemaTypeDefinition_status((void *const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -16986,29 +13530,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SchemaTypeDefinition_datatype(PyObject *SWIGUN
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SchemaTypeDefinition_datatype" "', argument " "1"" of type '" "blpapi_SchemaTypeDefinition_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SchemaTypeDefinition_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SchemaTypeDefinition_datatype((void *const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SchemaTypeDefinition_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SchemaTypeDefinition_datatype((void *const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -17028,29 +13556,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SchemaTypeDefinition_isComplexType(PyObject *S
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SchemaTypeDefinition_isComplexType" "', argument " "1"" of type '" "blpapi_SchemaTypeDefinition_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SchemaTypeDefinition_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SchemaTypeDefinition_isComplexType((void *const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SchemaTypeDefinition_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SchemaTypeDefinition_isComplexType((void *const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -17070,29 +13582,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SchemaTypeDefinition_isSimpleType(PyObject *SW
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SchemaTypeDefinition_isSimpleType" "', argument " "1"" of type '" "blpapi_SchemaTypeDefinition_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SchemaTypeDefinition_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SchemaTypeDefinition_isSimpleType((void *const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SchemaTypeDefinition_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SchemaTypeDefinition_isSimpleType((void *const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -17112,29 +13608,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SchemaTypeDefinition_isEnumerationType(PyObjec
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SchemaTypeDefinition_isEnumerationType" "', argument " "1"" of type '" "blpapi_SchemaTypeDefinition_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SchemaTypeDefinition_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_SchemaTypeDefinition_isEnumerationType((void *const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SchemaTypeDefinition_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_SchemaTypeDefinition_isEnumerationType((void *const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -17154,29 +13634,13 @@ SWIGINTERN PyObject *_wrap_blpapi_SchemaTypeDefinition_numElementDefinitions(PyO
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SchemaTypeDefinition_numElementDefinitions" "', argument " "1"" of type '" "blpapi_SchemaTypeDefinition_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SchemaTypeDefinition_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = blpapi_SchemaTypeDefinition_numElementDefinitions((void *const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SchemaTypeDefinition_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = blpapi_SchemaTypeDefinition_numElementDefinitions((void *const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_size_t(static_cast< size_t >(result));
+  resultobj = SWIG_From_size_t((size_t)(result));
   return resultobj;
 fail:
   return NULL;
@@ -17205,43 +13669,27 @@ SWIGINTERN PyObject *_wrap_blpapi_SchemaTypeDefinition_getElementDefinition(PyOb
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SchemaTypeDefinition_getElementDefinition" "', argument " "1"" of type '" "blpapi_SchemaTypeDefinition_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SchemaTypeDefinition_t * >(argp1);
+  arg1 = (blpapi_SchemaTypeDefinition_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_SchemaTypeDefinition_getElementDefinition" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_SchemaTypeDefinition_getElementDefinition" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_SchemaElementDefinition_t *)blpapi_SchemaTypeDefinition_getElementDefinition((void *const *)arg1,(char const *)arg2,(blpapi_Name const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_Name_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_SchemaElementDefinition_t *)blpapi_SchemaTypeDefinition_getElementDefinition((void *const *)arg1,(char const *)arg2,(struct blpapi_Name const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_p_void, 0 |  0 );
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -17263,33 +13711,17 @@ SWIGINTERN PyObject *_wrap_blpapi_SchemaTypeDefinition_getElementDefinitionAt(Py
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SchemaTypeDefinition_getElementDefinitionAt" "', argument " "1"" of type '" "blpapi_SchemaTypeDefinition_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SchemaTypeDefinition_t * >(argp1);
+  arg1 = (blpapi_SchemaTypeDefinition_t *)(argp1);
   ecode2 = SWIG_AsVal_size_t(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_SchemaTypeDefinition_getElementDefinitionAt" "', argument " "2"" of type '" "size_t""'");
   } 
-  arg2 = static_cast< size_t >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_SchemaElementDefinition_t *)blpapi_SchemaTypeDefinition_getElementDefinitionAt((void *const *)arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (size_t)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_SchemaElementDefinition_t *)blpapi_SchemaTypeDefinition_getElementDefinitionAt((void *const *)arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_p_void, 0 |  0 );
   return resultobj;
 fail:
@@ -17310,28 +13742,12 @@ SWIGINTERN PyObject *_wrap_blpapi_SchemaTypeDefinition_enumeration(PyObject *SWI
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_SchemaTypeDefinition_enumeration" "', argument " "1"" of type '" "blpapi_SchemaTypeDefinition_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SchemaTypeDefinition_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_ConstantList_t *)blpapi_SchemaTypeDefinition_enumeration((void *const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_SchemaTypeDefinition_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_ConstantList_t *)blpapi_SchemaTypeDefinition_enumeration((void *const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_ConstantList, 0 |  0 );
   return resultobj;
 fail:
@@ -17351,28 +13767,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Request_destroy(PyObject *SWIGUNUSEDPARM(self)
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Request_destroy" "', argument " "1"" of type '" "blpapi_Request_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Request_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_Request_destroy(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Request_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_Request_destroy(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -17393,28 +13793,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Request_elements(PyObject *SWIGUNUSEDPARM(self
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Request_elements" "', argument " "1"" of type '" "blpapi_Request_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Request_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_Element_t *)blpapi_Request_elements(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Request_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_Element_t *)blpapi_Request_elements(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_Element, 0 |  0 );
   return resultobj;
 fail:
@@ -17438,33 +13822,17 @@ SWIGINTERN PyObject *_wrap_blpapi_Request_setPreferredRoute(PyObject *SWIGUNUSED
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Request_setPreferredRoute" "', argument " "1"" of type '" "blpapi_Request_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Request_t * >(argp1);
+  arg1 = (blpapi_Request_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Request_setPreferredRoute" "', argument " "2"" of type '" "blpapi_CorrelationId_t *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_CorrelationId_t * >(argp2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_Request_setPreferredRoute(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (blpapi_CorrelationId_t *)(argp2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_Request_setPreferredRoute(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -17485,29 +13853,13 @@ SWIGINTERN PyObject *_wrap_blpapi_RequestTemplate_release(PyObject *SWIGUNUSEDPA
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_RequestTemplate_release" "', argument " "1"" of type '" "blpapi_RequestTemplate_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_RequestTemplate_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_RequestTemplate_release((blpapi_RequestTemplate const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_RequestTemplate_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_RequestTemplate_release((struct blpapi_RequestTemplate const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -17527,28 +13879,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Operation_name(PyObject *SWIGUNUSEDPARM(self),
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Operation_name" "', argument " "1"" of type '" "blpapi_Operation_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Operation_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (char *)blpapi_Operation_name(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Operation_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (char *)blpapi_Operation_name(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -17569,28 +13905,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Operation_description(PyObject *SWIGUNUSEDPARM
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Operation_description" "', argument " "1"" of type '" "blpapi_Operation_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Operation_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (char *)blpapi_Operation_description(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Operation_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (char *)blpapi_Operation_description(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -17614,29 +13934,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Operation_requestDefinition(PyObject *SWIGUNUS
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Operation_requestDefinition" "', argument " "1"" of type '" "blpapi_Operation_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Operation_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Operation_requestDefinition(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Operation_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Operation_requestDefinition(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_p_void, 0));
   return resultobj;
 fail:
@@ -17657,29 +13961,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Operation_numResponseDefinitions(PyObject *SWI
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Operation_numResponseDefinitions" "', argument " "1"" of type '" "blpapi_Operation_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Operation_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Operation_numResponseDefinitions(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Operation_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Operation_numResponseDefinitions(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -17706,34 +13994,18 @@ SWIGINTERN PyObject *_wrap_blpapi_Operation_responseDefinition(PyObject *SWIGUNU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Operation_responseDefinition" "', argument " "1"" of type '" "blpapi_Operation_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Operation_t * >(argp1);
+  arg1 = (blpapi_Operation_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Operation_responseDefinition" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Operation_responseDefinition(arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Operation_responseDefinition(arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_p_void, 0));
   return resultobj;
 fail:
@@ -17754,28 +14026,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Service_name(PyObject *SWIGUNUSEDPARM(self), P
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Service_name" "', argument " "1"" of type '" "blpapi_Service_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Service_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (char *)blpapi_Service_name(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Service_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (char *)blpapi_Service_name(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -17796,28 +14052,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Service_description(PyObject *SWIGUNUSEDPARM(s
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Service_description" "', argument " "1"" of type '" "blpapi_Service_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Service_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (char *)blpapi_Service_description(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Service_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (char *)blpapi_Service_description(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -17838,29 +14078,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Service_numOperations(PyObject *SWIGUNUSEDPARM
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Service_numOperations" "', argument " "1"" of type '" "blpapi_Service_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Service_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Service_numOperations(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Service_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Service_numOperations(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -17880,29 +14104,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Service_numEventDefinitions(PyObject *SWIGUNUS
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Service_numEventDefinitions" "', argument " "1"" of type '" "blpapi_Service_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Service_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Service_numEventDefinitions(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Service_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Service_numEventDefinitions(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -17922,29 +14130,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Service_addRef(PyObject *SWIGUNUSEDPARM(self),
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Service_addRef" "', argument " "1"" of type '" "blpapi_Service_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Service_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Service_addRef(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Service_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Service_addRef(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -17963,28 +14155,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Service_release(PyObject *SWIGUNUSEDPARM(self)
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Service_release" "', argument " "1"" of type '" "blpapi_Service_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Service_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_Service_release(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Service_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_Service_release(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -18005,28 +14181,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Service_authorizationServiceName(PyObject *SWI
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Service_authorizationServiceName" "', argument " "1"" of type '" "blpapi_Service_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Service_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (char *)blpapi_Service_authorizationServiceName(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Service_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (char *)blpapi_Service_authorizationServiceName(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -18059,44 +14219,28 @@ SWIGINTERN PyObject *_wrap_blpapi_Service_getOperation(PyObject *SWIGUNUSEDPARM(
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Service_getOperation" "', argument " "1"" of type '" "blpapi_Service_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Service_t * >(argp1);
+  arg1 = (blpapi_Service_t *)(argp1);
   res3 = SWIG_AsCharPtrAndSize(obj1, &buf3, NULL, &alloc3);
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Service_getOperation" "', argument " "3"" of type '" "char const *""'");
   }
-  arg3 = reinterpret_cast< char * >(buf3);
+  arg3 = (char *)(buf3);
   res4 = SWIG_ConvertPtr(obj2, &argp4,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_Service_getOperation" "', argument " "4"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_Name_t * >(argp4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Service_getOperation(arg1,arg2,(char const *)arg3,(blpapi_Name const *)arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_Name_t *)(argp4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Service_getOperation(arg1,arg2,(char const *)arg3,(struct blpapi_Name const *)arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Operation, 0));
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return resultobj;
 fail:
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return NULL;
 }
 
@@ -18121,34 +14265,18 @@ SWIGINTERN PyObject *_wrap_blpapi_Service_getOperationAt(PyObject *SWIGUNUSEDPAR
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Service_getOperationAt" "', argument " "1"" of type '" "blpapi_Service_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Service_t * >(argp1);
+  arg1 = (blpapi_Service_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Service_getOperationAt" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Service_getOperationAt(arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Service_getOperationAt(arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Operation, 0));
   return resultobj;
 fail:
@@ -18181,44 +14309,28 @@ SWIGINTERN PyObject *_wrap_blpapi_Service_getEventDefinition(PyObject *SWIGUNUSE
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Service_getEventDefinition" "', argument " "1"" of type '" "blpapi_Service_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Service_t * >(argp1);
+  arg1 = (blpapi_Service_t *)(argp1);
   res3 = SWIG_AsCharPtrAndSize(obj1, &buf3, NULL, &alloc3);
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Service_getEventDefinition" "', argument " "3"" of type '" "char const *""'");
   }
-  arg3 = reinterpret_cast< char * >(buf3);
+  arg3 = (char *)(buf3);
   res4 = SWIG_ConvertPtr(obj2, &argp4,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_Service_getEventDefinition" "', argument " "4"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_Name_t * >(argp4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Service_getEventDefinition(arg1,arg2,(char const *)arg3,(blpapi_Name const *)arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_Name_t *)(argp4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Service_getEventDefinition(arg1,arg2,(char const *)arg3,(struct blpapi_Name const *)arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_p_void, 0));
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return resultobj;
 fail:
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return NULL;
 }
 
@@ -18243,34 +14355,18 @@ SWIGINTERN PyObject *_wrap_blpapi_Service_getEventDefinitionAt(PyObject *SWIGUNU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Service_getEventDefinitionAt" "', argument " "1"" of type '" "blpapi_Service_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Service_t * >(argp1);
+  arg1 = (blpapi_Service_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Service_getEventDefinitionAt" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Service_getEventDefinitionAt(arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Service_getEventDefinitionAt(arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_p_void, 0));
   return resultobj;
 fail:
@@ -18299,39 +14395,23 @@ SWIGINTERN PyObject *_wrap_blpapi_Service_createRequest(PyObject *SWIGUNUSEDPARM
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Service_createRequest" "', argument " "1"" of type '" "blpapi_Service_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Service_t * >(argp1);
+  arg1 = (blpapi_Service_t *)(argp1);
   res3 = SWIG_AsCharPtrAndSize(obj1, &buf3, NULL, &alloc3);
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Service_createRequest" "', argument " "3"" of type '" "char const *""'");
   }
-  arg3 = reinterpret_cast< char * >(buf3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Service_createRequest(arg1,arg2,(char const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (char *)(buf3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Service_createRequest(arg1,arg2,(char const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Request, 0));
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return resultobj;
 fail:
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return NULL;
 }
 
@@ -18357,39 +14437,23 @@ SWIGINTERN PyObject *_wrap_blpapi_Service_createAuthorizationRequest(PyObject *S
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Service_createAuthorizationRequest" "', argument " "1"" of type '" "blpapi_Service_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Service_t * >(argp1);
+  arg1 = (blpapi_Service_t *)(argp1);
   res3 = SWIG_AsCharPtrAndSize(obj1, &buf3, NULL, &alloc3);
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Service_createAuthorizationRequest" "', argument " "3"" of type '" "char const *""'");
   }
-  arg3 = reinterpret_cast< char * >(buf3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Service_createAuthorizationRequest(arg1,arg2,(char const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (char *)(buf3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Service_createAuthorizationRequest(arg1,arg2,(char const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Request, 0));
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return resultobj;
 fail:
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return NULL;
 }
 
@@ -18410,29 +14474,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Service_createPublishEvent(PyObject *SWIGUNUSE
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Service_createPublishEvent" "', argument " "1"" of type '" "blpapi_Service_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Service_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Service_createPublishEvent(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Service_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Service_createPublishEvent(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Event, 0));
   return resultobj;
 fail:
@@ -18456,29 +14504,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Service_createAdminEvent(PyObject *SWIGUNUSEDP
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Service_createAdminEvent" "', argument " "1"" of type '" "blpapi_Service_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Service_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Service_createAdminEvent(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Service_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Service_createAdminEvent(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Event, 0));
   return resultobj;
 fail:
@@ -18506,34 +14538,18 @@ SWIGINTERN PyObject *_wrap_blpapi_Service_createResponseEvent(PyObject *SWIGUNUS
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Service_createResponseEvent" "', argument " "1"" of type '" "blpapi_Service_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Service_t * >(argp1);
+  arg1 = (blpapi_Service_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Service_createResponseEvent" "', argument " "2"" of type '" "blpapi_CorrelationId_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_CorrelationId_t * >(argp2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Service_createResponseEvent(arg1,(blpapi_CorrelationId_t_ const *)arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (blpapi_CorrelationId_t *)(argp2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Service_createResponseEvent(arg1,(struct blpapi_CorrelationId_t_ const *)arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg3), SWIGTYPE_p_blpapi_Event, 0));
   return resultobj;
 fail:
@@ -18554,28 +14570,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Message_messageType(PyObject *SWIGUNUSEDPARM(s
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Message_messageType" "', argument " "1"" of type '" "blpapi_Message_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Message_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_Name_t *)blpapi_Message_messageType((blpapi_Message const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Message_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_Name_t *)blpapi_Message_messageType((struct blpapi_Message const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_Name, 0 |  0 );
   return resultobj;
 fail:
@@ -18596,28 +14596,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Message_topicName(PyObject *SWIGUNUSEDPARM(sel
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Message_topicName" "', argument " "1"" of type '" "blpapi_Message_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Message_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (char *)blpapi_Message_topicName((blpapi_Message const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Message_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (char *)blpapi_Message_topicName((struct blpapi_Message const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -18638,28 +14622,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Message_service(PyObject *SWIGUNUSEDPARM(self)
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Message_service" "', argument " "1"" of type '" "blpapi_Message_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Message_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_Service_t *)blpapi_Message_service((blpapi_Message const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Message_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_Service_t *)blpapi_Message_service((struct blpapi_Message const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_Service, 0 |  0 );
   return resultobj;
 fail:
@@ -18680,29 +14648,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Message_numCorrelationIds(PyObject *SWIGUNUSED
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Message_numCorrelationIds" "', argument " "1"" of type '" "blpapi_Message_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Message_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Message_numCorrelationIds((blpapi_Message const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Message_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Message_numCorrelationIds((struct blpapi_Message const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -18726,35 +14678,19 @@ SWIGINTERN PyObject *_wrap_blpapi_Message_correlationId(PyObject *SWIGUNUSEDPARM
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Message_correlationId" "', argument " "1"" of type '" "blpapi_Message_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Message_t * >(argp1);
+  arg1 = (blpapi_Message_t *)(argp1);
   ecode2 = SWIG_AsVal_size_t(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_Message_correlationId" "', argument " "2"" of type '" "size_t""'");
   } 
-  arg2 = static_cast< size_t >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = blpapi_Message_correlationId((blpapi_Message const *)arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
-  }
-  
+  arg2 = (size_t)(val2);
   {
-    resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj(CorrelationId_t_clone(result), SWIGTYPE_p_blpapi_CorrelationId_t_, SWIG_POINTER_OWN));
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = blpapi_Message_correlationId((struct blpapi_Message const *)arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  {
+    resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj(CorrelationId_t_clone(&result), SWIGTYPE_p_blpapi_CorrelationId_t_, SWIG_POINTER_OWN));
   }
   return resultobj;
 fail:
@@ -18775,28 +14711,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Message_elements(PyObject *SWIGUNUSEDPARM(self
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Message_elements" "', argument " "1"" of type '" "blpapi_Message_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Message_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_Element_t *)blpapi_Message_elements((blpapi_Message const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Message_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_Element_t *)blpapi_Message_elements((struct blpapi_Message const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_Element, 0 |  0 );
   return resultobj;
 fail:
@@ -18817,29 +14737,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Message_fragmentType(PyObject *SWIGUNUSEDPARM(
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Message_fragmentType" "', argument " "1"" of type '" "blpapi_Message_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Message_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Message_fragmentType((blpapi_Message const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Message_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Message_fragmentType((struct blpapi_Message const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -18859,29 +14763,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Message_recapType(PyObject *SWIGUNUSEDPARM(sel
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Message_recapType" "', argument " "1"" of type '" "blpapi_Message_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Message_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Message_recapType((blpapi_Message const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Message_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Message_recapType((struct blpapi_Message const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -18916,18 +14804,16 @@ SWIGINTERN PyObject *_wrap_blpapi_Message_print(PyObject *SWIGUNUSEDPARM(self), 
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Message_print" "', argument " "1"" of type '" "blpapi_Message_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Message_t * >(argp1);
+  arg1 = (blpapi_Message_t *)(argp1);
   {
-    res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_blpapi_StreamWriter_t,  0  | 0);
+    res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_blpapi_StreamWriter_t,  0 );
     if (!SWIG_IsOK(res2)) {
       SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Message_print" "', argument " "2"" of type '" "blpapi_StreamWriter_t""'"); 
     }  
     if (!argp2) {
       SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "blpapi_Message_print" "', argument " "2"" of type '" "blpapi_StreamWriter_t""'");
     } else {
-      blpapi_StreamWriter_t * temp = reinterpret_cast< blpapi_StreamWriter_t * >(argp2);
-      arg2 = *temp;
-      if (SWIG_IsNewObj(res2)) delete temp;
+      arg2 = *((blpapi_StreamWriter_t *)(argp2));
     }
   }
   res3 = SWIG_ConvertPtr(obj2,SWIG_as_voidptrptr(&arg3), 0, 0);
@@ -18938,34 +14824,18 @@ SWIGINTERN PyObject *_wrap_blpapi_Message_print(PyObject *SWIGUNUSEDPARM(self), 
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "blpapi_Message_print" "', argument " "4"" of type '" "int""'");
   } 
-  arg4 = static_cast< int >(val4);
+  arg4 = (int)(val4);
   ecode5 = SWIG_AsVal_int(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "blpapi_Message_print" "', argument " "5"" of type '" "int""'");
   } 
-  arg5 = static_cast< int >(val5);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Message_print((blpapi_Message const *)arg1,arg2,arg3,arg4,arg5);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg5 = (int)(val5);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Message_print((struct blpapi_Message const *)arg1,arg2,arg3,arg4,arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -18985,29 +14855,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Message_addRef(PyObject *SWIGUNUSEDPARM(self),
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Message_addRef" "', argument " "1"" of type '" "blpapi_Message_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Message_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Message_addRef((blpapi_Message const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Message_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Message_addRef((struct blpapi_Message const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -19027,29 +14881,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Message_release(PyObject *SWIGUNUSEDPARM(self)
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Message_release" "', argument " "1"" of type '" "blpapi_Message_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Message_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Message_release((blpapi_Message const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Message_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Message_release((struct blpapi_Message const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -19062,45 +14900,28 @@ SWIGINTERN PyObject *_wrap_blpapi_Message_timeReceived(PyObject *SWIGUNUSEDPARM(
   blpapi_TimePoint_t *arg2 = (blpapi_TimePoint_t *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
+  blpapi_TimePoint_t temp2 ;
   PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
   int result;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:blpapi_Message_timeReceived",&obj0,&obj1)) SWIG_fail;
+  arg2 = &temp2;
+  if (!PyArg_ParseTuple(args,(char *)"O:blpapi_Message_timeReceived",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_Message, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Message_timeReceived" "', argument " "1"" of type '" "blpapi_Message_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Message_t * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_TimePoint_t, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Message_timeReceived" "', argument " "2"" of type '" "blpapi_TimePoint_t *""'"); 
+  arg1 = (blpapi_Message_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Message_timeReceived((struct blpapi_Message const *)arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  arg2 = reinterpret_cast< blpapi_TimePoint_t * >(argp2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Message_timeReceived((blpapi_Message const *)arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  resultobj = SWIG_From_int((int)(result));
+  {
+    blpapi_TimePoint_t *outputPtr = (blpapi_TimePoint_t *) malloc(sizeof(blpapi_TimePoint_t));
+    *outputPtr = *arg2;
+    resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj(outputPtr, SWIGTYPE_p_blpapi_TimePoint, SWIG_POINTER_OWN));
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
   return NULL;
@@ -19120,29 +14941,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Event_eventType(PyObject *SWIGUNUSEDPARM(self)
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Event_eventType" "', argument " "1"" of type '" "blpapi_Event_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Event_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Event_eventType((blpapi_Event const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Event_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Event_eventType((struct blpapi_Event const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -19162,29 +14967,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Event_release(PyObject *SWIGUNUSEDPARM(self), 
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Event_release" "', argument " "1"" of type '" "blpapi_Event_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Event_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Event_release((blpapi_Event const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Event_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Event_release((struct blpapi_Event const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -19196,27 +14985,11 @@ SWIGINTERN PyObject *_wrap_blpapi_EventQueue_create(PyObject *SWIGUNUSEDPARM(sel
   blpapi_EventQueue_t *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)":blpapi_EventQueue_create")) SWIG_fail;
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_EventQueue_t *)blpapi_EventQueue_create();
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_EventQueue_t *)blpapi_EventQueue_create();
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_EventQueue, 0 |  0 );
   return resultobj;
 fail:
@@ -19237,29 +15010,13 @@ SWIGINTERN PyObject *_wrap_blpapi_EventQueue_destroy(PyObject *SWIGUNUSEDPARM(se
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventQueue_destroy" "', argument " "1"" of type '" "blpapi_EventQueue_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventQueue_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventQueue_destroy(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_EventQueue_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventQueue_destroy(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -19283,33 +15040,17 @@ SWIGINTERN PyObject *_wrap_blpapi_EventQueue_nextEvent(PyObject *SWIGUNUSEDPARM(
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventQueue_nextEvent" "', argument " "1"" of type '" "blpapi_EventQueue_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventQueue_t * >(argp1);
+  arg1 = (blpapi_EventQueue_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_EventQueue_nextEvent" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_Event_t *)blpapi_EventQueue_nextEvent(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (int)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_Event_t *)blpapi_EventQueue_nextEvent(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_Event, 0 |  0 );
   return resultobj;
 fail:
@@ -19330,29 +15071,13 @@ SWIGINTERN PyObject *_wrap_blpapi_EventQueue_purge(PyObject *SWIGUNUSEDPARM(self
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventQueue_purge" "', argument " "1"" of type '" "blpapi_EventQueue_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventQueue_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventQueue_purge(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_EventQueue_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventQueue_purge(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -19375,29 +15100,13 @@ SWIGINTERN PyObject *_wrap_blpapi_EventQueue_tryNextEvent(PyObject *SWIGUNUSEDPA
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_EventQueue_tryNextEvent" "', argument " "1"" of type '" "blpapi_EventQueue_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_EventQueue_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_EventQueue_tryNextEvent(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_EventQueue_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_EventQueue_tryNextEvent(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Event, 0));
   return resultobj;
 fail:
@@ -19418,28 +15127,12 @@ SWIGINTERN PyObject *_wrap_blpapi_MessageIterator_create(PyObject *SWIGUNUSEDPAR
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_MessageIterator_create" "', argument " "1"" of type '" "blpapi_Event_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Event_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_MessageIterator_t *)blpapi_MessageIterator_create((blpapi_Event const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Event_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_MessageIterator_t *)blpapi_MessageIterator_create((struct blpapi_Event const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_MessageIterator, 0 |  0 );
   return resultobj;
 fail:
@@ -19459,28 +15152,12 @@ SWIGINTERN PyObject *_wrap_blpapi_MessageIterator_destroy(PyObject *SWIGUNUSEDPA
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_MessageIterator_destroy" "', argument " "1"" of type '" "blpapi_MessageIterator_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_MessageIterator_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_MessageIterator_destroy(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_MessageIterator_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_MessageIterator_destroy(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -19504,29 +15181,13 @@ SWIGINTERN PyObject *_wrap_blpapi_MessageIterator_next(PyObject *SWIGUNUSEDPARM(
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_MessageIterator_next" "', argument " "1"" of type '" "blpapi_MessageIterator_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_MessageIterator_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_MessageIterator_next(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_MessageIterator_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_MessageIterator_next(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Message, 0));
   return resultobj;
 fail:
@@ -19546,28 +15207,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Identity_release(PyObject *SWIGUNUSEDPARM(self
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Identity_release" "', argument " "1"" of type '" "blpapi_Identity_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Identity_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_Identity_release(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Identity_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_Identity_release(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -19588,29 +15233,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Identity_addRef(PyObject *SWIGUNUSEDPARM(self)
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Identity_addRef" "', argument " "1"" of type '" "blpapi_Identity_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Identity_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Identity_addRef(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Identity_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Identity_addRef(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -19654,59 +15283,43 @@ SWIGINTERN PyObject *_wrap_blpapi_Identity_hasEntitlements(PyObject *SWIGUNUSEDP
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Identity_hasEntitlements" "', argument " "1"" of type '" "blpapi_Identity_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Identity_t * >(argp1);
+  arg1 = (blpapi_Identity_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Service, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Identity_hasEntitlements" "', argument " "2"" of type '" "blpapi_Service_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Service_t * >(argp2);
+  arg2 = (blpapi_Service_t *)(argp2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Element, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Identity_hasEntitlements" "', argument " "3"" of type '" "blpapi_Element_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Element_t * >(argp3);
+  arg3 = (blpapi_Element_t *)(argp3);
   res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_int, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_Identity_hasEntitlements" "', argument " "4"" of type '" "int const *""'"); 
   }
-  arg4 = reinterpret_cast< int * >(argp4);
+  arg4 = (int *)(argp4);
   ecode5 = SWIG_AsVal_size_t(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "blpapi_Identity_hasEntitlements" "', argument " "5"" of type '" "size_t""'");
   } 
-  arg5 = static_cast< size_t >(val5);
+  arg5 = (size_t)(val5);
   res6 = SWIG_ConvertPtr(obj5, &argp6,SWIGTYPE_p_int, 0 |  0 );
   if (!SWIG_IsOK(res6)) {
     SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "blpapi_Identity_hasEntitlements" "', argument " "6"" of type '" "int *""'"); 
   }
-  arg6 = reinterpret_cast< int * >(argp6);
+  arg6 = (int *)(argp6);
   res7 = SWIG_ConvertPtr(obj6, &argp7,SWIGTYPE_p_int, 0 |  0 );
   if (!SWIG_IsOK(res7)) {
     SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "blpapi_Identity_hasEntitlements" "', argument " "7"" of type '" "int *""'"); 
   }
-  arg7 = reinterpret_cast< int * >(argp7);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Identity_hasEntitlements((blpapi_Identity const *)arg1,(blpapi_Service const *)arg2,(blpapi_Element const *)arg3,(int const *)arg4,arg5,arg6,arg7);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg7 = (int *)(argp7);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Identity_hasEntitlements((struct blpapi_Identity const *)arg1,(struct blpapi_Service const *)arg2,(struct blpapi_Element const *)arg3,(int const *)arg4,arg5,arg6,arg7);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -19730,34 +15343,18 @@ SWIGINTERN PyObject *_wrap_blpapi_Identity_isAuthorized(PyObject *SWIGUNUSEDPARM
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Identity_isAuthorized" "', argument " "1"" of type '" "blpapi_Identity_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Identity_t * >(argp1);
+  arg1 = (blpapi_Identity_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Service, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Identity_isAuthorized" "', argument " "2"" of type '" "blpapi_Service_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Service_t * >(argp2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Identity_isAuthorized((blpapi_Identity const *)arg1,(blpapi_Service const *)arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (blpapi_Service_t *)(argp2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Identity_isAuthorized((struct blpapi_Identity const *)arg1,(struct blpapi_Service const *)arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -19781,34 +15378,43 @@ SWIGINTERN PyObject *_wrap_blpapi_Identity_getSeatType(PyObject *SWIGUNUSEDPARM(
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Identity_getSeatType" "', argument " "1"" of type '" "blpapi_Identity_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Identity_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Identity_getSeatType((blpapi_Identity const *)arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Identity_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Identity_getSeatType((struct blpapi_Identity const *)arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   if (SWIG_IsTmpObj(res2)) {
     resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_From_int((*arg2)));
   } else {
     int new_flags = SWIG_IsNewObj(res2) ? (SWIG_POINTER_OWN |  0 ) :  0 ;
     resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((void*)(arg2), SWIGTYPE_p_int, new_flags));
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_blpapi_HighResolutionClock_now(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  blpapi_TimePoint_t *arg1 = (blpapi_TimePoint_t *) 0 ;
+  blpapi_TimePoint_t temp1 ;
+  int result;
+  
+  arg1 = &temp1;
+  if (!PyArg_ParseTuple(args,(char *)":blpapi_HighResolutionClock_now")) SWIG_fail;
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_HighResolutionClock_now(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_From_int((int)(result));
+  {
+    blpapi_TimePoint_t *outputPtr = (blpapi_TimePoint_t *) malloc(sizeof(blpapi_TimePoint_t));
+    *outputPtr = *arg1;
+    resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj(outputPtr, SWIGTYPE_p_blpapi_TimePoint, SWIG_POINTER_OWN));
   }
   return resultobj;
 fail:
@@ -19846,53 +15452,37 @@ SWIGINTERN PyObject *_wrap_blpapi_AbstractSession_cancel(PyObject *SWIGUNUSEDPAR
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_AbstractSession_cancel" "', argument " "1"" of type '" "blpapi_AbstractSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_AbstractSession_t * >(argp1);
+  arg1 = (blpapi_AbstractSession_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_AbstractSession_cancel" "', argument " "2"" of type '" "blpapi_CorrelationId_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_CorrelationId_t * >(argp2);
+  arg2 = (blpapi_CorrelationId_t *)(argp2);
   ecode3 = SWIG_AsVal_size_t(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_AbstractSession_cancel" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
+  arg3 = (size_t)(val3);
   res4 = SWIG_AsCharPtrAndSize(obj3, &buf4, NULL, &alloc4);
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_AbstractSession_cancel" "', argument " "4"" of type '" "char const *""'");
   }
-  arg4 = reinterpret_cast< char * >(buf4);
+  arg4 = (char *)(buf4);
   ecode5 = SWIG_AsVal_int(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "blpapi_AbstractSession_cancel" "', argument " "5"" of type '" "int""'");
   } 
-  arg5 = static_cast< int >(val5);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_AbstractSession_cancel(arg1,(blpapi_CorrelationId_t_ const *)arg2,arg3,(char const *)arg4,arg5);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg5 = (int)(val5);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_AbstractSession_cancel(arg1,(struct blpapi_CorrelationId_t_ const *)arg2,arg3,(char const *)arg4,arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc4 == SWIG_NEWOBJ) free((char*)buf4);
   return resultobj;
 fail:
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  if (alloc4 == SWIG_NEWOBJ) free((char*)buf4);
   return NULL;
 }
 
@@ -19935,63 +15525,47 @@ SWIGINTERN PyObject *_wrap_blpapi_AbstractSession_sendAuthorizationRequest(PyObj
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_AbstractSession_sendAuthorizationRequest" "', argument " "1"" of type '" "blpapi_AbstractSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_AbstractSession_t * >(argp1);
+  arg1 = (blpapi_AbstractSession_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Request, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_AbstractSession_sendAuthorizationRequest" "', argument " "2"" of type '" "blpapi_Request_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Request_t * >(argp2);
+  arg2 = (blpapi_Request_t *)(argp2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Identity, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_AbstractSession_sendAuthorizationRequest" "', argument " "3"" of type '" "blpapi_Identity_t *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Identity_t * >(argp3);
+  arg3 = (blpapi_Identity_t *)(argp3);
   res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_AbstractSession_sendAuthorizationRequest" "', argument " "4"" of type '" "blpapi_CorrelationId_t *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_CorrelationId_t * >(argp4);
+  arg4 = (blpapi_CorrelationId_t *)(argp4);
   res5 = SWIG_ConvertPtr(obj4, &argp5,SWIGTYPE_p_blpapi_EventQueue, 0 |  0 );
   if (!SWIG_IsOK(res5)) {
     SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "blpapi_AbstractSession_sendAuthorizationRequest" "', argument " "5"" of type '" "blpapi_EventQueue_t *""'"); 
   }
-  arg5 = reinterpret_cast< blpapi_EventQueue_t * >(argp5);
+  arg5 = (blpapi_EventQueue_t *)(argp5);
   res6 = SWIG_AsCharPtrAndSize(obj5, &buf6, NULL, &alloc6);
   if (!SWIG_IsOK(res6)) {
     SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "blpapi_AbstractSession_sendAuthorizationRequest" "', argument " "6"" of type '" "char const *""'");
   }
-  arg6 = reinterpret_cast< char * >(buf6);
+  arg6 = (char *)(buf6);
   ecode7 = SWIG_AsVal_int(obj6, &val7);
   if (!SWIG_IsOK(ecode7)) {
     SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "blpapi_AbstractSession_sendAuthorizationRequest" "', argument " "7"" of type '" "int""'");
   } 
-  arg7 = static_cast< int >(val7);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_AbstractSession_sendAuthorizationRequest(arg1,(blpapi_Request const *)arg2,arg3,arg4,arg5,(char const *)arg6,arg7);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg7 = (int)(val7);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_AbstractSession_sendAuthorizationRequest(arg1,(struct blpapi_Request const *)arg2,arg3,arg4,arg5,(char const *)arg6,arg7);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc6 == SWIG_NEWOBJ) delete[] buf6;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc6 == SWIG_NEWOBJ) free((char*)buf6);
   return resultobj;
 fail:
-  if (alloc6 == SWIG_NEWOBJ) delete[] buf6;
+  if (alloc6 == SWIG_NEWOBJ) free((char*)buf6);
   return NULL;
 }
 
@@ -20014,38 +15588,22 @@ SWIGINTERN PyObject *_wrap_blpapi_AbstractSession_openService(PyObject *SWIGUNUS
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_AbstractSession_openService" "', argument " "1"" of type '" "blpapi_AbstractSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_AbstractSession_t * >(argp1);
+  arg1 = (blpapi_AbstractSession_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_AbstractSession_openService" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_AbstractSession_openService(arg1,(char const *)arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (char *)(buf2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_AbstractSession_openService(arg1,(char const *)arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -20072,43 +15630,27 @@ SWIGINTERN PyObject *_wrap_blpapi_AbstractSession_openServiceAsync(PyObject *SWI
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_AbstractSession_openServiceAsync" "', argument " "1"" of type '" "blpapi_AbstractSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_AbstractSession_t * >(argp1);
+  arg1 = (blpapi_AbstractSession_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_AbstractSession_openServiceAsync" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_AbstractSession_openServiceAsync" "', argument " "3"" of type '" "blpapi_CorrelationId_t *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_CorrelationId_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_AbstractSession_openServiceAsync(arg1,(char const *)arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_CorrelationId_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_AbstractSession_openServiceAsync(arg1,(char const *)arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -20134,39 +15676,23 @@ SWIGINTERN PyObject *_wrap_blpapi_AbstractSession_generateToken(PyObject *SWIGUN
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_AbstractSession_generateToken" "', argument " "1"" of type '" "blpapi_AbstractSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_AbstractSession_t * >(argp1);
+  arg1 = (blpapi_AbstractSession_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_AbstractSession_generateToken" "', argument " "2"" of type '" "blpapi_CorrelationId_t *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_CorrelationId_t * >(argp2);
+  arg2 = (blpapi_CorrelationId_t *)(argp2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_EventQueue, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_AbstractSession_generateToken" "', argument " "3"" of type '" "blpapi_EventQueue_t *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_EventQueue_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_AbstractSession_generateToken(arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_EventQueue_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_AbstractSession_generateToken(arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -20204,55 +15730,39 @@ SWIGINTERN PyObject *_wrap_blpapi_AbstractSession_generateManualToken(PyObject *
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_AbstractSession_generateManualToken" "', argument " "1"" of type '" "blpapi_AbstractSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_AbstractSession_t * >(argp1);
+  arg1 = (blpapi_AbstractSession_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_AbstractSession_generateManualToken" "', argument " "2"" of type '" "blpapi_CorrelationId_t *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_CorrelationId_t * >(argp2);
+  arg2 = (blpapi_CorrelationId_t *)(argp2);
   res3 = SWIG_AsCharPtrAndSize(obj2, &buf3, NULL, &alloc3);
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_AbstractSession_generateManualToken" "', argument " "3"" of type '" "char const *""'");
   }
-  arg3 = reinterpret_cast< char * >(buf3);
+  arg3 = (char *)(buf3);
   res4 = SWIG_AsCharPtrAndSize(obj3, &buf4, NULL, &alloc4);
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_AbstractSession_generateManualToken" "', argument " "4"" of type '" "char const *""'");
   }
-  arg4 = reinterpret_cast< char * >(buf4);
+  arg4 = (char *)(buf4);
   res5 = SWIG_ConvertPtr(obj4, &argp5,SWIGTYPE_p_blpapi_EventQueue, 0 |  0 );
   if (!SWIG_IsOK(res5)) {
     SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "blpapi_AbstractSession_generateManualToken" "', argument " "5"" of type '" "blpapi_EventQueue_t *""'"); 
   }
-  arg5 = reinterpret_cast< blpapi_EventQueue_t * >(argp5);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_AbstractSession_generateManualToken(arg1,arg2,(char const *)arg3,(char const *)arg4,arg5);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg5 = (blpapi_EventQueue_t *)(argp5);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_AbstractSession_generateManualToken(arg1,arg2,(char const *)arg3,(char const *)arg4,arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
+  if (alloc4 == SWIG_NEWOBJ) free((char*)buf4);
   return resultobj;
 fail:
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
+  if (alloc4 == SWIG_NEWOBJ) free((char*)buf4);
   return NULL;
 }
 
@@ -20278,39 +15788,23 @@ SWIGINTERN PyObject *_wrap_blpapi_AbstractSession_getService(PyObject *SWIGUNUSE
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_AbstractSession_getService" "', argument " "1"" of type '" "blpapi_AbstractSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_AbstractSession_t * >(argp1);
+  arg1 = (blpapi_AbstractSession_t *)(argp1);
   res3 = SWIG_AsCharPtrAndSize(obj1, &buf3, NULL, &alloc3);
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_AbstractSession_getService" "', argument " "3"" of type '" "char const *""'");
   }
-  arg3 = reinterpret_cast< char * >(buf3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_AbstractSession_getService(arg1,arg2,(char const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (char *)(buf3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_AbstractSession_getService(arg1,arg2,(char const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Service, 0));
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return resultobj;
 fail:
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return NULL;
 }
 
@@ -20328,28 +15822,12 @@ SWIGINTERN PyObject *_wrap_blpapi_AbstractSession_createIdentity(PyObject *SWIGU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_AbstractSession_createIdentity" "', argument " "1"" of type '" "blpapi_AbstractSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_AbstractSession_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_Identity_t *)blpapi_AbstractSession_createIdentity(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_AbstractSession_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_Identity_t *)blpapi_AbstractSession_createIdentity(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_Identity, 0 |  0 );
   return resultobj;
 fail:
@@ -20370,29 +15848,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Session_start(PyObject *SWIGUNUSEDPARM(self), 
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Session_start" "', argument " "1"" of type '" "blpapi_Session_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Session_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Session_start(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Session_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Session_start(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -20412,29 +15874,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Session_startAsync(PyObject *SWIGUNUSEDPARM(se
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Session_startAsync" "', argument " "1"" of type '" "blpapi_Session_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Session_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Session_startAsync(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Session_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Session_startAsync(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -20454,29 +15900,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Session_stop(PyObject *SWIGUNUSEDPARM(self), P
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Session_stop" "', argument " "1"" of type '" "blpapi_Session_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Session_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Session_stop(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Session_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Session_stop(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -20496,29 +15926,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Session_stopAsync(PyObject *SWIGUNUSEDPARM(sel
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Session_stopAsync" "', argument " "1"" of type '" "blpapi_Session_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Session_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Session_stopAsync(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Session_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Session_stopAsync(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -20545,34 +15959,18 @@ SWIGINTERN PyObject *_wrap_blpapi_Session_nextEvent(PyObject *SWIGUNUSEDPARM(sel
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Session_nextEvent" "', argument " "1"" of type '" "blpapi_Session_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Session_t * >(argp1);
+  arg1 = (blpapi_Session_t *)(argp1);
   ecode3 = SWIG_AsVal_unsigned_SS_int(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Session_nextEvent" "', argument " "3"" of type '" "unsigned int""'");
   } 
-  arg3 = static_cast< unsigned int >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Session_nextEvent(arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (unsigned int)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Session_nextEvent(arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Event, 0));
   return resultobj;
 fail:
@@ -20596,29 +15994,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Session_tryNextEvent(PyObject *SWIGUNUSEDPARM(
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Session_tryNextEvent" "', argument " "1"" of type '" "blpapi_Session_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Session_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Session_tryNextEvent(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Session_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Session_tryNextEvent(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Event, 0));
   return resultobj;
 fail:
@@ -20656,53 +16038,37 @@ SWIGINTERN PyObject *_wrap_blpapi_Session_subscribe(PyObject *SWIGUNUSEDPARM(sel
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Session_subscribe" "', argument " "1"" of type '" "blpapi_Session_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Session_t * >(argp1);
+  arg1 = (blpapi_Session_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_SubscriptionList, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Session_subscribe" "', argument " "2"" of type '" "blpapi_SubscriptionList_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_SubscriptionList_t * >(argp2);
+  arg2 = (blpapi_SubscriptionList_t *)(argp2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Identity, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Session_subscribe" "', argument " "3"" of type '" "blpapi_Identity_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Identity_t * >(argp3);
+  arg3 = (blpapi_Identity_t *)(argp3);
   res4 = SWIG_AsCharPtrAndSize(obj3, &buf4, NULL, &alloc4);
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_Session_subscribe" "', argument " "4"" of type '" "char const *""'");
   }
-  arg4 = reinterpret_cast< char * >(buf4);
+  arg4 = (char *)(buf4);
   ecode5 = SWIG_AsVal_int(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "blpapi_Session_subscribe" "', argument " "5"" of type '" "int""'");
   } 
-  arg5 = static_cast< int >(val5);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Session_subscribe(arg1,(blpapi_SubscriptionList const *)arg2,(blpapi_Identity const *)arg3,(char const *)arg4,arg5);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg5 = (int)(val5);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Session_subscribe(arg1,(struct blpapi_SubscriptionList const *)arg2,(struct blpapi_Identity const *)arg3,(char const *)arg4,arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc4 == SWIG_NEWOBJ) free((char*)buf4);
   return resultobj;
 fail:
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  if (alloc4 == SWIG_NEWOBJ) free((char*)buf4);
   return NULL;
 }
 
@@ -20733,48 +16099,32 @@ SWIGINTERN PyObject *_wrap_blpapi_Session_resubscribe(PyObject *SWIGUNUSEDPARM(s
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Session_resubscribe" "', argument " "1"" of type '" "blpapi_Session_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Session_t * >(argp1);
+  arg1 = (blpapi_Session_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_SubscriptionList, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Session_resubscribe" "', argument " "2"" of type '" "blpapi_SubscriptionList_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_SubscriptionList_t * >(argp2);
+  arg2 = (blpapi_SubscriptionList_t *)(argp2);
   res3 = SWIG_AsCharPtrAndSize(obj2, &buf3, NULL, &alloc3);
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Session_resubscribe" "', argument " "3"" of type '" "char const *""'");
   }
-  arg3 = reinterpret_cast< char * >(buf3);
+  arg3 = (char *)(buf3);
   ecode4 = SWIG_AsVal_int(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "blpapi_Session_resubscribe" "', argument " "4"" of type '" "int""'");
   } 
-  arg4 = static_cast< int >(val4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Session_resubscribe(arg1,(blpapi_SubscriptionList const *)arg2,(char const *)arg3,arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (int)(val4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Session_resubscribe(arg1,(struct blpapi_SubscriptionList const *)arg2,(char const *)arg3,arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return resultobj;
 fail:
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return NULL;
 }
 
@@ -20809,53 +16159,37 @@ SWIGINTERN PyObject *_wrap_blpapi_Session_resubscribeWithId(PyObject *SWIGUNUSED
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Session_resubscribeWithId" "', argument " "1"" of type '" "blpapi_Session_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Session_t * >(argp1);
+  arg1 = (blpapi_Session_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_SubscriptionList, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Session_resubscribeWithId" "', argument " "2"" of type '" "blpapi_SubscriptionList_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_SubscriptionList_t * >(argp2);
+  arg2 = (blpapi_SubscriptionList_t *)(argp2);
   ecode3 = SWIG_AsVal_int(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_Session_resubscribeWithId" "', argument " "3"" of type '" "int""'");
   } 
-  arg3 = static_cast< int >(val3);
+  arg3 = (int)(val3);
   res4 = SWIG_AsCharPtrAndSize(obj3, &buf4, NULL, &alloc4);
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_Session_resubscribeWithId" "', argument " "4"" of type '" "char const *""'");
   }
-  arg4 = reinterpret_cast< char * >(buf4);
+  arg4 = (char *)(buf4);
   ecode5 = SWIG_AsVal_int(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "blpapi_Session_resubscribeWithId" "', argument " "5"" of type '" "int""'");
   } 
-  arg5 = static_cast< int >(val5);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Session_resubscribeWithId(arg1,(blpapi_SubscriptionList const *)arg2,arg3,(char const *)arg4,arg5);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg5 = (int)(val5);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Session_resubscribeWithId(arg1,(struct blpapi_SubscriptionList const *)arg2,arg3,(char const *)arg4,arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc4 == SWIG_NEWOBJ) free((char*)buf4);
   return resultobj;
 fail:
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  if (alloc4 == SWIG_NEWOBJ) free((char*)buf4);
   return NULL;
 }
 
@@ -20886,48 +16220,32 @@ SWIGINTERN PyObject *_wrap_blpapi_Session_unsubscribe(PyObject *SWIGUNUSEDPARM(s
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Session_unsubscribe" "', argument " "1"" of type '" "blpapi_Session_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Session_t * >(argp1);
+  arg1 = (blpapi_Session_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_SubscriptionList, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Session_unsubscribe" "', argument " "2"" of type '" "blpapi_SubscriptionList_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_SubscriptionList_t * >(argp2);
+  arg2 = (blpapi_SubscriptionList_t *)(argp2);
   res3 = SWIG_AsCharPtrAndSize(obj2, &buf3, NULL, &alloc3);
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Session_unsubscribe" "', argument " "3"" of type '" "char const *""'");
   }
-  arg3 = reinterpret_cast< char * >(buf3);
+  arg3 = (char *)(buf3);
   ecode4 = SWIG_AsVal_int(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "blpapi_Session_unsubscribe" "', argument " "4"" of type '" "int""'");
   } 
-  arg4 = static_cast< int >(val4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Session_unsubscribe(arg1,(blpapi_SubscriptionList const *)arg2,(char const *)arg3,arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (int)(val4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Session_unsubscribe(arg1,(struct blpapi_SubscriptionList const *)arg2,(char const *)arg3,arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return resultobj;
 fail:
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return NULL;
 }
 
@@ -20957,44 +16275,28 @@ SWIGINTERN PyObject *_wrap_blpapi_Session_setStatusCorrelationId(PyObject *SWIGU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Session_setStatusCorrelationId" "', argument " "1"" of type '" "blpapi_Session_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Session_t * >(argp1);
+  arg1 = (blpapi_Session_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Service, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Session_setStatusCorrelationId" "', argument " "2"" of type '" "blpapi_Service_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Service_t * >(argp2);
+  arg2 = (blpapi_Service_t *)(argp2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Identity, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Session_setStatusCorrelationId" "', argument " "3"" of type '" "blpapi_Identity_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Identity_t * >(argp3);
+  arg3 = (blpapi_Identity_t *)(argp3);
   res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_Session_setStatusCorrelationId" "', argument " "4"" of type '" "blpapi_CorrelationId_t const *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_CorrelationId_t * >(argp4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Session_setStatusCorrelationId(arg1,(blpapi_Service const *)arg2,(blpapi_Identity const *)arg3,(blpapi_CorrelationId_t_ const *)arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_CorrelationId_t *)(argp4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Session_setStatusCorrelationId(arg1,(struct blpapi_Service const *)arg2,(struct blpapi_Identity const *)arg3,(struct blpapi_CorrelationId_t_ const *)arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -21039,63 +16341,47 @@ SWIGINTERN PyObject *_wrap_blpapi_Session_sendRequest(PyObject *SWIGUNUSEDPARM(s
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Session_sendRequest" "', argument " "1"" of type '" "blpapi_Session_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Session_t * >(argp1);
+  arg1 = (blpapi_Session_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Request, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Session_sendRequest" "', argument " "2"" of type '" "blpapi_Request_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Request_t * >(argp2);
+  arg2 = (blpapi_Request_t *)(argp2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Session_sendRequest" "', argument " "3"" of type '" "blpapi_CorrelationId_t *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_CorrelationId_t * >(argp3);
+  arg3 = (blpapi_CorrelationId_t *)(argp3);
   res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_blpapi_Identity, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_Session_sendRequest" "', argument " "4"" of type '" "blpapi_Identity_t *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_Identity_t * >(argp4);
+  arg4 = (blpapi_Identity_t *)(argp4);
   res5 = SWIG_ConvertPtr(obj4, &argp5,SWIGTYPE_p_blpapi_EventQueue, 0 |  0 );
   if (!SWIG_IsOK(res5)) {
     SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "blpapi_Session_sendRequest" "', argument " "5"" of type '" "blpapi_EventQueue_t *""'"); 
   }
-  arg5 = reinterpret_cast< blpapi_EventQueue_t * >(argp5);
+  arg5 = (blpapi_EventQueue_t *)(argp5);
   res6 = SWIG_AsCharPtrAndSize(obj5, &buf6, NULL, &alloc6);
   if (!SWIG_IsOK(res6)) {
     SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "blpapi_Session_sendRequest" "', argument " "6"" of type '" "char const *""'");
   }
-  arg6 = reinterpret_cast< char * >(buf6);
+  arg6 = (char *)(buf6);
   ecode7 = SWIG_AsVal_int(obj6, &val7);
   if (!SWIG_IsOK(ecode7)) {
     SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "blpapi_Session_sendRequest" "', argument " "7"" of type '" "int""'");
   } 
-  arg7 = static_cast< int >(val7);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Session_sendRequest(arg1,(blpapi_Request const *)arg2,arg3,arg4,arg5,(char const *)arg6,arg7);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg7 = (int)(val7);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Session_sendRequest(arg1,(struct blpapi_Request const *)arg2,arg3,arg4,arg5,(char const *)arg6,arg7);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc6 == SWIG_NEWOBJ) delete[] buf6;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc6 == SWIG_NEWOBJ) free((char*)buf6);
   return resultobj;
 fail:
-  if (alloc6 == SWIG_NEWOBJ) delete[] buf6;
+  if (alloc6 == SWIG_NEWOBJ) free((char*)buf6);
   return NULL;
 }
 
@@ -21121,39 +16407,23 @@ SWIGINTERN PyObject *_wrap_blpapi_Session_sendRequestTemplate(PyObject *SWIGUNUS
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Session_sendRequestTemplate" "', argument " "1"" of type '" "blpapi_Session_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Session_t * >(argp1);
+  arg1 = (blpapi_Session_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_RequestTemplate, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Session_sendRequestTemplate" "', argument " "2"" of type '" "blpapi_RequestTemplate_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_RequestTemplate_t * >(argp2);
+  arg2 = (blpapi_RequestTemplate_t *)(argp2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Session_sendRequestTemplate" "', argument " "3"" of type '" "blpapi_CorrelationId_t *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_CorrelationId_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Session_sendRequestTemplate(arg1,(blpapi_RequestTemplate const *)arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_CorrelationId_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Session_sendRequestTemplate(arg1,(struct blpapi_RequestTemplate const *)arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -21189,49 +16459,33 @@ SWIGINTERN PyObject *_wrap_blpapi_Session_createSnapshotRequestTemplate(PyObject
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Session_createSnapshotRequestTemplate" "', argument " "2"" of type '" "blpapi_Session_t *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Session_t * >(argp2);
+  arg2 = (blpapi_Session_t *)(argp2);
   res3 = SWIG_AsCharPtrAndSize(obj1, &buf3, NULL, &alloc3);
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_Session_createSnapshotRequestTemplate" "', argument " "3"" of type '" "char const *""'");
   }
-  arg3 = reinterpret_cast< char * >(buf3);
+  arg3 = (char *)(buf3);
   res4 = SWIG_ConvertPtr(obj2, &argp4,SWIGTYPE_p_blpapi_Identity, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_Session_createSnapshotRequestTemplate" "', argument " "4"" of type '" "blpapi_Identity_t const *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_Identity_t * >(argp4);
+  arg4 = (blpapi_Identity_t *)(argp4);
   res5 = SWIG_ConvertPtr(obj3, &argp5,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res5)) {
     SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "blpapi_Session_createSnapshotRequestTemplate" "', argument " "5"" of type '" "blpapi_CorrelationId_t *""'"); 
   }
-  arg5 = reinterpret_cast< blpapi_CorrelationId_t * >(argp5);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Session_createSnapshotRequestTemplate(arg1,arg2,(char const *)arg3,(blpapi_Identity const *)arg4,arg5);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg5 = (blpapi_CorrelationId_t *)(argp5);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Session_createSnapshotRequestTemplate(arg1,arg2,(char const *)arg3,(struct blpapi_Identity const *)arg4,arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg1), SWIGTYPE_p_blpapi_RequestTemplate, 0));
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return resultobj;
 fail:
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
   return NULL;
 }
 
@@ -21249,28 +16503,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Session_getAbstractSession(PyObject *SWIGUNUSE
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Session_getAbstractSession" "', argument " "1"" of type '" "blpapi_Session_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Session_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_AbstractSession_t *)blpapi_Session_getAbstractSession(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Session_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_AbstractSession_t *)blpapi_Session_getAbstractSession(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_AbstractSession, 0 |  0 );
   return resultobj;
 fail:
@@ -21295,33 +16533,17 @@ SWIGINTERN PyObject *_wrap_blpapi_ResolutionList_extractAttributeFromResolutionS
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ResolutionList_extractAttributeFromResolutionSuccess" "', argument " "1"" of type '" "blpapi_Message_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Message_t * >(argp1);
+  arg1 = (blpapi_Message_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ResolutionList_extractAttributeFromResolutionSuccess" "', argument " "2"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Name_t * >(argp2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_Element_t *)blpapi_ResolutionList_extractAttributeFromResolutionSuccess((blpapi_Message const *)arg1,(blpapi_Name const *)arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (blpapi_Name_t *)(argp2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_Element_t *)blpapi_ResolutionList_extractAttributeFromResolutionSuccess((struct blpapi_Message const *)arg1,(struct blpapi_Name const *)arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_Element, 0 |  0 );
   return resultobj;
 fail:
@@ -21342,28 +16564,12 @@ SWIGINTERN PyObject *_wrap_blpapi_ResolutionList_create(PyObject *SWIGUNUSEDPARM
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ResolutionList_create" "', argument " "1"" of type '" "blpapi_ResolutionList_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ResolutionList_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_ResolutionList_t *)blpapi_ResolutionList_create(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_ResolutionList_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_ResolutionList_t *)blpapi_ResolutionList_create(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_ResolutionList, 0 |  0 );
   return resultobj;
 fail:
@@ -21383,28 +16589,12 @@ SWIGINTERN PyObject *_wrap_blpapi_ResolutionList_destroy(PyObject *SWIGUNUSEDPAR
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ResolutionList_destroy" "', argument " "1"" of type '" "blpapi_ResolutionList_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ResolutionList_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_ResolutionList_destroy(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_ResolutionList_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_ResolutionList_destroy(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -21434,43 +16624,27 @@ SWIGINTERN PyObject *_wrap_blpapi_ResolutionList_add(PyObject *SWIGUNUSEDPARM(se
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ResolutionList_add" "', argument " "1"" of type '" "blpapi_ResolutionList_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ResolutionList_t * >(argp1);
+  arg1 = (blpapi_ResolutionList_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ResolutionList_add" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_ResolutionList_add" "', argument " "3"" of type '" "blpapi_CorrelationId_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_CorrelationId_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ResolutionList_add(arg1,(char const *)arg2,(blpapi_CorrelationId_t_ const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_CorrelationId_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ResolutionList_add(arg1,(char const *)arg2,(struct blpapi_CorrelationId_t_ const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -21496,39 +16670,23 @@ SWIGINTERN PyObject *_wrap_blpapi_ResolutionList_addFromMessage(PyObject *SWIGUN
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ResolutionList_addFromMessage" "', argument " "1"" of type '" "blpapi_ResolutionList_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ResolutionList_t * >(argp1);
+  arg1 = (blpapi_ResolutionList_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Message, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ResolutionList_addFromMessage" "', argument " "2"" of type '" "blpapi_Message_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Message_t * >(argp2);
+  arg2 = (blpapi_Message_t *)(argp2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_ResolutionList_addFromMessage" "', argument " "3"" of type '" "blpapi_CorrelationId_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_CorrelationId_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ResolutionList_addFromMessage(arg1,(blpapi_Message const *)arg2,(blpapi_CorrelationId_t_ const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_CorrelationId_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ResolutionList_addFromMessage(arg1,(struct blpapi_Message const *)arg2,(struct blpapi_CorrelationId_t_ const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -21552,34 +16710,18 @@ SWIGINTERN PyObject *_wrap_blpapi_ResolutionList_addAttribute(PyObject *SWIGUNUS
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ResolutionList_addAttribute" "', argument " "1"" of type '" "blpapi_ResolutionList_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ResolutionList_t * >(argp1);
+  arg1 = (blpapi_ResolutionList_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ResolutionList_addAttribute" "', argument " "2"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Name_t * >(argp2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ResolutionList_addAttribute(arg1,(blpapi_Name const *)arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (blpapi_Name_t *)(argp2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ResolutionList_addAttribute(arg1,(struct blpapi_Name const *)arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -21606,35 +16748,23 @@ SWIGINTERN PyObject *_wrap_blpapi_ResolutionList_correlationIdAt(PyObject *SWIGU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ResolutionList_correlationIdAt" "', argument " "1"" of type '" "blpapi_ResolutionList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ResolutionList_t * >(argp1);
+  arg1 = (blpapi_ResolutionList_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_ResolutionList_correlationIdAt" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ResolutionList_correlationIdAt((blpapi_ResolutionList const *)arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ResolutionList_correlationIdAt((struct blpapi_ResolutionList const *)arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj(CorrelationId_t_clone(*arg2), SWIGTYPE_p_blpapi_CorrelationId_t_, SWIG_POINTER_OWN));
+  resultobj = SWIG_From_int((int)(result));
+  if (!result) {
+    resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj(CorrelationId_t_clone(arg2), SWIGTYPE_p_blpapi_CorrelationId_t_, SWIG_POINTER_OWN));
+  } else {
+    resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_Py_Void());
+  }
   return resultobj;
 fail:
   return NULL;
@@ -21661,34 +16791,18 @@ SWIGINTERN PyObject *_wrap_blpapi_ResolutionList_topicString(PyObject *SWIGUNUSE
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ResolutionList_topicString" "', argument " "1"" of type '" "blpapi_ResolutionList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ResolutionList_t * >(argp1);
+  arg1 = (blpapi_ResolutionList_t *)(argp1);
   res3 = SWIG_ConvertPtr(obj1, &argp3,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_ResolutionList_topicString" "', argument " "3"" of type '" "blpapi_CorrelationId_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_CorrelationId_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ResolutionList_topicString((blpapi_ResolutionList const *)arg1,(char const **)arg2,(blpapi_CorrelationId_t_ const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_CorrelationId_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ResolutionList_topicString((struct blpapi_ResolutionList const *)arg1,(char const **)arg2,(struct blpapi_CorrelationId_t_ const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_FromCharPtr(*arg2));
   return resultobj;
 fail:
@@ -21716,34 +16830,18 @@ SWIGINTERN PyObject *_wrap_blpapi_ResolutionList_topicStringAt(PyObject *SWIGUNU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ResolutionList_topicStringAt" "', argument " "1"" of type '" "blpapi_ResolutionList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ResolutionList_t * >(argp1);
+  arg1 = (blpapi_ResolutionList_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_ResolutionList_topicStringAt" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ResolutionList_topicStringAt((blpapi_ResolutionList const *)arg1,(char const **)arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ResolutionList_topicStringAt((struct blpapi_ResolutionList const *)arg1,(char const **)arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_FromCharPtr(*arg2));
   return resultobj;
 fail:
@@ -21772,34 +16870,18 @@ SWIGINTERN PyObject *_wrap_blpapi_ResolutionList_status(PyObject *SWIGUNUSEDPARM
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ResolutionList_status" "', argument " "1"" of type '" "blpapi_ResolutionList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ResolutionList_t * >(argp1);
+  arg1 = (blpapi_ResolutionList_t *)(argp1);
   res3 = SWIG_ConvertPtr(obj1, &argp3,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_ResolutionList_status" "', argument " "3"" of type '" "blpapi_CorrelationId_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_CorrelationId_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ResolutionList_status((blpapi_ResolutionList const *)arg1,arg2,(blpapi_CorrelationId_t_ const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_CorrelationId_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ResolutionList_status((struct blpapi_ResolutionList const *)arg1,arg2,(struct blpapi_CorrelationId_t_ const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   if (SWIG_IsTmpObj(res2)) {
     resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_From_int((*arg2)));
   } else {
@@ -21833,34 +16915,18 @@ SWIGINTERN PyObject *_wrap_blpapi_ResolutionList_statusAt(PyObject *SWIGUNUSEDPA
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ResolutionList_statusAt" "', argument " "1"" of type '" "blpapi_ResolutionList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ResolutionList_t * >(argp1);
+  arg1 = (blpapi_ResolutionList_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_ResolutionList_statusAt" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ResolutionList_statusAt((blpapi_ResolutionList const *)arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ResolutionList_statusAt((struct blpapi_ResolutionList const *)arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   if (SWIG_IsTmpObj(res2)) {
     resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_From_int((*arg2)));
   } else {
@@ -21897,39 +16963,23 @@ SWIGINTERN PyObject *_wrap_blpapi_ResolutionList_attribute(PyObject *SWIGUNUSEDP
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ResolutionList_attribute" "', argument " "1"" of type '" "blpapi_ResolutionList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ResolutionList_t * >(argp1);
+  arg1 = (blpapi_ResolutionList_t *)(argp1);
   res3 = SWIG_ConvertPtr(obj1, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_ResolutionList_attribute" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
+  arg3 = (blpapi_Name_t *)(argp3);
   res4 = SWIG_ConvertPtr(obj2, &argp4,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_ResolutionList_attribute" "', argument " "4"" of type '" "blpapi_CorrelationId_t const *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_CorrelationId_t * >(argp4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ResolutionList_attribute((blpapi_ResolutionList const *)arg1,arg2,(blpapi_Name const *)arg3,(blpapi_CorrelationId_t_ const *)arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_CorrelationId_t *)(argp4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ResolutionList_attribute((struct blpapi_ResolutionList const *)arg1,arg2,(struct blpapi_Name const *)arg3,(struct blpapi_CorrelationId_t_ const *)arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Element, 0));
   return resultobj;
 fail:
@@ -21961,39 +17011,23 @@ SWIGINTERN PyObject *_wrap_blpapi_ResolutionList_attributeAt(PyObject *SWIGUNUSE
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ResolutionList_attributeAt" "', argument " "1"" of type '" "blpapi_ResolutionList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ResolutionList_t * >(argp1);
+  arg1 = (blpapi_ResolutionList_t *)(argp1);
   res3 = SWIG_ConvertPtr(obj1, &argp3,SWIGTYPE_p_blpapi_Name, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_ResolutionList_attributeAt" "', argument " "3"" of type '" "blpapi_Name_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Name_t * >(argp3);
+  arg3 = (blpapi_Name_t *)(argp3);
   ecode4 = SWIG_AsVal_size_t(obj2, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "blpapi_ResolutionList_attributeAt" "', argument " "4"" of type '" "size_t""'");
   } 
-  arg4 = static_cast< size_t >(val4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ResolutionList_attributeAt((blpapi_ResolutionList const *)arg1,arg2,(blpapi_Name const *)arg3,arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (size_t)(val4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ResolutionList_attributeAt((struct blpapi_ResolutionList const *)arg1,arg2,(struct blpapi_Name const *)arg3,arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Element, 0));
   return resultobj;
 fail:
@@ -22021,34 +17055,18 @@ SWIGINTERN PyObject *_wrap_blpapi_ResolutionList_message(PyObject *SWIGUNUSEDPAR
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ResolutionList_message" "', argument " "1"" of type '" "blpapi_ResolutionList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ResolutionList_t * >(argp1);
+  arg1 = (blpapi_ResolutionList_t *)(argp1);
   res3 = SWIG_ConvertPtr(obj1, &argp3,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_ResolutionList_message" "', argument " "3"" of type '" "blpapi_CorrelationId_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_CorrelationId_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ResolutionList_message((blpapi_ResolutionList const *)arg1,arg2,(blpapi_CorrelationId_t_ const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_CorrelationId_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ResolutionList_message((struct blpapi_ResolutionList const *)arg1,arg2,(struct blpapi_CorrelationId_t_ const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Message, 0));
   return resultobj;
 fail:
@@ -22076,34 +17094,18 @@ SWIGINTERN PyObject *_wrap_blpapi_ResolutionList_messageAt(PyObject *SWIGUNUSEDP
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ResolutionList_messageAt" "', argument " "1"" of type '" "blpapi_ResolutionList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ResolutionList_t * >(argp1);
+  arg1 = (blpapi_ResolutionList_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_ResolutionList_messageAt" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ResolutionList_messageAt((blpapi_ResolutionList const *)arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ResolutionList_messageAt((struct blpapi_ResolutionList const *)arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Message, 0));
   return resultobj;
 fail:
@@ -22124,29 +17126,13 @@ SWIGINTERN PyObject *_wrap_blpapi_ResolutionList_size(PyObject *SWIGUNUSEDPARM(s
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ResolutionList_size" "', argument " "1"" of type '" "blpapi_ResolutionList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ResolutionList_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ResolutionList_size((blpapi_ResolutionList const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_ResolutionList_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ResolutionList_size((struct blpapi_ResolutionList const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -22166,28 +17152,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Topic_create(PyObject *SWIGUNUSEDPARM(self), P
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Topic_create" "', argument " "1"" of type '" "blpapi_Topic_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Topic_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_Topic_t *)blpapi_Topic_create(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Topic_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_Topic_t *)blpapi_Topic_create(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_Topic, 0 |  0 );
   return resultobj;
 fail:
@@ -22207,28 +17177,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Topic_destroy(PyObject *SWIGUNUSEDPARM(self), 
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Topic_destroy" "', argument " "1"" of type '" "blpapi_Topic_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Topic_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_Topic_destroy(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Topic_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_Topic_destroy(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -22253,34 +17207,18 @@ SWIGINTERN PyObject *_wrap_blpapi_Topic_compare(PyObject *SWIGUNUSEDPARM(self), 
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Topic_compare" "', argument " "1"" of type '" "blpapi_Topic_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Topic_t * >(argp1);
+  arg1 = (blpapi_Topic_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Topic, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_Topic_compare" "', argument " "2"" of type '" "blpapi_Topic_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Topic_t * >(argp2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Topic_compare((blpapi_Topic const *)arg1,(blpapi_Topic const *)arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (blpapi_Topic_t *)(argp2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Topic_compare((struct blpapi_Topic const *)arg1,(struct blpapi_Topic const *)arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -22300,28 +17238,12 @@ SWIGINTERN PyObject *_wrap_blpapi_Topic_service(PyObject *SWIGUNUSEDPARM(self), 
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Topic_service" "', argument " "1"" of type '" "blpapi_Topic_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Topic_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_Service_t *)blpapi_Topic_service((blpapi_Topic const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Topic_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_Service_t *)blpapi_Topic_service((struct blpapi_Topic const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_Service, 0 |  0 );
   return resultobj;
 fail:
@@ -22342,29 +17264,13 @@ SWIGINTERN PyObject *_wrap_blpapi_Topic_isActive(PyObject *SWIGUNUSEDPARM(self),
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_Topic_isActive" "', argument " "1"" of type '" "blpapi_Topic_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_Topic_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_Topic_isActive((blpapi_Topic const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_Topic_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_Topic_isActive((struct blpapi_Topic const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -22384,28 +17290,12 @@ SWIGINTERN PyObject *_wrap_blpapi_TopicList_create(PyObject *SWIGUNUSEDPARM(self
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_TopicList_create" "', argument " "1"" of type '" "blpapi_TopicList_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_TopicList_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_TopicList_t *)blpapi_TopicList_create(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_TopicList_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_TopicList_t *)blpapi_TopicList_create(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_TopicList, 0 |  0 );
   return resultobj;
 fail:
@@ -22425,28 +17315,12 @@ SWIGINTERN PyObject *_wrap_blpapi_TopicList_destroy(PyObject *SWIGUNUSEDPARM(sel
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_TopicList_destroy" "', argument " "1"" of type '" "blpapi_TopicList_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_TopicList_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_TopicList_destroy(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_TopicList_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_TopicList_destroy(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -22476,43 +17350,27 @@ SWIGINTERN PyObject *_wrap_blpapi_TopicList_add(PyObject *SWIGUNUSEDPARM(self), 
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_TopicList_add" "', argument " "1"" of type '" "blpapi_TopicList_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_TopicList_t * >(argp1);
+  arg1 = (blpapi_TopicList_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_TopicList_add" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_TopicList_add" "', argument " "3"" of type '" "blpapi_CorrelationId_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_CorrelationId_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_TopicList_add(arg1,(char const *)arg2,(blpapi_CorrelationId_t_ const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_CorrelationId_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_TopicList_add(arg1,(char const *)arg2,(struct blpapi_CorrelationId_t_ const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -22538,39 +17396,23 @@ SWIGINTERN PyObject *_wrap_blpapi_TopicList_addFromMessage(PyObject *SWIGUNUSEDP
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_TopicList_addFromMessage" "', argument " "1"" of type '" "blpapi_TopicList_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_TopicList_t * >(argp1);
+  arg1 = (blpapi_TopicList_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Message, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_TopicList_addFromMessage" "', argument " "2"" of type '" "blpapi_Message_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Message_t * >(argp2);
+  arg2 = (blpapi_Message_t *)(argp2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_TopicList_addFromMessage" "', argument " "3"" of type '" "blpapi_CorrelationId_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_CorrelationId_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_TopicList_addFromMessage(arg1,(blpapi_Message const *)arg2,(blpapi_CorrelationId_t_ const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_CorrelationId_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_TopicList_addFromMessage(arg1,(struct blpapi_Message const *)arg2,(struct blpapi_CorrelationId_t_ const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -22597,35 +17439,23 @@ SWIGINTERN PyObject *_wrap_blpapi_TopicList_correlationIdAt(PyObject *SWIGUNUSED
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_TopicList_correlationIdAt" "', argument " "1"" of type '" "blpapi_TopicList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_TopicList_t * >(argp1);
+  arg1 = (blpapi_TopicList_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_TopicList_correlationIdAt" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_TopicList_correlationIdAt((blpapi_TopicList const *)arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_TopicList_correlationIdAt((struct blpapi_TopicList const *)arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj(CorrelationId_t_clone(*arg2), SWIGTYPE_p_blpapi_CorrelationId_t_, SWIG_POINTER_OWN));
+  resultobj = SWIG_From_int((int)(result));
+  if (!result) {
+    resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj(CorrelationId_t_clone(arg2), SWIGTYPE_p_blpapi_CorrelationId_t_, SWIG_POINTER_OWN));
+  } else {
+    resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_Py_Void());
+  }
   return resultobj;
 fail:
   return NULL;
@@ -22652,34 +17482,18 @@ SWIGINTERN PyObject *_wrap_blpapi_TopicList_topicString(PyObject *SWIGUNUSEDPARM
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_TopicList_topicString" "', argument " "1"" of type '" "blpapi_TopicList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_TopicList_t * >(argp1);
+  arg1 = (blpapi_TopicList_t *)(argp1);
   res3 = SWIG_ConvertPtr(obj1, &argp3,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_TopicList_topicString" "', argument " "3"" of type '" "blpapi_CorrelationId_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_CorrelationId_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_TopicList_topicString((blpapi_TopicList const *)arg1,(char const **)arg2,(blpapi_CorrelationId_t_ const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_CorrelationId_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_TopicList_topicString((struct blpapi_TopicList const *)arg1,(char const **)arg2,(struct blpapi_CorrelationId_t_ const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_FromCharPtr(*arg2));
   return resultobj;
 fail:
@@ -22707,34 +17521,18 @@ SWIGINTERN PyObject *_wrap_blpapi_TopicList_topicStringAt(PyObject *SWIGUNUSEDPA
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_TopicList_topicStringAt" "', argument " "1"" of type '" "blpapi_TopicList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_TopicList_t * >(argp1);
+  arg1 = (blpapi_TopicList_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_TopicList_topicStringAt" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_TopicList_topicStringAt((blpapi_TopicList const *)arg1,(char const **)arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_TopicList_topicStringAt((struct blpapi_TopicList const *)arg1,(char const **)arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_FromCharPtr(*arg2));
   return resultobj;
 fail:
@@ -22763,34 +17561,18 @@ SWIGINTERN PyObject *_wrap_blpapi_TopicList_status(PyObject *SWIGUNUSEDPARM(self
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_TopicList_status" "', argument " "1"" of type '" "blpapi_TopicList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_TopicList_t * >(argp1);
+  arg1 = (blpapi_TopicList_t *)(argp1);
   res3 = SWIG_ConvertPtr(obj1, &argp3,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_TopicList_status" "', argument " "3"" of type '" "blpapi_CorrelationId_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_CorrelationId_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_TopicList_status((blpapi_TopicList const *)arg1,arg2,(blpapi_CorrelationId_t_ const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_CorrelationId_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_TopicList_status((struct blpapi_TopicList const *)arg1,arg2,(struct blpapi_CorrelationId_t_ const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   if (SWIG_IsTmpObj(res2)) {
     resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_From_int((*arg2)));
   } else {
@@ -22824,34 +17606,18 @@ SWIGINTERN PyObject *_wrap_blpapi_TopicList_statusAt(PyObject *SWIGUNUSEDPARM(se
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_TopicList_statusAt" "', argument " "1"" of type '" "blpapi_TopicList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_TopicList_t * >(argp1);
+  arg1 = (blpapi_TopicList_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_TopicList_statusAt" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_TopicList_statusAt((blpapi_TopicList const *)arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_TopicList_statusAt((struct blpapi_TopicList const *)arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   if (SWIG_IsTmpObj(res2)) {
     resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_From_int((*arg2)));
   } else {
@@ -22884,34 +17650,18 @@ SWIGINTERN PyObject *_wrap_blpapi_TopicList_message(PyObject *SWIGUNUSEDPARM(sel
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_TopicList_message" "', argument " "1"" of type '" "blpapi_TopicList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_TopicList_t * >(argp1);
+  arg1 = (blpapi_TopicList_t *)(argp1);
   res3 = SWIG_ConvertPtr(obj1, &argp3,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_TopicList_message" "', argument " "3"" of type '" "blpapi_CorrelationId_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_CorrelationId_t * >(argp3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_TopicList_message((blpapi_TopicList const *)arg1,arg2,(blpapi_CorrelationId_t_ const *)arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (blpapi_CorrelationId_t *)(argp3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_TopicList_message((struct blpapi_TopicList const *)arg1,arg2,(struct blpapi_CorrelationId_t_ const *)arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Message, 0));
   return resultobj;
 fail:
@@ -22939,34 +17689,18 @@ SWIGINTERN PyObject *_wrap_blpapi_TopicList_messageAt(PyObject *SWIGUNUSEDPARM(s
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_TopicList_messageAt" "', argument " "1"" of type '" "blpapi_TopicList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_TopicList_t * >(argp1);
+  arg1 = (blpapi_TopicList_t *)(argp1);
   ecode3 = SWIG_AsVal_size_t(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_TopicList_messageAt" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_TopicList_messageAt((blpapi_TopicList const *)arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_TopicList_messageAt((struct blpapi_TopicList const *)arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Message, 0));
   return resultobj;
 fail:
@@ -22987,29 +17721,13 @@ SWIGINTERN PyObject *_wrap_blpapi_TopicList_size(PyObject *SWIGUNUSEDPARM(self),
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_TopicList_size" "', argument " "1"" of type '" "blpapi_TopicList_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_TopicList_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_TopicList_size((blpapi_TopicList const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_TopicList_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_TopicList_size((struct blpapi_TopicList const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -23038,9 +17756,9 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_create(PyObject *SWIGUNUSEDPAR
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_create" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_SessionOptions_t * >(argp1);
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
   {
-    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_blpapi_Event_p_blpapi_ProviderSession_p_void__void);
+    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_struct_blpapi_Event_p_struct_blpapi_ProviderSession_p_void__void);
     if (!SWIG_IsOK(res)) {
       SWIG_exception_fail(SWIG_ArgError(res), "in method '" "blpapi_ProviderSession_create" "', argument " "2"" of type '" "blpapi_ProviderEventHandler_t""'"); 
     }
@@ -23049,32 +17767,16 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_create(PyObject *SWIGUNUSEDPAR
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_ProviderSession_create" "', argument " "3"" of type '" "blpapi_EventDispatcher_t *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_EventDispatcher_t * >(argp3);
+  arg3 = (blpapi_EventDispatcher_t *)(argp3);
   res4 = SWIG_ConvertPtr(obj3,SWIG_as_voidptrptr(&arg4), 0, 0);
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_ProviderSession_create" "', argument " "4"" of type '" "void *""'"); 
   }
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_ProviderSession_t *)blpapi_ProviderSession_create(arg1,arg2,arg3,arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_ProviderSession_t *)blpapi_ProviderSession_create(arg1,arg2,arg3,arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_ProviderSession, 0 |  0 );
   return resultobj;
 fail:
@@ -23094,28 +17796,12 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_destroy(PyObject *SWIGUNUSEDPA
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_destroy" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_ProviderSession_destroy(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_ProviderSession_destroy(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -23136,29 +17822,13 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_start(PyObject *SWIGUNUSEDPARM
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_start" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ProviderSession_start(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_start(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -23178,29 +17848,13 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_startAsync(PyObject *SWIGUNUSE
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_startAsync" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ProviderSession_startAsync(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_startAsync(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -23220,29 +17874,13 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_stop(PyObject *SWIGUNUSEDPARM(
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_stop" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ProviderSession_stop(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_stop(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -23262,29 +17900,13 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_stopAsync(PyObject *SWIGUNUSED
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_stopAsync" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ProviderSession_stopAsync(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_stopAsync(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -23311,34 +17933,18 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_nextEvent(PyObject *SWIGUNUSED
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_nextEvent" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
   ecode3 = SWIG_AsVal_unsigned_SS_int(obj1, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_ProviderSession_nextEvent" "', argument " "3"" of type '" "unsigned int""'");
   } 
-  arg3 = static_cast< unsigned int >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ProviderSession_nextEvent(arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (unsigned int)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_nextEvent(arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Event, 0));
   return resultobj;
 fail:
@@ -23362,29 +17968,13 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_tryNextEvent(PyObject *SWIGUNU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_tryNextEvent" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ProviderSession_tryNextEvent(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_tryNextEvent(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg2), SWIGTYPE_p_blpapi_Event, 0));
   return resultobj;
 fail:
@@ -23418,48 +18008,32 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_registerService(PyObject *SWIG
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_registerService" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ProviderSession_registerService" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Identity, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_ProviderSession_registerService" "', argument " "3"" of type '" "blpapi_Identity_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Identity_t * >(argp3);
+  arg3 = (blpapi_Identity_t *)(argp3);
   res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_blpapi_ServiceRegistrationOptions, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_ProviderSession_registerService" "', argument " "4"" of type '" "blpapi_ServiceRegistrationOptions_t *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_ServiceRegistrationOptions_t * >(argp4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ProviderSession_registerService(arg1,(char const *)arg2,(blpapi_Identity const *)arg3,arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_ServiceRegistrationOptions_t *)(argp4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_registerService(arg1,(char const *)arg2,(struct blpapi_Identity const *)arg3,arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -23494,53 +18068,37 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_activateSubServiceCodeRange(Py
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_activateSubServiceCodeRange" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ProviderSession_activateSubServiceCodeRange" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   ecode3 = SWIG_AsVal_int(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_ProviderSession_activateSubServiceCodeRange" "', argument " "3"" of type '" "int""'");
   } 
-  arg3 = static_cast< int >(val3);
+  arg3 = (int)(val3);
   ecode4 = SWIG_AsVal_int(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "blpapi_ProviderSession_activateSubServiceCodeRange" "', argument " "4"" of type '" "int""'");
   } 
-  arg4 = static_cast< int >(val4);
+  arg4 = (int)(val4);
   ecode5 = SWIG_AsVal_int(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "blpapi_ProviderSession_activateSubServiceCodeRange" "', argument " "5"" of type '" "int""'");
   } 
-  arg5 = static_cast< int >(val5);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ProviderSession_activateSubServiceCodeRange(arg1,(char const *)arg2,arg3,arg4,arg5);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg5 = (int)(val5);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_activateSubServiceCodeRange(arg1,(char const *)arg2,arg3,arg4,arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -23571,48 +18129,32 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_deactivateSubServiceCodeRange(
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_deactivateSubServiceCodeRange" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ProviderSession_deactivateSubServiceCodeRange" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   ecode3 = SWIG_AsVal_int(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_ProviderSession_deactivateSubServiceCodeRange" "', argument " "3"" of type '" "int""'");
   } 
-  arg3 = static_cast< int >(val3);
+  arg3 = (int)(val3);
   ecode4 = SWIG_AsVal_int(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "blpapi_ProviderSession_deactivateSubServiceCodeRange" "', argument " "4"" of type '" "int""'");
   } 
-  arg4 = static_cast< int >(val4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ProviderSession_deactivateSubServiceCodeRange(arg1,(char const *)arg2,arg3,arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (int)(val4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_deactivateSubServiceCodeRange(arg1,(char const *)arg2,arg3,arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -23647,53 +18189,37 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_registerServiceAsync(PyObject 
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_registerServiceAsync" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ProviderSession_registerServiceAsync" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = (char *)(buf2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_blpapi_Identity, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "blpapi_ProviderSession_registerServiceAsync" "', argument " "3"" of type '" "blpapi_Identity_t const *""'"); 
   }
-  arg3 = reinterpret_cast< blpapi_Identity_t * >(argp3);
+  arg3 = (blpapi_Identity_t *)(argp3);
   res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_blpapi_CorrelationId_t_, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_ProviderSession_registerServiceAsync" "', argument " "4"" of type '" "blpapi_CorrelationId_t *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_CorrelationId_t * >(argp4);
+  arg4 = (blpapi_CorrelationId_t *)(argp4);
   res5 = SWIG_ConvertPtr(obj4, &argp5,SWIGTYPE_p_blpapi_ServiceRegistrationOptions, 0 |  0 );
   if (!SWIG_IsOK(res5)) {
     SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "blpapi_ProviderSession_registerServiceAsync" "', argument " "5"" of type '" "blpapi_ServiceRegistrationOptions_t *""'"); 
   }
-  arg5 = reinterpret_cast< blpapi_ServiceRegistrationOptions_t * >(argp5);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ProviderSession_registerServiceAsync(arg1,(char const *)arg2,(blpapi_Identity const *)arg3,arg4,arg5);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg5 = (blpapi_ServiceRegistrationOptions_t *)(argp5);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_registerServiceAsync(arg1,(char const *)arg2,(struct blpapi_Identity const *)arg3,arg4,arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -23716,38 +18242,22 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_deregisterService(PyObject *SW
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_deregisterService" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ProviderSession_deregisterService" "', argument " "2"" of type '" "char const *""'");
   }
-  arg2 = reinterpret_cast< char * >(buf2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ProviderSession_deregisterService(arg1,(char const *)arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (char *)(buf2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_deregisterService(arg1,(char const *)arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -23777,44 +18287,28 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_resolve(PyObject *SWIGUNUSEDPA
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_resolve" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_ResolutionList, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ProviderSession_resolve" "', argument " "2"" of type '" "blpapi_ResolutionList_t *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_ResolutionList_t * >(argp2);
+  arg2 = (blpapi_ResolutionList_t *)(argp2);
   ecode3 = SWIG_AsVal_int(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_ProviderSession_resolve" "', argument " "3"" of type '" "int""'");
   } 
-  arg3 = static_cast< int >(val3);
+  arg3 = (int)(val3);
   res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_blpapi_Identity, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_ProviderSession_resolve" "', argument " "4"" of type '" "blpapi_Identity_t const *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_Identity_t * >(argp4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ProviderSession_resolve(arg1,arg2,arg3,(blpapi_Identity const *)arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_Identity_t *)(argp4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_resolve(arg1,arg2,arg3,(struct blpapi_Identity const *)arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -23846,44 +18340,28 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_resolveAsync(PyObject *SWIGUNU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_resolveAsync" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_ResolutionList, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ProviderSession_resolveAsync" "', argument " "2"" of type '" "blpapi_ResolutionList_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_ResolutionList_t * >(argp2);
+  arg2 = (blpapi_ResolutionList_t *)(argp2);
   ecode3 = SWIG_AsVal_int(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_ProviderSession_resolveAsync" "', argument " "3"" of type '" "int""'");
   } 
-  arg3 = static_cast< int >(val3);
+  arg3 = (int)(val3);
   res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_blpapi_Identity, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_ProviderSession_resolveAsync" "', argument " "4"" of type '" "blpapi_Identity_t const *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_Identity_t * >(argp4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ProviderSession_resolveAsync(arg1,(blpapi_ResolutionList const *)arg2,arg3,(blpapi_Identity const *)arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_Identity_t *)(argp4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_resolveAsync(arg1,(struct blpapi_ResolutionList const *)arg2,arg3,(struct blpapi_Identity const *)arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -23915,44 +18393,28 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_createTopics(PyObject *SWIGUNU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_createTopics" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_TopicList, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ProviderSession_createTopics" "', argument " "2"" of type '" "blpapi_TopicList_t *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_TopicList_t * >(argp2);
+  arg2 = (blpapi_TopicList_t *)(argp2);
   ecode3 = SWIG_AsVal_int(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_ProviderSession_createTopics" "', argument " "3"" of type '" "int""'");
   } 
-  arg3 = static_cast< int >(val3);
+  arg3 = (int)(val3);
   res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_blpapi_Identity, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_ProviderSession_createTopics" "', argument " "4"" of type '" "blpapi_Identity_t const *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_Identity_t * >(argp4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ProviderSession_createTopics(arg1,arg2,arg3,(blpapi_Identity const *)arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_Identity_t *)(argp4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_createTopics(arg1,arg2,arg3,(struct blpapi_Identity const *)arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -23984,44 +18446,28 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_createTopicsAsync(PyObject *SW
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_createTopicsAsync" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_TopicList, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ProviderSession_createTopicsAsync" "', argument " "2"" of type '" "blpapi_TopicList_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_TopicList_t * >(argp2);
+  arg2 = (blpapi_TopicList_t *)(argp2);
   ecode3 = SWIG_AsVal_int(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_ProviderSession_createTopicsAsync" "', argument " "3"" of type '" "int""'");
   } 
-  arg3 = static_cast< int >(val3);
+  arg3 = (int)(val3);
   res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_blpapi_Identity, 0 |  0 );
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_ProviderSession_createTopicsAsync" "', argument " "4"" of type '" "blpapi_Identity_t const *""'"); 
   }
-  arg4 = reinterpret_cast< blpapi_Identity_t * >(argp4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ProviderSession_createTopicsAsync(arg1,(blpapi_TopicList const *)arg2,arg3,(blpapi_Identity const *)arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (blpapi_Identity_t *)(argp4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_createTopicsAsync(arg1,(struct blpapi_TopicList const *)arg2,arg3,(struct blpapi_Identity const *)arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -24048,34 +18494,18 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_getTopic(PyObject *SWIGUNUSEDP
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_getTopic" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Message, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ProviderSession_getTopic" "', argument " "2"" of type '" "blpapi_Message_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Message_t * >(argp2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ProviderSession_getTopic(arg1,(blpapi_Message const *)arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (blpapi_Message_t *)(argp2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_getTopic(arg1,(struct blpapi_Message const *)arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg3), SWIGTYPE_p_blpapi_Topic, 0));
   return resultobj;
 fail:
@@ -24103,34 +18533,18 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_createTopic(PyObject *SWIGUNUS
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_createTopic" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Message, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ProviderSession_createTopic" "', argument " "2"" of type '" "blpapi_Message_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Message_t * >(argp2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ProviderSession_createTopic(arg1,(blpapi_Message const *)arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (blpapi_Message_t *)(argp2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_createTopic(arg1,(struct blpapi_Message const *)arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg3), SWIGTYPE_p_blpapi_Topic, 0));
   return resultobj;
 fail:
@@ -24158,34 +18572,18 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_createServiceStatusTopic(PyObj
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_createServiceStatusTopic" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Service, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ProviderSession_createServiceStatusTopic" "', argument " "2"" of type '" "blpapi_Service_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Service_t * >(argp2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ProviderSession_createServiceStatusTopic(arg1,(blpapi_Service const *)arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (blpapi_Service_t *)(argp2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_createServiceStatusTopic(arg1,(struct blpapi_Service const *)arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((*arg3), SWIGTYPE_p_blpapi_Topic, 0));
   return resultobj;
 fail:
@@ -24214,39 +18612,23 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_deleteTopics(PyObject *SWIGUNU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_deleteTopics" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_p_blpapi_Topic, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ProviderSession_deleteTopics" "', argument " "2"" of type '" "blpapi_Topic_t const **""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Topic_t ** >(argp2);
+  arg2 = (blpapi_Topic_t **)(argp2);
   ecode3 = SWIG_AsVal_size_t(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_ProviderSession_deleteTopics" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ProviderSession_deleteTopics(arg1,(blpapi_Topic const **)arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (size_t)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_deleteTopics(arg1,(struct blpapi_Topic const **)arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -24279,48 +18661,32 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_terminateSubscriptionsOnTopics
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_terminateSubscriptionsOnTopics" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_p_blpapi_Topic, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ProviderSession_terminateSubscriptionsOnTopics" "', argument " "2"" of type '" "blpapi_Topic_t const **""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Topic_t ** >(argp2);
+  arg2 = (blpapi_Topic_t **)(argp2);
   ecode3 = SWIG_AsVal_size_t(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_ProviderSession_terminateSubscriptionsOnTopics" "', argument " "3"" of type '" "size_t""'");
   } 
-  arg3 = static_cast< size_t >(val3);
+  arg3 = (size_t)(val3);
   res4 = SWIG_AsCharPtrAndSize(obj3, &buf4, NULL, &alloc4);
   if (!SWIG_IsOK(res4)) {
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "blpapi_ProviderSession_terminateSubscriptionsOnTopics" "', argument " "4"" of type '" "char const *""'");
   }
-  arg4 = reinterpret_cast< char * >(buf4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ProviderSession_terminateSubscriptionsOnTopics(arg1,(blpapi_Topic const **)arg2,arg3,(char const *)arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (char *)(buf4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_terminateSubscriptionsOnTopics(arg1,(struct blpapi_Topic const **)arg2,arg3,(char const *)arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc4 == SWIG_NEWOBJ) free((char*)buf4);
   return resultobj;
 fail:
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  if (alloc4 == SWIG_NEWOBJ) free((char*)buf4);
   return NULL;
 }
 
@@ -24342,34 +18708,18 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_publish(PyObject *SWIGUNUSEDPA
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_publish" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Event, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ProviderSession_publish" "', argument " "2"" of type '" "blpapi_Event_t *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Event_t * >(argp2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ProviderSession_publish(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (blpapi_Event_t *)(argp2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_publish(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -24397,39 +18747,23 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_sendResponse(PyObject *SWIGUNU
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_sendResponse" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_Event, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ProviderSession_sendResponse" "', argument " "2"" of type '" "blpapi_Event_t *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_Event_t * >(argp2);
+  arg2 = (blpapi_Event_t *)(argp2);
   ecode3 = SWIG_AsVal_int(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_ProviderSession_sendResponse" "', argument " "3"" of type '" "int""'");
   } 
-  arg3 = static_cast< int >(val3);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ProviderSession_sendResponse(arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg3 = (int)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_sendResponse(arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -24449,29 +18783,58 @@ SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_getAbstractSession(PyObject *S
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_getAbstractSession" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ProviderSession_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_AbstractSession_t *)blpapi_ProviderSession_getAbstractSession(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_AbstractSession_t *)blpapi_ProviderSession_getAbstractSession(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_AbstractSession, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_blpapi_ProviderSession_flushPublishedEvents(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  blpapi_ProviderSession_t *arg1 = (blpapi_ProviderSession_t *) 0 ;
+  int *arg2 = (int *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int temp2 ;
+  int res2 = SWIG_TMPOBJ ;
+  int val3 ;
+  int ecode3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  int result;
+  
+  arg2 = &temp2;
+  if (!PyArg_ParseTuple(args,(char *)"OO:blpapi_ProviderSession_flushPublishedEvents",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_ProviderSession, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ProviderSession_flushPublishedEvents" "', argument " "1"" of type '" "blpapi_ProviderSession_t *""'"); 
+  }
+  arg1 = (blpapi_ProviderSession_t *)(argp1);
+  ecode3 = SWIG_AsVal_int(obj1, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_ProviderSession_flushPublishedEvents" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = (int)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ProviderSession_flushPublishedEvents(arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_From_int((int)(result));
+  if (SWIG_IsTmpObj(res2)) {
+    resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_From_int((*arg2)));
+  } else {
+    int new_flags = SWIG_IsNewObj(res2) ? (SWIG_POINTER_OWN |  0 ) :  0 ;
+    resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_NewPointerObj((void*)(arg2), SWIGTYPE_p_int, new_flags));
+  }
   return resultobj;
 fail:
   return NULL;
@@ -24483,27 +18846,11 @@ SWIGINTERN PyObject *_wrap_blpapi_ServiceRegistrationOptions_create(PyObject *SW
   blpapi_ServiceRegistrationOptions_t *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)":blpapi_ServiceRegistrationOptions_create")) SWIG_fail;
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_ServiceRegistrationOptions_t *)blpapi_ServiceRegistrationOptions_create();
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_ServiceRegistrationOptions_t *)blpapi_ServiceRegistrationOptions_create();
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_ServiceRegistrationOptions, 0 |  0 );
   return resultobj;
 fail:
@@ -24524,28 +18871,12 @@ SWIGINTERN PyObject *_wrap_blpapi_ServiceRegistrationOptions_duplicate(PyObject 
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ServiceRegistrationOptions_duplicate" "', argument " "1"" of type '" "blpapi_ServiceRegistrationOptions_t const *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ServiceRegistrationOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (blpapi_ServiceRegistrationOptions_t *)blpapi_ServiceRegistrationOptions_duplicate((blpapi_ServiceRegistrationOptions const *)arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_ServiceRegistrationOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (blpapi_ServiceRegistrationOptions_t *)blpapi_ServiceRegistrationOptions_duplicate((struct blpapi_ServiceRegistrationOptions const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_blpapi_ServiceRegistrationOptions, 0 |  0 );
   return resultobj;
 fail:
@@ -24565,28 +18896,12 @@ SWIGINTERN PyObject *_wrap_blpapi_ServiceRegistrationOptions_destroy(PyObject *S
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ServiceRegistrationOptions_destroy" "', argument " "1"" of type '" "blpapi_ServiceRegistrationOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ServiceRegistrationOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_ServiceRegistrationOptions_destroy(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_ServiceRegistrationOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_ServiceRegistrationOptions_destroy(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -24610,33 +18925,17 @@ SWIGINTERN PyObject *_wrap_blpapi_ServiceRegistrationOptions_copy(PyObject *SWIG
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ServiceRegistrationOptions_copy" "', argument " "1"" of type '" "blpapi_ServiceRegistrationOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ServiceRegistrationOptions_t * >(argp1);
+  arg1 = (blpapi_ServiceRegistrationOptions_t *)(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_ServiceRegistrationOptions, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ServiceRegistrationOptions_copy" "', argument " "2"" of type '" "blpapi_ServiceRegistrationOptions_t const *""'"); 
   }
-  arg2 = reinterpret_cast< blpapi_ServiceRegistrationOptions_t * >(argp2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_ServiceRegistrationOptions_copy(arg1,(blpapi_ServiceRegistrationOptions const *)arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (blpapi_ServiceRegistrationOptions_t *)(argp2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_ServiceRegistrationOptions_copy(arg1,(struct blpapi_ServiceRegistrationOptions const *)arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -24669,44 +18968,28 @@ SWIGINTERN PyObject *_wrap_blpapi_ServiceRegistrationOptions_addActiveSubService
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ServiceRegistrationOptions_addActiveSubServiceCodeRange" "', argument " "1"" of type '" "blpapi_ServiceRegistrationOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ServiceRegistrationOptions_t * >(argp1);
+  arg1 = (blpapi_ServiceRegistrationOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_ServiceRegistrationOptions_addActiveSubServiceCodeRange" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
+  arg2 = (int)(val2);
   ecode3 = SWIG_AsVal_int(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_ServiceRegistrationOptions_addActiveSubServiceCodeRange" "', argument " "3"" of type '" "int""'");
   } 
-  arg3 = static_cast< int >(val3);
+  arg3 = (int)(val3);
   ecode4 = SWIG_AsVal_int(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "blpapi_ServiceRegistrationOptions_addActiveSubServiceCodeRange" "', argument " "4"" of type '" "int""'");
   } 
-  arg4 = static_cast< int >(val4);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ServiceRegistrationOptions_addActiveSubServiceCodeRange(arg1,arg2,arg3,arg4);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg4 = (int)(val4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ServiceRegistrationOptions_addActiveSubServiceCodeRange(arg1,arg2,arg3,arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -24725,28 +19008,12 @@ SWIGINTERN PyObject *_wrap_blpapi_ServiceRegistrationOptions_removeAllActiveSubS
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ServiceRegistrationOptions_removeAllActiveSubServiceCodeRanges" "', argument " "1"" of type '" "blpapi_ServiceRegistrationOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ServiceRegistrationOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_ServiceRegistrationOptions_removeAllActiveSubServiceCodeRanges(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_ServiceRegistrationOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_ServiceRegistrationOptions_removeAllActiveSubServiceCodeRanges(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -24769,7 +19036,7 @@ SWIGINTERN PyObject *_wrap_blpapi_ServiceRegistrationOptions_setGroupId(PyObject
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ServiceRegistrationOptions_setGroupId" "', argument " "1"" of type '" "blpapi_ServiceRegistrationOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ServiceRegistrationOptions_t * >(argp1);
+  arg1 = (blpapi_ServiceRegistrationOptions_t *)(argp1);
   {
     arg2 = PyString_AsString(obj1);
     arg3 = PyString_Size(obj1);
@@ -24779,27 +19046,11 @@ SWIGINTERN PyObject *_wrap_blpapi_ServiceRegistrationOptions_setGroupId(PyObject
       SWIG_exception(SWIG_ValueError,"Received a NULL pointer.");
     }
   }
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_ServiceRegistrationOptions_setGroupId(arg1,(char const *)arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_ServiceRegistrationOptions_setGroupId(arg1,(char const *)arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -24824,34 +19075,18 @@ SWIGINTERN PyObject *_wrap_blpapi_ServiceRegistrationOptions_setServicePriority(
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ServiceRegistrationOptions_setServicePriority" "', argument " "1"" of type '" "blpapi_ServiceRegistrationOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ServiceRegistrationOptions_t * >(argp1);
+  arg1 = (blpapi_ServiceRegistrationOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_ServiceRegistrationOptions_setServicePriority" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ServiceRegistrationOptions_setServicePriority(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (int)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ServiceRegistrationOptions_setServicePriority(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -24874,33 +19109,17 @@ SWIGINTERN PyObject *_wrap_blpapi_ServiceRegistrationOptions_setPartsToRegister(
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ServiceRegistrationOptions_setPartsToRegister" "', argument " "1"" of type '" "blpapi_ServiceRegistrationOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ServiceRegistrationOptions_t * >(argp1);
+  arg1 = (blpapi_ServiceRegistrationOptions_t *)(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "blpapi_ServiceRegistrationOptions_setPartsToRegister" "', argument " "2"" of type '" "int""'");
   } 
-  arg2 = static_cast< int >(val2);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      blpapi_ServiceRegistrationOptions_setPartsToRegister(arg1,arg2);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg2 = (int)(val2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    blpapi_ServiceRegistrationOptions_setPartsToRegister(arg1,arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -24927,29 +19146,13 @@ SWIGINTERN PyObject *_wrap_blpapi_ServiceRegistrationOptions_getGroupId(PyObject
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ServiceRegistrationOptions_getGroupId" "', argument " "1"" of type '" "blpapi_ServiceRegistrationOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ServiceRegistrationOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ServiceRegistrationOptions_getGroupId(arg1,arg2,arg3);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_ServiceRegistrationOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ServiceRegistrationOptions_getGroupId(arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   {
     resultobj = SWIG_Python_AppendOutput(resultobj, SWIG_FromCharPtrAndSize(arg2, *arg3));
   }
@@ -24972,29 +19175,13 @@ SWIGINTERN PyObject *_wrap_blpapi_ServiceRegistrationOptions_getServicePriority(
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ServiceRegistrationOptions_getServicePriority" "', argument " "1"" of type '" "blpapi_ServiceRegistrationOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ServiceRegistrationOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ServiceRegistrationOptions_getServicePriority(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_ServiceRegistrationOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ServiceRegistrationOptions_getServicePriority(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
-  
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -25014,29 +19201,57 @@ SWIGINTERN PyObject *_wrap_blpapi_ServiceRegistrationOptions_getPartsToRegister(
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ServiceRegistrationOptions_getPartsToRegister" "', argument " "1"" of type '" "blpapi_ServiceRegistrationOptions_t *""'"); 
   }
-  arg1 = reinterpret_cast< blpapi_ServiceRegistrationOptions_t * >(argp1);
-  
-  try {
-    {
-      SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-      result = (int)blpapi_ServiceRegistrationOptions_getPartsToRegister(arg1);
-      SWIG_PYTHON_THREAD_END_ALLOW;
-    }
-  } catch(std::out_of_range const& error) {
-    SWIG_exception(SWIG_IndexError, error.what());
-  } catch(std::bad_alloc const& error) {
-    SWIG_exception(SWIG_MemoryError, error.what());
-  } catch(std::overflow_error const& error) {
-    SWIG_exception(SWIG_OverflowError, error.what());
-  } catch(std::invalid_argument const& error) {
-    SWIG_exception(SWIG_ValueError, error.what());
-  } catch(std::runtime_error const& error) {
-    SWIG_exception(SWIG_RuntimeError, error.what());
-  } catch(std::exception const& error) {
-    SWIG_exception(SWIG_UnknownError, error.what());
+  arg1 = (blpapi_ServiceRegistrationOptions_t *)(argp1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ServiceRegistrationOptions_getPartsToRegister(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
   }
+  resultobj = SWIG_From_int((int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_blpapi_ZfpUtil_getOptionsForLeasedLines(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  blpapi_SessionOptions_t *arg1 = (blpapi_SessionOptions_t *) 0 ;
+  blpapi_TlsOptions_t *arg2 = (blpapi_TlsOptions_t *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  int result;
   
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (!PyArg_ParseTuple(args,(char *)"OOO:blpapi_ZfpUtil_getOptionsForLeasedLines",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_blpapi_SessionOptions, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "blpapi_ZfpUtil_getOptionsForLeasedLines" "', argument " "1"" of type '" "blpapi_SessionOptions_t *""'"); 
+  }
+  arg1 = (blpapi_SessionOptions_t *)(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_blpapi_TlsOptions, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "blpapi_ZfpUtil_getOptionsForLeasedLines" "', argument " "2"" of type '" "blpapi_TlsOptions_t const *""'"); 
+  }
+  arg2 = (blpapi_TlsOptions_t *)(argp2);
+  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "blpapi_ZfpUtil_getOptionsForLeasedLines" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = (int)(val3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)blpapi_ZfpUtil_getOptionsForLeasedLines(arg1,(struct blpapi_TlsOptions const *)arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
+  resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
   return NULL;
@@ -25046,11 +19261,10 @@ fail:
 static PyMethodDef SwigMethods[] = {
 	 { (char *)"SWIG_PyInstanceMethod_New", (PyCFunction)SWIG_PyInstanceMethod_New, METH_O, NULL},
 	 { (char *)"setLoggerCallbackWrapper", _wrap_setLoggerCallbackWrapper, METH_VARARGS, NULL},
+	 { (char *)"blpapi_HighPrecisionDatetime_fromTimePoint_wrapper", _wrap_blpapi_HighPrecisionDatetime_fromTimePoint_wrapper, METH_VARARGS, NULL},
 	 { (char *)"blpapi_Logging_registerCallback", _wrap_blpapi_Logging_registerCallback, METH_VARARGS, NULL},
 	 { (char *)"blpapi_Logging_logTestMessage", _wrap_blpapi_Logging_logTestMessage, METH_VARARGS, NULL},
 	 { (char *)"blpapi_DiagnosticsUtil_memoryInfo_wrapper", _wrap_blpapi_DiagnosticsUtil_memoryInfo_wrapper, METH_VARARGS, NULL},
-	 { (char *)"blpapi_Message_timeReceived_wrapper", _wrap_blpapi_Message_timeReceived_wrapper, METH_VARARGS, NULL},
-	 { (char *)"blpapi_HighResolutionClock_now_wrapper", _wrap_blpapi_HighResolutionClock_now_wrapper, METH_VARARGS, NULL},
 	 { (char *)"blpapi_EventDispatcher_stop", _wrap_blpapi_EventDispatcher_stop, METH_VARARGS, NULL},
 	 { (char *)"blpapi_Service_printHelper", _wrap_blpapi_Service_printHelper, METH_VARARGS, NULL},
 	 { (char *)"blpapi_SchemaElementDefinition_printHelper", _wrap_blpapi_SchemaElementDefinition_printHelper, METH_VARARGS, NULL},
@@ -25075,61 +19289,37 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"topicPtrArray_getitem", _wrap_topicPtrArray_getitem, METH_VARARGS, NULL},
 	 { (char *)"topicPtrArray_setitem", _wrap_topicPtrArray_setitem, METH_VARARGS, NULL},
 	 { (char *)"CorrelationId_t_equals", _wrap_CorrelationId_t_equals, METH_VARARGS, NULL},
+	 { (char *)"CorrelationId_value_get", _wrap_CorrelationId_value_get, METH_VARARGS, NULL},
 	 { (char *)"new_CorrelationId", _wrap_new_CorrelationId, METH_VARARGS, (char *)"\n"
-		"A key used to identify individual subscriptions or requests.\n"
+		"``CorrelationId([value[, classId=0]])`` constructs a :class:`CorrelationId`\n"
+		"object.\n"
 		"\n"
-		"CorrelationId([value[, classId=0]]) constructs a CorrelationId object.\n"
-		"If 'value' is integer (either int or long) then created CorrelationId will have\n"
-		"type() == CorrelationId.INT_TYPE. Otherwise it will have\n"
-		"type() == CorrelationId.OBJECT_TYPE. If no arguments are specified\n"
-		"then it will have type() == CorrelationId.UNSET_TYPE.\n"
+		"If ``value`` is an integer (either :class:`int` or :class:`long`) then the\n"
+		"created :class:`CorrelationId` will have type :attr:`INT_TYPE`. Otherwise, it\n"
+		"will have type :attr:`OBJECT_TYPE`.\n"
 		"\n"
-		"Two CorrelationIds are considered equal if they have the same\n"
-		"type() and:\n"
-		"- holds the same (not just equal!) objects in case of\n"
-		"    type() == CorrelationId.OBJECT_TYPE\n"
-		"- holds equal integers in case of\n"
-		"    type() == CorrelationId.INT_TYPE or\n"
-		"    type() == CorrelationId.AUTOGEN_TYPE\n"
-		"- True otherwise\n"
-		"    (i.e. in case of type() == CorrelationId.UNSET_TYPE)\n"
+		"If no arguments are specified, then the type will be :attr:`UNSET_TYPE`.\n"
 		"\n"
-		"It is possible that an user constructed CorrelationId and a\n"
-		"CorrelationId generated by the API could return the same\n"
-		"result for value(). However, they will not compare equal because\n"
-		"they have different type().\n"
-		"\n"
-		"CorrelationId objects are passed to many of the Session object\n"
-		"methods which initiate an asynchronous operations and are\n"
-		"obtained from Message objects which are delivered as a result\n"
-		"of those asynchronous operations.\n"
-		"\n"
-		"When subscribing or requesting information an application has\n"
-		"the choice of providing a CorrelationId they construct\n"
-		"themselves or allowing the session to construct one for\n"
-		"them. If the application supplies a CorrelationId it must not\n"
-		"re-use the value contained in it in another CorrelationId\n"
-		"whilst the original request or subscription is still active.\n"
-		"\n"
-		"Class attributes:\n"
-		"    Possible return values for type() method:\n"
-		"        UNSET_TYPE      The CorrelationId is unset. That is, it was created by\n"
-		"                        the default CorrelationId constructor.\n"
-		"        INT_TYPE        The CorrelationId was created from an integer (or long)\n"
-		"                        supplied by the user.\n"
-		"        OBJECT_TYPE     The CorrelationId was created from an object supplied by\n"
-		"                        the user.\n"
-		"        AUTOGEN_TYPE    The CorrelationId was created internally by API.\n"
-		"\n"
-		"    MAX_CLASS_ID    The maximum value allowed for classId.\n"
+		"The maximum allowed ``classId`` value is :attr:`MAX_CLASS_ID`.\n"
 		""},
 	 { (char *)"delete_CorrelationId", _wrap_delete_CorrelationId, METH_VARARGS, NULL},
-	 { (char *)"CorrelationId_type", _wrap_CorrelationId_type, METH_VARARGS, (char *)"Return the type of this CorrelationId object (see xxx_TYPE class attributes)"},
-	 { (char *)"CorrelationId_classId", _wrap_CorrelationId_classId, METH_VARARGS, (char *)"Return the user defined classification of this CorrelationId object"},
+	 { (char *)"CorrelationId_type", _wrap_CorrelationId_type, METH_VARARGS, (char *)"\n"
+		"Returns:\n"
+		"    int: The type of this CorrelationId object (see the ``xxx_TYPE`` class\n"
+		"    attributes)\n"
+		""},
+	 { (char *)"CorrelationId_classId", _wrap_CorrelationId_classId, METH_VARARGS, (char *)"\n"
+		"Returns:\n"
+		"    int: The user defined classification of this :class:`CorrelationId`\n"
+		"    object\n"
+		""},
 	 { (char *)"CorrelationId___asObject", _wrap_CorrelationId___asObject, METH_VARARGS, NULL},
 	 { (char *)"CorrelationId___asInteger", _wrap_CorrelationId___asInteger, METH_VARARGS, NULL},
 	 { (char *)"CorrelationId___toInteger", _wrap_CorrelationId___toInteger, METH_VARARGS, NULL},
 	 { (char *)"CorrelationId_swigregister", CorrelationId_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_blpapi_CorrelationId_t__value", _wrap_new_blpapi_CorrelationId_t__value, METH_VARARGS, NULL},
+	 { (char *)"delete_blpapi_CorrelationId_t__value", _wrap_delete_blpapi_CorrelationId_t__value, METH_VARARGS, NULL},
+	 { (char *)"blpapi_CorrelationId_t__value_swigregister", blpapi_CorrelationId_t__value_swigregister, METH_VARARGS, NULL},
 	 { (char *)"blpapi_Element_setElementFloat", _wrap_blpapi_Element_setElementFloat, METH_VARARGS, NULL},
 	 { (char *)"blpapi_Element_setValueFloat", _wrap_blpapi_Element_setValueFloat, METH_VARARGS, NULL},
 	 { (char *)"blpapi_Element_printHelper", _wrap_blpapi_Element_printHelper, METH_VARARGS, NULL},
@@ -25209,7 +19399,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"ProviderSession_createHelper", _wrap_ProviderSession_createHelper, METH_VARARGS, NULL},
 	 { (char *)"ProviderSession_destroyHelper", _wrap_ProviderSession_destroyHelper, METH_VARARGS, NULL},
 	 { (char *)"ProviderSession_terminateSubscriptionsOnTopic", _wrap_ProviderSession_terminateSubscriptionsOnTopic, METH_VARARGS, NULL},
-	 { (char *)"ProviderSession_flushPublishedEvents", _wrap_ProviderSession_flushPublishedEvents, METH_VARARGS, NULL},
 	 { (char *)"blpapi_getLastErrorDescription", _wrap_blpapi_getLastErrorDescription, METH_VARARGS, NULL},
 	 { (char *)"blpapi_SessionOptions_create", _wrap_blpapi_SessionOptions_create, METH_VARARGS, NULL},
 	 { (char *)"blpapi_SessionOptions_destroy", _wrap_blpapi_SessionOptions_destroy, METH_VARARGS, NULL},
@@ -25238,6 +19427,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"blpapi_SessionOptions_setServiceDownloadTimeout", _wrap_blpapi_SessionOptions_setServiceDownloadTimeout, METH_VARARGS, NULL},
 	 { (char *)"blpapi_SessionOptions_setTlsOptions", _wrap_blpapi_SessionOptions_setTlsOptions, METH_VARARGS, NULL},
 	 { (char *)"blpapi_SessionOptions_setFlushPublishedEventsTimeout", _wrap_blpapi_SessionOptions_setFlushPublishedEventsTimeout, METH_VARARGS, NULL},
+	 { (char *)"blpapi_SessionOptions_setBandwidthSaveModeDisabled", _wrap_blpapi_SessionOptions_setBandwidthSaveModeDisabled, METH_VARARGS, NULL},
 	 { (char *)"blpapi_SessionOptions_serverHost", _wrap_blpapi_SessionOptions_serverHost, METH_VARARGS, NULL},
 	 { (char *)"blpapi_SessionOptions_serverPort", _wrap_blpapi_SessionOptions_serverPort, METH_VARARGS, NULL},
 	 { (char *)"blpapi_SessionOptions_numServerAddresses", _wrap_blpapi_SessionOptions_numServerAddresses, METH_VARARGS, NULL},
@@ -25262,6 +19452,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"blpapi_SessionOptions_serviceCheckTimeout", _wrap_blpapi_SessionOptions_serviceCheckTimeout, METH_VARARGS, NULL},
 	 { (char *)"blpapi_SessionOptions_serviceDownloadTimeout", _wrap_blpapi_SessionOptions_serviceDownloadTimeout, METH_VARARGS, NULL},
 	 { (char *)"blpapi_SessionOptions_flushPublishedEventsTimeout", _wrap_blpapi_SessionOptions_flushPublishedEventsTimeout, METH_VARARGS, NULL},
+	 { (char *)"blpapi_SessionOptions_bandwidthSaveModeDisabled", _wrap_blpapi_SessionOptions_bandwidthSaveModeDisabled, METH_VARARGS, NULL},
 	 { (char *)"blpapi_TlsOptions_destroy", _wrap_blpapi_TlsOptions_destroy, METH_VARARGS, NULL},
 	 { (char *)"blpapi_TlsOptions_createFromFiles", _wrap_blpapi_TlsOptions_createFromFiles, METH_VARARGS, NULL},
 	 { (char *)"blpapi_TlsOptions_createFromBlobs", _wrap_blpapi_TlsOptions_createFromBlobs, METH_VARARGS, NULL},
@@ -25282,6 +19473,12 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"blpapi_SubscriptionList_correlationIdAt", _wrap_blpapi_SubscriptionList_correlationIdAt, METH_VARARGS, NULL},
 	 { (char *)"blpapi_SubscriptionList_topicStringAt", _wrap_blpapi_SubscriptionList_topicStringAt, METH_VARARGS, NULL},
 	 { (char *)"blpapi_SubscriptionList_isResolvedAt", _wrap_blpapi_SubscriptionList_isResolvedAt, METH_VARARGS, NULL},
+	 { (char *)"blpapi_TimePoint_d_value_set", _wrap_blpapi_TimePoint_d_value_set, METH_VARARGS, NULL},
+	 { (char *)"blpapi_TimePoint_d_value_get", _wrap_blpapi_TimePoint_d_value_get, METH_VARARGS, NULL},
+	 { (char *)"new_blpapi_TimePoint", _wrap_new_blpapi_TimePoint, METH_VARARGS, NULL},
+	 { (char *)"delete_blpapi_TimePoint", _wrap_delete_blpapi_TimePoint, METH_VARARGS, NULL},
+	 { (char *)"blpapi_TimePoint_swigregister", blpapi_TimePoint_swigregister, METH_VARARGS, NULL},
+	 { (char *)"blpapi_TimePointUtil_nanosecondsBetween", _wrap_blpapi_TimePointUtil_nanosecondsBetween, METH_VARARGS, NULL},
 	 { (char *)"blpapi_Datetime_tag_parts_set", _wrap_blpapi_Datetime_tag_parts_set, METH_VARARGS, NULL},
 	 { (char *)"blpapi_Datetime_tag_parts_get", _wrap_blpapi_Datetime_tag_parts_get, METH_VARARGS, NULL},
 	 { (char *)"blpapi_Datetime_tag_hours_set", _wrap_blpapi_Datetime_tag_hours_set, METH_VARARGS, NULL},
@@ -25399,6 +19596,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"blpapi_Identity_hasEntitlements", _wrap_blpapi_Identity_hasEntitlements, METH_VARARGS, NULL},
 	 { (char *)"blpapi_Identity_isAuthorized", _wrap_blpapi_Identity_isAuthorized, METH_VARARGS, NULL},
 	 { (char *)"blpapi_Identity_getSeatType", _wrap_blpapi_Identity_getSeatType, METH_VARARGS, NULL},
+	 { (char *)"blpapi_HighResolutionClock_now", _wrap_blpapi_HighResolutionClock_now, METH_VARARGS, NULL},
 	 { (char *)"blpapi_AbstractSession_cancel", _wrap_blpapi_AbstractSession_cancel, METH_VARARGS, NULL},
 	 { (char *)"blpapi_AbstractSession_sendAuthorizationRequest", _wrap_blpapi_AbstractSession_sendAuthorizationRequest, METH_VARARGS, NULL},
 	 { (char *)"blpapi_AbstractSession_openService", _wrap_blpapi_AbstractSession_openService, METH_VARARGS, NULL},
@@ -25480,6 +19678,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"blpapi_ProviderSession_publish", _wrap_blpapi_ProviderSession_publish, METH_VARARGS, NULL},
 	 { (char *)"blpapi_ProviderSession_sendResponse", _wrap_blpapi_ProviderSession_sendResponse, METH_VARARGS, NULL},
 	 { (char *)"blpapi_ProviderSession_getAbstractSession", _wrap_blpapi_ProviderSession_getAbstractSession, METH_VARARGS, NULL},
+	 { (char *)"blpapi_ProviderSession_flushPublishedEvents", _wrap_blpapi_ProviderSession_flushPublishedEvents, METH_VARARGS, NULL},
 	 { (char *)"blpapi_ServiceRegistrationOptions_create", _wrap_blpapi_ServiceRegistrationOptions_create, METH_VARARGS, NULL},
 	 { (char *)"blpapi_ServiceRegistrationOptions_duplicate", _wrap_blpapi_ServiceRegistrationOptions_duplicate, METH_VARARGS, NULL},
 	 { (char *)"blpapi_ServiceRegistrationOptions_destroy", _wrap_blpapi_ServiceRegistrationOptions_destroy, METH_VARARGS, NULL},
@@ -25492,74 +19691,67 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"blpapi_ServiceRegistrationOptions_getGroupId", _wrap_blpapi_ServiceRegistrationOptions_getGroupId, METH_VARARGS, NULL},
 	 { (char *)"blpapi_ServiceRegistrationOptions_getServicePriority", _wrap_blpapi_ServiceRegistrationOptions_getServicePriority, METH_VARARGS, NULL},
 	 { (char *)"blpapi_ServiceRegistrationOptions_getPartsToRegister", _wrap_blpapi_ServiceRegistrationOptions_getPartsToRegister, METH_VARARGS, NULL},
+	 { (char *)"blpapi_ZfpUtil_getOptionsForLeasedLines", _wrap_blpapi_ZfpUtil_getOptionsForLeasedLines, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
-static void *_p_BloombergLP__blpapi__SessionTo_p_BloombergLP__blpapi__AbstractSession(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((BloombergLP::blpapi::AbstractSession *)  ((BloombergLP::blpapi::Session *) x));
-}
-static void *_p_BloombergLP__blpapi__ProviderSessionTo_p_BloombergLP__blpapi__AbstractSession(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((BloombergLP::blpapi::AbstractSession *)  ((BloombergLP::blpapi::ProviderSession *) x));
-}
 static void *_p_intArrayTo_p_int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((int *)  ((intArray *) x));
 }
-static swig_type_info _swigt__p_BloombergLP__blpapi__AbstractSession = {"_p_BloombergLP__blpapi__AbstractSession", "BloombergLP::blpapi::AbstractSession *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_BloombergLP__blpapi__Session = {"_p_BloombergLP__blpapi__Session", 0, 0, 0, 0, 0};
-static swig_type_info _swigt__p_BloombergLP__blpapi__ProviderSession = {"_p_BloombergLP__blpapi__ProviderSession", 0, 0, 0, 0, 0};
-static swig_type_info _swigt__p_blpapi_AbstractSession = {"_p_blpapi_AbstractSession", "blpapi_AbstractSession *|blpapi_AbstractSession_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_Constant = {"_p_blpapi_Constant", "blpapi_Constant *|blpapi_Constant_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_ConstantList = {"_p_blpapi_ConstantList", "blpapi_ConstantList *|blpapi_ConstantList_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_CorrelationId_t_ = {"_p_blpapi_CorrelationId_t_", "blpapi_CorrelationId_t_ *|blpapi_CorrelationId_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_Datetime_tag = {"_p_blpapi_Datetime_tag", "blpapi_Datetime_t *|blpapi_Datetime_tag *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_Element = {"_p_blpapi_Element", "blpapi_Element_t *|blpapi_Element *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_Event = {"_p_blpapi_Event", "blpapi_Event *|blpapi_Event_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_EventDispatcher = {"_p_blpapi_EventDispatcher", "blpapi_EventDispatcher *|blpapi_EventDispatcher_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_EventFormatter = {"_p_blpapi_EventFormatter", "blpapi_EventFormatter *|blpapi_EventFormatter_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_EventQueue = {"_p_blpapi_EventQueue", "blpapi_EventQueue *|blpapi_EventQueue_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_HighPrecisionDatetime_tag = {"_p_blpapi_HighPrecisionDatetime_tag", "blpapi_HighPrecisionDatetime_t *|blpapi_HighPrecisionDatetime_tag *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_Identity = {"_p_blpapi_Identity", "blpapi_Identity *|blpapi_UserHandle_t *|blpapi_UserHandle *|blpapi_Identity_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_AbstractSession = {"_p_blpapi_AbstractSession", "struct blpapi_AbstractSession *|blpapi_AbstractSession_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_Constant = {"_p_blpapi_Constant", "struct blpapi_Constant *|blpapi_Constant_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_ConstantList = {"_p_blpapi_ConstantList", "struct blpapi_ConstantList *|blpapi_ConstantList_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_CorrelationId_t_ = {"_p_blpapi_CorrelationId_t_", "struct blpapi_CorrelationId_t_ *|blpapi_CorrelationId_t_ *|blpapi_CorrelationId_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_CorrelationId_t__value = {"_p_blpapi_CorrelationId_t__value", "blpapi_CorrelationId_t__value *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_Datetime_tag = {"_p_blpapi_Datetime_tag", "blpapi_Datetime_t *|struct blpapi_Datetime_tag *|blpapi_Datetime_tag *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_Element = {"_p_blpapi_Element", "blpapi_Element_t *|struct blpapi_Element *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_Event = {"_p_blpapi_Event", "struct blpapi_Event *|blpapi_Event_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_EventDispatcher = {"_p_blpapi_EventDispatcher", "struct blpapi_EventDispatcher *|blpapi_EventDispatcher_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_EventFormatter = {"_p_blpapi_EventFormatter", "struct blpapi_EventFormatter *|blpapi_EventFormatter_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_EventQueue = {"_p_blpapi_EventQueue", "struct blpapi_EventQueue *|blpapi_EventQueue_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_HighPrecisionDatetime_tag = {"_p_blpapi_HighPrecisionDatetime_tag", "blpapi_HighPrecisionDatetime_t *|struct blpapi_HighPrecisionDatetime_tag *|blpapi_HighPrecisionDatetime_tag *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_Identity = {"_p_blpapi_Identity", "struct blpapi_Identity *|blpapi_UserHandle_t *|blpapi_UserHandle *|blpapi_Identity_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_blpapi_Logging_Func_t = {"_p_blpapi_Logging_Func_t", "blpapi_Logging_Func_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_blpapi_Logging_Severity_t = {"_p_blpapi_Logging_Severity_t", "enum blpapi_Logging_Severity_t *|blpapi_Logging_Severity_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_ManagedPtr_t_ = {"_p_blpapi_ManagedPtr_t_", "blpapi_ManagedPtr_t *|blpapi_ManagedPtr_t_ *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_Message = {"_p_blpapi_Message", "blpapi_Message *|blpapi_Message_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_MessageIterator = {"_p_blpapi_MessageIterator", "blpapi_MessageIterator *|blpapi_MessageIterator_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_Name = {"_p_blpapi_Name", "blpapi_Name *|blpapi_Name_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_Operation = {"_p_blpapi_Operation", "blpapi_Operation_t *|blpapi_Operation *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_ProviderSession = {"_p_blpapi_ProviderSession", "blpapi_ProviderSession *|blpapi_ProviderSession_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_Request = {"_p_blpapi_Request", "blpapi_Request *|blpapi_Request_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_RequestTemplate = {"_p_blpapi_RequestTemplate", "blpapi_RequestTemplate_t *|blpapi_RequestTemplate *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_ResolutionList = {"_p_blpapi_ResolutionList", "blpapi_ResolutionList *|blpapi_ResolutionList_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_Service = {"_p_blpapi_Service", "blpapi_Service_t *|blpapi_Service *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_ServiceRegistrationOptions = {"_p_blpapi_ServiceRegistrationOptions", "blpapi_ServiceRegistrationOptions *|blpapi_ServiceRegistrationOptions_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_Session = {"_p_blpapi_Session", "blpapi_Session *|blpapi_Session_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_SessionOptions = {"_p_blpapi_SessionOptions", "blpapi_SessionOptions *|blpapi_SessionOptions_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_ManagedPtr_t_ = {"_p_blpapi_ManagedPtr_t_", "blpapi_ManagedPtr_t *|struct blpapi_ManagedPtr_t_ *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_Message = {"_p_blpapi_Message", "struct blpapi_Message *|blpapi_Message_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_MessageIterator = {"_p_blpapi_MessageIterator", "struct blpapi_MessageIterator *|blpapi_MessageIterator_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_Name = {"_p_blpapi_Name", "struct blpapi_Name *|blpapi_Name_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_Operation = {"_p_blpapi_Operation", "blpapi_Operation_t *|struct blpapi_Operation *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_ProviderSession = {"_p_blpapi_ProviderSession", "struct blpapi_ProviderSession *|blpapi_ProviderSession_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_Request = {"_p_blpapi_Request", "struct blpapi_Request *|blpapi_Request_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_RequestTemplate = {"_p_blpapi_RequestTemplate", "blpapi_RequestTemplate_t *|struct blpapi_RequestTemplate *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_ResolutionList = {"_p_blpapi_ResolutionList", "struct blpapi_ResolutionList *|blpapi_ResolutionList_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_Service = {"_p_blpapi_Service", "blpapi_Service_t *|struct blpapi_Service *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_ServiceRegistrationOptions = {"_p_blpapi_ServiceRegistrationOptions", "struct blpapi_ServiceRegistrationOptions *|blpapi_ServiceRegistrationOptions_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_Session = {"_p_blpapi_Session", "struct blpapi_Session *|blpapi_Session_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_SessionOptions = {"_p_blpapi_SessionOptions", "struct blpapi_SessionOptions *|blpapi_SessionOptions_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_blpapi_StreamWriter_t = {"_p_blpapi_StreamWriter_t", "blpapi_StreamWriter_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_SubscriptionItrerator = {"_p_blpapi_SubscriptionItrerator", "blpapi_SubscriptionItrerator *|blpapi_SubscriptionIterator_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_SubscriptionList = {"_p_blpapi_SubscriptionList", "blpapi_SubscriptionList *|blpapi_SubscriptionList_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_TimePoint_t = {"_p_blpapi_TimePoint_t", "blpapi_TimePoint_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_TlsOptions = {"_p_blpapi_TlsOptions", "blpapi_TlsOptions *|blpapi_TlsOptions_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_Topic = {"_p_blpapi_Topic", "blpapi_Topic *|blpapi_Topic_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_blpapi_TopicList = {"_p_blpapi_TopicList", "blpapi_TopicList *|blpapi_TopicList_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_SubscriptionItrerator = {"_p_blpapi_SubscriptionItrerator", "struct blpapi_SubscriptionItrerator *|blpapi_SubscriptionIterator_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_SubscriptionList = {"_p_blpapi_SubscriptionList", "struct blpapi_SubscriptionList *|blpapi_SubscriptionList_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_TimePoint = {"_p_blpapi_TimePoint", "blpapi_TimePoint_t *|struct blpapi_TimePoint *|blpapi_TimePoint *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_TlsOptions = {"_p_blpapi_TlsOptions", "struct blpapi_TlsOptions *|blpapi_TlsOptions_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_Topic = {"_p_blpapi_Topic", "struct blpapi_Topic *|blpapi_Topic_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_blpapi_TopicList = {"_p_blpapi_TopicList", "struct blpapi_TopicList *|blpapi_TopicList_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *|blpapi_Char_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_double = {"_p_double", "blpapi_Float64_t *|double *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_f_p_blpapi_Event_p_blpapi_ProviderSession_p_void__void = {"_p_f_p_blpapi_Event_p_blpapi_ProviderSession_p_void__void", "void (*)(blpapi_Event *,blpapi_ProviderSession *,void *)|blpapi_ProviderEventHandler_t", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_p_struct_blpapi_Event_p_struct_blpapi_ProviderSession_p_void__void = {"_p_f_p_struct_blpapi_Event_p_struct_blpapi_ProviderSession_p_void__void", "void (*)(struct blpapi_Event *,struct blpapi_ProviderSession *,void *)|blpapi_ProviderEventHandler_t", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_float = {"_p_float", "blpapi_Float32_t *|float *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_int = {"_p_int", "blpapi_Bool_t *|int *|blpapi_Int32_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_intArray = {"_p_intArray", "intArray *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_long_long = {"_p_long_long", "blpapi_Int64_t *|long long *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_p_blpapi_Element = {"_p_p_blpapi_Element", "blpapi_Element **|blpapi_Element_t **", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_p_blpapi_Event = {"_p_p_blpapi_Event", "blpapi_Event **|blpapi_Event_t **", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_p_blpapi_Message = {"_p_p_blpapi_Message", "blpapi_Message_t **|blpapi_Message **", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_p_blpapi_Name = {"_p_p_blpapi_Name", "blpapi_Name **|blpapi_Name_t **", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_p_blpapi_Operation = {"_p_p_blpapi_Operation", "blpapi_Operation **|blpapi_Operation_t **", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_p_blpapi_Request = {"_p_p_blpapi_Request", "blpapi_Request_t **|blpapi_Request **", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_p_blpapi_RequestTemplate = {"_p_p_blpapi_RequestTemplate", "blpapi_RequestTemplate **|blpapi_RequestTemplate_t **", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_p_blpapi_Service = {"_p_p_blpapi_Service", "blpapi_Service_t **|blpapi_Service **", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_p_blpapi_Topic = {"_p_p_blpapi_Topic", "blpapi_Topic **|blpapi_Topic_t **", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_p_blpapi_Element = {"_p_p_blpapi_Element", "struct blpapi_Element **|blpapi_Element_t **", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_p_blpapi_Event = {"_p_p_blpapi_Event", "struct blpapi_Event **|blpapi_Event_t **", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_p_blpapi_Message = {"_p_p_blpapi_Message", "blpapi_Message_t **|struct blpapi_Message **", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_p_blpapi_Name = {"_p_p_blpapi_Name", "struct blpapi_Name **|blpapi_Name_t **", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_p_blpapi_Operation = {"_p_p_blpapi_Operation", "struct blpapi_Operation **|blpapi_Operation_t **", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_p_blpapi_Request = {"_p_p_blpapi_Request", "blpapi_Request_t **|struct blpapi_Request **", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_p_blpapi_RequestTemplate = {"_p_p_blpapi_RequestTemplate", "struct blpapi_RequestTemplate **|blpapi_RequestTemplate_t **", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_p_blpapi_Service = {"_p_p_blpapi_Service", "blpapi_Service_t **|struct blpapi_Service **", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_p_blpapi_Topic = {"_p_p_blpapi_Topic", "struct blpapi_Topic **|blpapi_Topic_t **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_char = {"_p_p_char", "char **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_p_void = {"_p_p_p_void", "blpapi_SchemaElementDefinition_t **|void ***", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_void = {"_p_p_void", "blpapi_SchemaElementDefinition_t *|blpapi_SchemaTypeDefinition_t *|void **", 0, 0, (void*)0, 0};
@@ -25570,13 +19762,11 @@ static swig_type_info _swigt__p_unsigned_long_long = {"_p_unsigned_long_long", "
 static swig_type_info _swigt__p_unsigned_short = {"_p_unsigned_short", "unsigned short *|blpapi_UInt16_t *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
-  &_swigt__p_BloombergLP__blpapi__AbstractSession,
-  &_swigt__p_BloombergLP__blpapi__ProviderSession,
-  &_swigt__p_BloombergLP__blpapi__Session,
   &_swigt__p_blpapi_AbstractSession,
   &_swigt__p_blpapi_Constant,
   &_swigt__p_blpapi_ConstantList,
   &_swigt__p_blpapi_CorrelationId_t_,
+  &_swigt__p_blpapi_CorrelationId_t__value,
   &_swigt__p_blpapi_Datetime_tag,
   &_swigt__p_blpapi_Element,
   &_swigt__p_blpapi_Event,
@@ -25603,13 +19793,13 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_blpapi_StreamWriter_t,
   &_swigt__p_blpapi_SubscriptionItrerator,
   &_swigt__p_blpapi_SubscriptionList,
-  &_swigt__p_blpapi_TimePoint_t,
+  &_swigt__p_blpapi_TimePoint,
   &_swigt__p_blpapi_TlsOptions,
   &_swigt__p_blpapi_Topic,
   &_swigt__p_blpapi_TopicList,
   &_swigt__p_char,
   &_swigt__p_double,
-  &_swigt__p_f_p_blpapi_Event_p_blpapi_ProviderSession_p_void__void,
+  &_swigt__p_f_p_struct_blpapi_Event_p_struct_blpapi_ProviderSession_p_void__void,
   &_swigt__p_float,
   &_swigt__p_int,
   &_swigt__p_intArray,
@@ -25633,13 +19823,11 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_unsigned_short,
 };
 
-static swig_cast_info _swigc__p_BloombergLP__blpapi__Session[] = {{&_swigt__p_BloombergLP__blpapi__Session, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_BloombergLP__blpapi__ProviderSession[] = {{&_swigt__p_BloombergLP__blpapi__ProviderSession, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_BloombergLP__blpapi__AbstractSession[] = {  {&_swigt__p_BloombergLP__blpapi__AbstractSession, 0, 0, 0},  {&_swigt__p_BloombergLP__blpapi__Session, _p_BloombergLP__blpapi__SessionTo_p_BloombergLP__blpapi__AbstractSession, 0, 0},  {&_swigt__p_BloombergLP__blpapi__ProviderSession, _p_BloombergLP__blpapi__ProviderSessionTo_p_BloombergLP__blpapi__AbstractSession, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_blpapi_AbstractSession[] = {  {&_swigt__p_blpapi_AbstractSession, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_blpapi_Constant[] = {  {&_swigt__p_blpapi_Constant, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_blpapi_ConstantList[] = {  {&_swigt__p_blpapi_ConstantList, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_blpapi_CorrelationId_t_[] = {  {&_swigt__p_blpapi_CorrelationId_t_, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_blpapi_CorrelationId_t__value[] = {  {&_swigt__p_blpapi_CorrelationId_t__value, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_blpapi_Datetime_tag[] = {  {&_swigt__p_blpapi_Datetime_tag, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_blpapi_Element[] = {  {&_swigt__p_blpapi_Element, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_blpapi_Event[] = {  {&_swigt__p_blpapi_Event, 0, 0, 0},{0, 0, 0, 0}};
@@ -25666,13 +19854,13 @@ static swig_cast_info _swigc__p_blpapi_SessionOptions[] = {  {&_swigt__p_blpapi_
 static swig_cast_info _swigc__p_blpapi_StreamWriter_t[] = {  {&_swigt__p_blpapi_StreamWriter_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_blpapi_SubscriptionItrerator[] = {  {&_swigt__p_blpapi_SubscriptionItrerator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_blpapi_SubscriptionList[] = {  {&_swigt__p_blpapi_SubscriptionList, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_blpapi_TimePoint_t[] = {  {&_swigt__p_blpapi_TimePoint_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_blpapi_TimePoint[] = {  {&_swigt__p_blpapi_TimePoint, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_blpapi_TlsOptions[] = {  {&_swigt__p_blpapi_TlsOptions, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_blpapi_Topic[] = {  {&_swigt__p_blpapi_Topic, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_blpapi_TopicList[] = {  {&_swigt__p_blpapi_TopicList, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_double[] = {  {&_swigt__p_double, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_f_p_blpapi_Event_p_blpapi_ProviderSession_p_void__void[] = {  {&_swigt__p_f_p_blpapi_Event_p_blpapi_ProviderSession_p_void__void, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_f_p_struct_blpapi_Event_p_struct_blpapi_ProviderSession_p_void__void[] = {  {&_swigt__p_f_p_struct_blpapi_Event_p_struct_blpapi_ProviderSession_p_void__void, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_float[] = {  {&_swigt__p_float, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_int[] = {  {&_swigt__p_intArray, _p_intArrayTo_p_int, 0, 0},  {&_swigt__p_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_intArray[] = {  {&_swigt__p_intArray, 0, 0, 0},{0, 0, 0, 0}};
@@ -25696,13 +19884,11 @@ static swig_cast_info _swigc__p_unsigned_long_long[] = {  {&_swigt__p_unsigned_l
 static swig_cast_info _swigc__p_unsigned_short[] = {  {&_swigt__p_unsigned_short, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
-  _swigc__p_BloombergLP__blpapi__AbstractSession,
-  _swigc__p_BloombergLP__blpapi__ProviderSession,
-  _swigc__p_BloombergLP__blpapi__Session,
   _swigc__p_blpapi_AbstractSession,
   _swigc__p_blpapi_Constant,
   _swigc__p_blpapi_ConstantList,
   _swigc__p_blpapi_CorrelationId_t_,
+  _swigc__p_blpapi_CorrelationId_t__value,
   _swigc__p_blpapi_Datetime_tag,
   _swigc__p_blpapi_Element,
   _swigc__p_blpapi_Event,
@@ -25729,13 +19915,13 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_blpapi_StreamWriter_t,
   _swigc__p_blpapi_SubscriptionItrerator,
   _swigc__p_blpapi_SubscriptionList,
-  _swigc__p_blpapi_TimePoint_t,
+  _swigc__p_blpapi_TimePoint,
   _swigc__p_blpapi_TlsOptions,
   _swigc__p_blpapi_Topic,
   _swigc__p_blpapi_TopicList,
   _swigc__p_char,
   _swigc__p_double,
-  _swigc__p_f_p_blpapi_Event_p_blpapi_ProviderSession_p_void__void,
+  _swigc__p_f_p_struct_blpapi_Event_p_struct_blpapi_ProviderSession_p_void__void,
   _swigc__p_float,
   _swigc__p_int,
   _swigc__p_intArray,
@@ -26447,137 +20633,139 @@ SWIG_init(void) {
   
   SWIG_InstallConstants(d,swig_const_table);
   
-  SWIG_Python_SetConstant(d, "TOPICLIST_NOT_CREATED",SWIG_From_int(static_cast< int >(BloombergLP::blpapi::TopicList::NOT_CREATED)));
-  SWIG_Python_SetConstant(d, "TOPICLIST_CREATED",SWIG_From_int(static_cast< int >(BloombergLP::blpapi::TopicList::CREATED)));
-  SWIG_Python_SetConstant(d, "TOPICLIST_FAILURE",SWIG_From_int(static_cast< int >(BloombergLP::blpapi::TopicList::FAILURE)));
-  SWIG_Python_SetConstant(d, "RESOLUTIONLIST_UNRESOLVED",SWIG_From_int(static_cast< int >(BloombergLP::blpapi::ResolutionList::UNRESOLVED)));
-  SWIG_Python_SetConstant(d, "RESOLUTIONLIST_RESOLVED",SWIG_From_int(static_cast< int >(BloombergLP::blpapi::ResolutionList::RESOLVED)));
-  SWIG_Python_SetConstant(d, "RESOLUTIONLIST_RESOLUTION_FAILURE_BAD_SERVICE",SWIG_From_int(static_cast< int >(BloombergLP::blpapi::ResolutionList::RESOLUTION_FAILURE_BAD_SERVICE)));
-  SWIG_Python_SetConstant(d, "RESOLUTIONLIST_RESOLUTION_FAILURE_SERVICE_AUTHORIZATION_FAILED",SWIG_From_int(static_cast< int >(BloombergLP::blpapi::ResolutionList::RESOLUTION_FAILURE_SERVICE_AUTHORIZATION_FAILED)));
-  SWIG_Python_SetConstant(d, "RESOLUTIONLIST_RESOLUTION_FAILURE_BAD_TOPIC",SWIG_From_int(static_cast< int >(BloombergLP::blpapi::ResolutionList::RESOLUTION_FAILURE_BAD_TOPIC)));
-  SWIG_Python_SetConstant(d, "RESOLUTIONLIST_RESOLUTION_FAILURE_TOPIC_AUTHORIZATION_FAILED",SWIG_From_int(static_cast< int >(BloombergLP::blpapi::ResolutionList::RESOLUTION_FAILURE_TOPIC_AUTHORIZATION_FAILED)));
-  SWIG_Python_SetConstant(d, "MESSAGE_FRAGMENT_NONE",SWIG_From_int(static_cast< int >(BloombergLP::blpapi::Message::FRAGMENT_NONE)));
-  SWIG_Python_SetConstant(d, "MESSAGE_FRAGMENT_START",SWIG_From_int(static_cast< int >(BloombergLP::blpapi::Message::FRAGMENT_START)));
-  SWIG_Python_SetConstant(d, "MESSAGE_FRAGMENT_INTERMEDIATE",SWIG_From_int(static_cast< int >(BloombergLP::blpapi::Message::FRAGMENT_INTERMEDIATE)));
-  SWIG_Python_SetConstant(d, "MESSAGE_FRAGMENT_END",SWIG_From_int(static_cast< int >(BloombergLP::blpapi::Message::FRAGMENT_END)));
-  SWIG_Python_SetConstant(d, "MESSAGE_RECAPTYPE_NONE",SWIG_From_int(static_cast< int >(BloombergLP::blpapi::Message::RecapType::e_none)));
-  SWIG_Python_SetConstant(d, "MESSAGE_RECAPTYPE_SOLICITED",SWIG_From_int(static_cast< int >(BloombergLP::blpapi::Message::RecapType::e_solicited)));
-  SWIG_Python_SetConstant(d, "MESSAGE_RECAPTYPE_UNSOLICITED",SWIG_From_int(static_cast< int >(BloombergLP::blpapi::Message::RecapType::e_unsolicited)));
-  SWIG_Python_SetConstant(d, "ELEMENTDEFINITION_UNBOUNDED",SWIG_From_unsigned_SS_int(static_cast< unsigned int >(BLPAPI_ELEMENTDEFINITION_UNBOUNDED)));
-  SWIG_Python_SetConstant(d, "ELEMENT_INDEX_END",SWIG_From_size_t(static_cast< size_t >(BLPAPI_ELEMENT_INDEX_END)));
-  SWIG_Python_SetConstant(d, "SERVICEREGISTRATIONOPTIONS_PRIORITY_MEDIUM",SWIG_From_int(static_cast< int >(INT_MAX/2)));
-  SWIG_Python_SetConstant(d, "SERVICEREGISTRATIONOPTIONS_PRIORITY_HIGH",SWIG_From_int(static_cast< int >(INT_MAX)));
-  SWIG_Python_SetConstant(d, "CORRELATION_TYPE_UNSET",SWIG_From_int(static_cast< int >(0)));
-  SWIG_Python_SetConstant(d, "CORRELATION_TYPE_INT",SWIG_From_int(static_cast< int >(1)));
-  SWIG_Python_SetConstant(d, "CORRELATION_TYPE_POINTER",SWIG_From_int(static_cast< int >(2)));
-  SWIG_Python_SetConstant(d, "CORRELATION_TYPE_AUTOGEN",SWIG_From_int(static_cast< int >(3)));
-  SWIG_Python_SetConstant(d, "CORRELATION_MAX_CLASS_ID",SWIG_From_int(static_cast< int >(((1 << 16) -1))));
-  SWIG_Python_SetConstant(d, "MANAGEDPTR_COPY",SWIG_From_int(static_cast< int >(1)));
-  SWIG_Python_SetConstant(d, "MANAGEDPTR_DESTROY",SWIG_From_int(static_cast< int >((-1))));
-  SWIG_Python_SetConstant(d, "DATETIME_YEAR_PART",SWIG_From_int(static_cast< int >(0x1)));
-  SWIG_Python_SetConstant(d, "DATETIME_MONTH_PART",SWIG_From_int(static_cast< int >(0x2)));
-  SWIG_Python_SetConstant(d, "DATETIME_DAY_PART",SWIG_From_int(static_cast< int >(0x4)));
-  SWIG_Python_SetConstant(d, "DATETIME_OFFSET_PART",SWIG_From_int(static_cast< int >(0x8)));
-  SWIG_Python_SetConstant(d, "DATETIME_HOURS_PART",SWIG_From_int(static_cast< int >(0x10)));
-  SWIG_Python_SetConstant(d, "DATETIME_MINUTES_PART",SWIG_From_int(static_cast< int >(0x20)));
-  SWIG_Python_SetConstant(d, "DATETIME_SECONDS_PART",SWIG_From_int(static_cast< int >(0x40)));
-  SWIG_Python_SetConstant(d, "DATETIME_MILLISECONDS_PART",SWIG_From_int(static_cast< int >(0x80)));
-  SWIG_Python_SetConstant(d, "DATETIME_FRACSECONDS_PART",SWIG_From_int(static_cast< int >(0x80)));
-  SWIG_Python_SetConstant(d, "DATETIME_DATE_PART",SWIG_From_int(static_cast< int >((0x1|0x2|0x4))));
-  SWIG_Python_SetConstant(d, "DATETIME_TIME_PART",SWIG_From_int(static_cast< int >((0x10|0x20|0x40))));
-  SWIG_Python_SetConstant(d, "DATETIME_TIMEMILLI_PART",SWIG_From_int(static_cast< int >(((0x10|0x20|0x40)|0x80))));
-  SWIG_Python_SetConstant(d, "DATETIME_TIMEFRACSECONDS_PART",SWIG_From_int(static_cast< int >(((0x10|0x20|0x40)|0x80))));
-  SWIG_Python_SetConstant(d, "EVENTTYPE_ADMIN",SWIG_From_int(static_cast< int >(1)));
-  SWIG_Python_SetConstant(d, "EVENTTYPE_SESSION_STATUS",SWIG_From_int(static_cast< int >(2)));
-  SWIG_Python_SetConstant(d, "EVENTTYPE_SUBSCRIPTION_STATUS",SWIG_From_int(static_cast< int >(3)));
-  SWIG_Python_SetConstant(d, "EVENTTYPE_REQUEST_STATUS",SWIG_From_int(static_cast< int >(4)));
-  SWIG_Python_SetConstant(d, "EVENTTYPE_RESPONSE",SWIG_From_int(static_cast< int >(5)));
-  SWIG_Python_SetConstant(d, "EVENTTYPE_PARTIAL_RESPONSE",SWIG_From_int(static_cast< int >(6)));
-  SWIG_Python_SetConstant(d, "EVENTTYPE_SUBSCRIPTION_DATA",SWIG_From_int(static_cast< int >(8)));
-  SWIG_Python_SetConstant(d, "EVENTTYPE_SERVICE_STATUS",SWIG_From_int(static_cast< int >(9)));
-  SWIG_Python_SetConstant(d, "EVENTTYPE_TIMEOUT",SWIG_From_int(static_cast< int >(10)));
-  SWIG_Python_SetConstant(d, "EVENTTYPE_AUTHORIZATION_STATUS",SWIG_From_int(static_cast< int >(11)));
-  SWIG_Python_SetConstant(d, "EVENTTYPE_RESOLUTION_STATUS",SWIG_From_int(static_cast< int >(12)));
-  SWIG_Python_SetConstant(d, "EVENTTYPE_TOPIC_STATUS",SWIG_From_int(static_cast< int >(13)));
-  SWIG_Python_SetConstant(d, "EVENTTYPE_TOKEN_STATUS",SWIG_From_int(static_cast< int >(14)));
-  SWIG_Python_SetConstant(d, "EVENTTYPE_REQUEST",SWIG_From_int(static_cast< int >(15)));
-  SWIG_Python_SetConstant(d, "STATUS_ACTIVE",SWIG_From_int(static_cast< int >(0)));
-  SWIG_Python_SetConstant(d, "STATUS_DEPRECATED",SWIG_From_int(static_cast< int >(1)));
-  SWIG_Python_SetConstant(d, "STATUS_INACTIVE",SWIG_From_int(static_cast< int >(2)));
-  SWIG_Python_SetConstant(d, "STATUS_PENDING_DEPRECATION",SWIG_From_int(static_cast< int >(3)));
-  SWIG_Python_SetConstant(d, "SUBSCRIPTIONSTATUS_UNSUBSCRIBED",SWIG_From_int(static_cast< int >(0)));
-  SWIG_Python_SetConstant(d, "SUBSCRIPTIONSTATUS_SUBSCRIBING",SWIG_From_int(static_cast< int >(1)));
-  SWIG_Python_SetConstant(d, "SUBSCRIPTIONSTATUS_SUBSCRIBED",SWIG_From_int(static_cast< int >(2)));
-  SWIG_Python_SetConstant(d, "SUBSCRIPTIONSTATUS_CANCELLED",SWIG_From_int(static_cast< int >(3)));
-  SWIG_Python_SetConstant(d, "SUBSCRIPTIONSTATUS_PENDING_CANCELLATION",SWIG_From_int(static_cast< int >(4)));
-  SWIG_Python_SetConstant(d, "CLIENTMODE_AUTO",SWIG_From_int(static_cast< int >(0)));
-  SWIG_Python_SetConstant(d, "CLIENTMODE_DAPI",SWIG_From_int(static_cast< int >(1)));
-  SWIG_Python_SetConstant(d, "CLIENTMODE_SAPI",SWIG_From_int(static_cast< int >(2)));
-  SWIG_Python_SetConstant(d, "CLIENTMODE_COMPAT_33X",SWIG_From_int(static_cast< int >(16)));
-  SWIG_Python_SetConstant(d, "RESOLVEMODE_DONT_REGISTER_SERVICES",SWIG_From_int(static_cast< int >(0)));
-  SWIG_Python_SetConstant(d, "RESOLVEMODE_AUTO_REGISTER_SERVICES",SWIG_From_int(static_cast< int >(1)));
-  SWIG_Python_SetConstant(d, "SEATTYPE_INVALID_SEAT",SWIG_From_int(static_cast< int >(-1)));
-  SWIG_Python_SetConstant(d, "SEATTYPE_BPS",SWIG_From_int(static_cast< int >(0)));
-  SWIG_Python_SetConstant(d, "SEATTYPE_NONBPS",SWIG_From_int(static_cast< int >(1)));
-  SWIG_Python_SetConstant(d, "SERVICEREGISTRATIONOPTIONS_PRIORITY_LOW",SWIG_From_int(static_cast< int >(0)));
-  SWIG_Python_SetConstant(d, "REGISTRATIONPARTS_DEFAULT",SWIG_From_int(static_cast< int >(0x1)));
-  SWIG_Python_SetConstant(d, "REGISTRATIONPARTS_PUBLISHING",SWIG_From_int(static_cast< int >(0x2)));
-  SWIG_Python_SetConstant(d, "REGISTRATIONPARTS_OPERATIONS",SWIG_From_int(static_cast< int >(0x4)));
-  SWIG_Python_SetConstant(d, "REGISTRATIONPARTS_SUBSCRIBER_RESOLUTION",SWIG_From_int(static_cast< int >(0x8)));
-  SWIG_Python_SetConstant(d, "REGISTRATIONPARTS_PUBLISHER_RESOLUTION",SWIG_From_int(static_cast< int >(0x10)));
-  SWIG_Python_SetConstant(d, "DATATYPE_BOOL",SWIG_From_int(static_cast< int >(BLPAPI_DATATYPE_BOOL)));
-  SWIG_Python_SetConstant(d, "DATATYPE_CHAR",SWIG_From_int(static_cast< int >(BLPAPI_DATATYPE_CHAR)));
-  SWIG_Python_SetConstant(d, "DATATYPE_BYTE",SWIG_From_int(static_cast< int >(BLPAPI_DATATYPE_BYTE)));
-  SWIG_Python_SetConstant(d, "DATATYPE_INT32",SWIG_From_int(static_cast< int >(BLPAPI_DATATYPE_INT32)));
-  SWIG_Python_SetConstant(d, "DATATYPE_INT64",SWIG_From_int(static_cast< int >(BLPAPI_DATATYPE_INT64)));
-  SWIG_Python_SetConstant(d, "DATATYPE_FLOAT32",SWIG_From_int(static_cast< int >(BLPAPI_DATATYPE_FLOAT32)));
-  SWIG_Python_SetConstant(d, "DATATYPE_FLOAT64",SWIG_From_int(static_cast< int >(BLPAPI_DATATYPE_FLOAT64)));
-  SWIG_Python_SetConstant(d, "DATATYPE_STRING",SWIG_From_int(static_cast< int >(BLPAPI_DATATYPE_STRING)));
-  SWIG_Python_SetConstant(d, "DATATYPE_BYTEARRAY",SWIG_From_int(static_cast< int >(BLPAPI_DATATYPE_BYTEARRAY)));
-  SWIG_Python_SetConstant(d, "DATATYPE_DATE",SWIG_From_int(static_cast< int >(BLPAPI_DATATYPE_DATE)));
-  SWIG_Python_SetConstant(d, "DATATYPE_TIME",SWIG_From_int(static_cast< int >(BLPAPI_DATATYPE_TIME)));
-  SWIG_Python_SetConstant(d, "DATATYPE_DECIMAL",SWIG_From_int(static_cast< int >(BLPAPI_DATATYPE_DECIMAL)));
-  SWIG_Python_SetConstant(d, "DATATYPE_DATETIME",SWIG_From_int(static_cast< int >(BLPAPI_DATATYPE_DATETIME)));
-  SWIG_Python_SetConstant(d, "DATATYPE_ENUMERATION",SWIG_From_int(static_cast< int >(BLPAPI_DATATYPE_ENUMERATION)));
-  SWIG_Python_SetConstant(d, "DATATYPE_SEQUENCE",SWIG_From_int(static_cast< int >(BLPAPI_DATATYPE_SEQUENCE)));
-  SWIG_Python_SetConstant(d, "DATATYPE_CHOICE",SWIG_From_int(static_cast< int >(BLPAPI_DATATYPE_CHOICE)));
-  SWIG_Python_SetConstant(d, "DATATYPE_CORRELATION_ID",SWIG_From_int(static_cast< int >(BLPAPI_DATATYPE_CORRELATION_ID)));
-  SWIG_Python_SetConstant(d, "blpapi_Logging_SEVERITY_OFF",SWIG_From_int(static_cast< int >(blpapi_Logging_SEVERITY_OFF)));
-  SWIG_Python_SetConstant(d, "blpapi_Logging_SEVERITY_FATAL",SWIG_From_int(static_cast< int >(blpapi_Logging_SEVERITY_FATAL)));
-  SWIG_Python_SetConstant(d, "blpapi_Logging_SEVERITY_ERROR",SWIG_From_int(static_cast< int >(blpapi_Logging_SEVERITY_ERROR)));
-  SWIG_Python_SetConstant(d, "blpapi_Logging_SEVERITY_WARN",SWIG_From_int(static_cast< int >(blpapi_Logging_SEVERITY_WARN)));
-  SWIG_Python_SetConstant(d, "blpapi_Logging_SEVERITY_INFO",SWIG_From_int(static_cast< int >(blpapi_Logging_SEVERITY_INFO)));
-  SWIG_Python_SetConstant(d, "blpapi_Logging_SEVERITY_DEBUG",SWIG_From_int(static_cast< int >(blpapi_Logging_SEVERITY_DEBUG)));
-  SWIG_Python_SetConstant(d, "blpapi_Logging_SEVERITY_TRACE",SWIG_From_int(static_cast< int >(blpapi_Logging_SEVERITY_TRACE)));
-  SWIG_Python_SetConstant(d, "UNKNOWN_CLASS",SWIG_From_int(static_cast< int >(0x00000)));
-  SWIG_Python_SetConstant(d, "INVALIDSTATE_CLASS",SWIG_From_int(static_cast< int >(0x10000)));
-  SWIG_Python_SetConstant(d, "INVALIDARG_CLASS",SWIG_From_int(static_cast< int >(0x20000)));
-  SWIG_Python_SetConstant(d, "IOERROR_CLASS",SWIG_From_int(static_cast< int >(0x30000)));
-  SWIG_Python_SetConstant(d, "CNVERROR_CLASS",SWIG_From_int(static_cast< int >(0x40000)));
-  SWIG_Python_SetConstant(d, "BOUNDSERROR_CLASS",SWIG_From_int(static_cast< int >(0x50000)));
-  SWIG_Python_SetConstant(d, "NOTFOUND_CLASS",SWIG_From_int(static_cast< int >(0x60000)));
-  SWIG_Python_SetConstant(d, "FLDNOTFOUND_CLASS",SWIG_From_int(static_cast< int >(0x70000)));
-  SWIG_Python_SetConstant(d, "UNSUPPORTED_CLASS",SWIG_From_int(static_cast< int >(0x80000)));
-  SWIG_Python_SetConstant(d, "ERROR_UNKNOWN",SWIG_From_int(static_cast< int >((0x00000|1))));
-  SWIG_Python_SetConstant(d, "ERROR_ILLEGAL_ARG",SWIG_From_int(static_cast< int >((0x20000|2))));
-  SWIG_Python_SetConstant(d, "ERROR_ILLEGAL_ACCESS",SWIG_From_int(static_cast< int >((0x00000|3))));
-  SWIG_Python_SetConstant(d, "ERROR_INVALID_SESSION",SWIG_From_int(static_cast< int >((0x20000|4))));
-  SWIG_Python_SetConstant(d, "ERROR_DUPLICATE_CORRELATIONID",SWIG_From_int(static_cast< int >((0x20000|5))));
-  SWIG_Python_SetConstant(d, "ERROR_INTERNAL_ERROR",SWIG_From_int(static_cast< int >((0x00000|6))));
-  SWIG_Python_SetConstant(d, "ERROR_RESOLVE_FAILED",SWIG_From_int(static_cast< int >((0x30000|7))));
-  SWIG_Python_SetConstant(d, "ERROR_CONNECT_FAILED",SWIG_From_int(static_cast< int >((0x30000|8))));
-  SWIG_Python_SetConstant(d, "ERROR_ILLEGAL_STATE",SWIG_From_int(static_cast< int >((0x10000|9))));
-  SWIG_Python_SetConstant(d, "ERROR_CODEC_FAILURE",SWIG_From_int(static_cast< int >((0x00000|10))));
-  SWIG_Python_SetConstant(d, "ERROR_INDEX_OUT_OF_RANGE",SWIG_From_int(static_cast< int >((0x50000|11))));
-  SWIG_Python_SetConstant(d, "ERROR_INVALID_CONVERSION",SWIG_From_int(static_cast< int >((0x40000|12))));
-  SWIG_Python_SetConstant(d, "ERROR_ITEM_NOT_FOUND",SWIG_From_int(static_cast< int >((0x60000|13))));
-  SWIG_Python_SetConstant(d, "ERROR_IO_ERROR",SWIG_From_int(static_cast< int >((0x30000|14))));
-  SWIG_Python_SetConstant(d, "ERROR_CORRELATION_NOT_FOUND",SWIG_From_int(static_cast< int >((0x60000|15))));
-  SWIG_Python_SetConstant(d, "ERROR_SERVICE_NOT_FOUND",SWIG_From_int(static_cast< int >((0x60000|16))));
-  SWIG_Python_SetConstant(d, "ERROR_LOGON_LOOKUP_FAILED",SWIG_From_int(static_cast< int >((0x00000|17))));
-  SWIG_Python_SetConstant(d, "ERROR_DS_LOOKUP_FAILED",SWIG_From_int(static_cast< int >((0x00000|18))));
-  SWIG_Python_SetConstant(d, "ERROR_UNSUPPORTED_OPERATION",SWIG_From_int(static_cast< int >((0x80000|19))));
-  SWIG_Python_SetConstant(d, "ERROR_DS_PROPERTY_NOT_FOUND",SWIG_From_int(static_cast< int >((0x60000|20))));
+  SWIG_Python_SetConstant(d, "ELEMENTDEFINITION_UNBOUNDED",SWIG_From_unsigned_SS_int((unsigned int)(BLPAPI_ELEMENTDEFINITION_UNBOUNDED)));
+  SWIG_Python_SetConstant(d, "ELEMENT_INDEX_END",SWIG_From_size_t((size_t)(BLPAPI_ELEMENT_INDEX_END)));
+  SWIG_Python_SetConstant(d, "SERVICEREGISTRATIONOPTIONS_PRIORITY_MEDIUM",SWIG_From_int((int)(INT_MAX/2)));
+  SWIG_Python_SetConstant(d, "SERVICEREGISTRATIONOPTIONS_PRIORITY_HIGH",SWIG_From_int((int)(INT_MAX)));
+  SWIG_Python_SetConstant(d, "CORRELATION_TYPE_UNSET",SWIG_From_int((int)(0)));
+  SWIG_Python_SetConstant(d, "CORRELATION_TYPE_INT",SWIG_From_int((int)(1)));
+  SWIG_Python_SetConstant(d, "CORRELATION_TYPE_POINTER",SWIG_From_int((int)(2)));
+  SWIG_Python_SetConstant(d, "CORRELATION_TYPE_AUTOGEN",SWIG_From_int((int)(3)));
+  SWIG_Python_SetConstant(d, "CORRELATION_MAX_CLASS_ID",SWIG_From_int((int)(((1 << 16) -1))));
+  SWIG_Python_SetConstant(d, "MANAGEDPTR_COPY",SWIG_From_int((int)(1)));
+  SWIG_Python_SetConstant(d, "MANAGEDPTR_DESTROY",SWIG_From_int((int)((-1))));
+  SWIG_Python_SetConstant(d, "DATETIME_YEAR_PART",SWIG_From_int((int)(0x1)));
+  SWIG_Python_SetConstant(d, "DATETIME_MONTH_PART",SWIG_From_int((int)(0x2)));
+  SWIG_Python_SetConstant(d, "DATETIME_DAY_PART",SWIG_From_int((int)(0x4)));
+  SWIG_Python_SetConstant(d, "DATETIME_OFFSET_PART",SWIG_From_int((int)(0x8)));
+  SWIG_Python_SetConstant(d, "DATETIME_HOURS_PART",SWIG_From_int((int)(0x10)));
+  SWIG_Python_SetConstant(d, "DATETIME_MINUTES_PART",SWIG_From_int((int)(0x20)));
+  SWIG_Python_SetConstant(d, "DATETIME_SECONDS_PART",SWIG_From_int((int)(0x40)));
+  SWIG_Python_SetConstant(d, "DATETIME_MILLISECONDS_PART",SWIG_From_int((int)(0x80)));
+  SWIG_Python_SetConstant(d, "DATETIME_FRACSECONDS_PART",SWIG_From_int((int)(0x80)));
+  SWIG_Python_SetConstant(d, "DATETIME_DATE_PART",SWIG_From_int((int)((0x1|0x2|0x4))));
+  SWIG_Python_SetConstant(d, "DATETIME_TIME_PART",SWIG_From_int((int)((0x10|0x20|0x40))));
+  SWIG_Python_SetConstant(d, "DATETIME_TIMEMILLI_PART",SWIG_From_int((int)(((0x10|0x20|0x40)|0x80))));
+  SWIG_Python_SetConstant(d, "DATETIME_TIMEFRACSECONDS_PART",SWIG_From_int((int)(((0x10|0x20|0x40)|0x80))));
+  SWIG_Python_SetConstant(d, "EVENTTYPE_ADMIN",SWIG_From_int((int)(1)));
+  SWIG_Python_SetConstant(d, "EVENTTYPE_SESSION_STATUS",SWIG_From_int((int)(2)));
+  SWIG_Python_SetConstant(d, "EVENTTYPE_SUBSCRIPTION_STATUS",SWIG_From_int((int)(3)));
+  SWIG_Python_SetConstant(d, "EVENTTYPE_REQUEST_STATUS",SWIG_From_int((int)(4)));
+  SWIG_Python_SetConstant(d, "EVENTTYPE_RESPONSE",SWIG_From_int((int)(5)));
+  SWIG_Python_SetConstant(d, "EVENTTYPE_PARTIAL_RESPONSE",SWIG_From_int((int)(6)));
+  SWIG_Python_SetConstant(d, "EVENTTYPE_SUBSCRIPTION_DATA",SWIG_From_int((int)(8)));
+  SWIG_Python_SetConstant(d, "EVENTTYPE_SERVICE_STATUS",SWIG_From_int((int)(9)));
+  SWIG_Python_SetConstant(d, "EVENTTYPE_TIMEOUT",SWIG_From_int((int)(10)));
+  SWIG_Python_SetConstant(d, "EVENTTYPE_AUTHORIZATION_STATUS",SWIG_From_int((int)(11)));
+  SWIG_Python_SetConstant(d, "EVENTTYPE_RESOLUTION_STATUS",SWIG_From_int((int)(12)));
+  SWIG_Python_SetConstant(d, "EVENTTYPE_TOPIC_STATUS",SWIG_From_int((int)(13)));
+  SWIG_Python_SetConstant(d, "EVENTTYPE_TOKEN_STATUS",SWIG_From_int((int)(14)));
+  SWIG_Python_SetConstant(d, "EVENTTYPE_REQUEST",SWIG_From_int((int)(15)));
+  SWIG_Python_SetConstant(d, "STATUS_ACTIVE",SWIG_From_int((int)(0)));
+  SWIG_Python_SetConstant(d, "STATUS_DEPRECATED",SWIG_From_int((int)(1)));
+  SWIG_Python_SetConstant(d, "STATUS_INACTIVE",SWIG_From_int((int)(2)));
+  SWIG_Python_SetConstant(d, "STATUS_PENDING_DEPRECATION",SWIG_From_int((int)(3)));
+  SWIG_Python_SetConstant(d, "SUBSCRIPTIONSTATUS_UNSUBSCRIBED",SWIG_From_int((int)(0)));
+  SWIG_Python_SetConstant(d, "SUBSCRIPTIONSTATUS_SUBSCRIBING",SWIG_From_int((int)(1)));
+  SWIG_Python_SetConstant(d, "SUBSCRIPTIONSTATUS_SUBSCRIBED",SWIG_From_int((int)(2)));
+  SWIG_Python_SetConstant(d, "SUBSCRIPTIONSTATUS_CANCELLED",SWIG_From_int((int)(3)));
+  SWIG_Python_SetConstant(d, "SUBSCRIPTIONSTATUS_PENDING_CANCELLATION",SWIG_From_int((int)(4)));
+  SWIG_Python_SetConstant(d, "CLIENTMODE_AUTO",SWIG_From_int((int)(0)));
+  SWIG_Python_SetConstant(d, "CLIENTMODE_DAPI",SWIG_From_int((int)(1)));
+  SWIG_Python_SetConstant(d, "CLIENTMODE_SAPI",SWIG_From_int((int)(2)));
+  SWIG_Python_SetConstant(d, "CLIENTMODE_COMPAT_33X",SWIG_From_int((int)(16)));
+  SWIG_Python_SetConstant(d, "RESOLVEMODE_DONT_REGISTER_SERVICES",SWIG_From_int((int)(0)));
+  SWIG_Python_SetConstant(d, "RESOLVEMODE_AUTO_REGISTER_SERVICES",SWIG_From_int((int)(1)));
+  SWIG_Python_SetConstant(d, "SEATTYPE_INVALID_SEAT",SWIG_From_int((int)(-1)));
+  SWIG_Python_SetConstant(d, "SEATTYPE_BPS",SWIG_From_int((int)(0)));
+  SWIG_Python_SetConstant(d, "SEATTYPE_NONBPS",SWIG_From_int((int)(1)));
+  SWIG_Python_SetConstant(d, "SERVICEREGISTRATIONOPTIONS_PRIORITY_LOW",SWIG_From_int((int)(0)));
+  SWIG_Python_SetConstant(d, "REGISTRATIONPARTS_DEFAULT",SWIG_From_int((int)(0x1)));
+  SWIG_Python_SetConstant(d, "REGISTRATIONPARTS_PUBLISHING",SWIG_From_int((int)(0x2)));
+  SWIG_Python_SetConstant(d, "REGISTRATIONPARTS_OPERATIONS",SWIG_From_int((int)(0x4)));
+  SWIG_Python_SetConstant(d, "REGISTRATIONPARTS_SUBSCRIBER_RESOLUTION",SWIG_From_int((int)(0x8)));
+  SWIG_Python_SetConstant(d, "REGISTRATIONPARTS_PUBLISHER_RESOLUTION",SWIG_From_int((int)(0x10)));
+  SWIG_Python_SetConstant(d, "TOPICLIST_NOT_CREATED",SWIG_From_int((int)(0)));
+  SWIG_Python_SetConstant(d, "TOPICLIST_CREATED",SWIG_From_int((int)(1)));
+  SWIG_Python_SetConstant(d, "TOPICLIST_FAILURE",SWIG_From_int((int)(2)));
+  SWIG_Python_SetConstant(d, "RESOLUTIONLIST_UNRESOLVED",SWIG_From_int((int)(0)));
+  SWIG_Python_SetConstant(d, "RESOLUTIONLIST_RESOLVED",SWIG_From_int((int)(1)));
+  SWIG_Python_SetConstant(d, "RESOLUTIONLIST_RESOLUTION_FAILURE_BAD_SERVICE",SWIG_From_int((int)(2)));
+  SWIG_Python_SetConstant(d, "RESOLUTIONLIST_RESOLUTION_FAILURE_SERVICE_AUTHORIZATION_FAILED",SWIG_From_int((int)(3)));
+  SWIG_Python_SetConstant(d, "RESOLUTIONLIST_RESOLUTION_FAILURE_BAD_TOPIC",SWIG_From_int((int)(4)));
+  SWIG_Python_SetConstant(d, "RESOLUTIONLIST_RESOLUTION_FAILURE_TOPIC_AUTHORIZATION_FAILED",SWIG_From_int((int)(5)));
+  SWIG_Python_SetConstant(d, "MESSAGE_FRAGMENT_NONE",SWIG_From_int((int)(0)));
+  SWIG_Python_SetConstant(d, "MESSAGE_FRAGMENT_START",SWIG_From_int((int)(1)));
+  SWIG_Python_SetConstant(d, "MESSAGE_FRAGMENT_INTERMEDIATE",SWIG_From_int((int)(2)));
+  SWIG_Python_SetConstant(d, "MESSAGE_FRAGMENT_END",SWIG_From_int((int)(3)));
+  SWIG_Python_SetConstant(d, "MESSAGE_RECAPTYPE_NONE",SWIG_From_int((int)(0)));
+  SWIG_Python_SetConstant(d, "MESSAGE_RECAPTYPE_SOLICITED",SWIG_From_int((int)(1)));
+  SWIG_Python_SetConstant(d, "MESSAGE_RECAPTYPE_UNSOLICITED",SWIG_From_int((int)(2)));
+  SWIG_Python_SetConstant(d, "ZFPUTIL_REMOTE_8194",SWIG_From_int((int)(8194)));
+  SWIG_Python_SetConstant(d, "ZFPUTIL_REMOTE_8196",SWIG_From_int((int)(8196)));
+  SWIG_Python_SetConstant(d, "DATATYPE_BOOL",SWIG_From_int((int)(BLPAPI_DATATYPE_BOOL)));
+  SWIG_Python_SetConstant(d, "DATATYPE_CHAR",SWIG_From_int((int)(BLPAPI_DATATYPE_CHAR)));
+  SWIG_Python_SetConstant(d, "DATATYPE_BYTE",SWIG_From_int((int)(BLPAPI_DATATYPE_BYTE)));
+  SWIG_Python_SetConstant(d, "DATATYPE_INT32",SWIG_From_int((int)(BLPAPI_DATATYPE_INT32)));
+  SWIG_Python_SetConstant(d, "DATATYPE_INT64",SWIG_From_int((int)(BLPAPI_DATATYPE_INT64)));
+  SWIG_Python_SetConstant(d, "DATATYPE_FLOAT32",SWIG_From_int((int)(BLPAPI_DATATYPE_FLOAT32)));
+  SWIG_Python_SetConstant(d, "DATATYPE_FLOAT64",SWIG_From_int((int)(BLPAPI_DATATYPE_FLOAT64)));
+  SWIG_Python_SetConstant(d, "DATATYPE_STRING",SWIG_From_int((int)(BLPAPI_DATATYPE_STRING)));
+  SWIG_Python_SetConstant(d, "DATATYPE_BYTEARRAY",SWIG_From_int((int)(BLPAPI_DATATYPE_BYTEARRAY)));
+  SWIG_Python_SetConstant(d, "DATATYPE_DATE",SWIG_From_int((int)(BLPAPI_DATATYPE_DATE)));
+  SWIG_Python_SetConstant(d, "DATATYPE_TIME",SWIG_From_int((int)(BLPAPI_DATATYPE_TIME)));
+  SWIG_Python_SetConstant(d, "DATATYPE_DECIMAL",SWIG_From_int((int)(BLPAPI_DATATYPE_DECIMAL)));
+  SWIG_Python_SetConstant(d, "DATATYPE_DATETIME",SWIG_From_int((int)(BLPAPI_DATATYPE_DATETIME)));
+  SWIG_Python_SetConstant(d, "DATATYPE_ENUMERATION",SWIG_From_int((int)(BLPAPI_DATATYPE_ENUMERATION)));
+  SWIG_Python_SetConstant(d, "DATATYPE_SEQUENCE",SWIG_From_int((int)(BLPAPI_DATATYPE_SEQUENCE)));
+  SWIG_Python_SetConstant(d, "DATATYPE_CHOICE",SWIG_From_int((int)(BLPAPI_DATATYPE_CHOICE)));
+  SWIG_Python_SetConstant(d, "DATATYPE_CORRELATION_ID",SWIG_From_int((int)(BLPAPI_DATATYPE_CORRELATION_ID)));
+  SWIG_Python_SetConstant(d, "blpapi_Logging_SEVERITY_OFF",SWIG_From_int((int)(blpapi_Logging_SEVERITY_OFF)));
+  SWIG_Python_SetConstant(d, "blpapi_Logging_SEVERITY_FATAL",SWIG_From_int((int)(blpapi_Logging_SEVERITY_FATAL)));
+  SWIG_Python_SetConstant(d, "blpapi_Logging_SEVERITY_ERROR",SWIG_From_int((int)(blpapi_Logging_SEVERITY_ERROR)));
+  SWIG_Python_SetConstant(d, "blpapi_Logging_SEVERITY_WARN",SWIG_From_int((int)(blpapi_Logging_SEVERITY_WARN)));
+  SWIG_Python_SetConstant(d, "blpapi_Logging_SEVERITY_INFO",SWIG_From_int((int)(blpapi_Logging_SEVERITY_INFO)));
+  SWIG_Python_SetConstant(d, "blpapi_Logging_SEVERITY_DEBUG",SWIG_From_int((int)(blpapi_Logging_SEVERITY_DEBUG)));
+  SWIG_Python_SetConstant(d, "blpapi_Logging_SEVERITY_TRACE",SWIG_From_int((int)(blpapi_Logging_SEVERITY_TRACE)));
+  SWIG_Python_SetConstant(d, "UNKNOWN_CLASS",SWIG_From_int((int)(0x00000)));
+  SWIG_Python_SetConstant(d, "INVALIDSTATE_CLASS",SWIG_From_int((int)(0x10000)));
+  SWIG_Python_SetConstant(d, "INVALIDARG_CLASS",SWIG_From_int((int)(0x20000)));
+  SWIG_Python_SetConstant(d, "IOERROR_CLASS",SWIG_From_int((int)(0x30000)));
+  SWIG_Python_SetConstant(d, "CNVERROR_CLASS",SWIG_From_int((int)(0x40000)));
+  SWIG_Python_SetConstant(d, "BOUNDSERROR_CLASS",SWIG_From_int((int)(0x50000)));
+  SWIG_Python_SetConstant(d, "NOTFOUND_CLASS",SWIG_From_int((int)(0x60000)));
+  SWIG_Python_SetConstant(d, "FLDNOTFOUND_CLASS",SWIG_From_int((int)(0x70000)));
+  SWIG_Python_SetConstant(d, "UNSUPPORTED_CLASS",SWIG_From_int((int)(0x80000)));
+  SWIG_Python_SetConstant(d, "ERROR_UNKNOWN",SWIG_From_int((int)((0x00000|1))));
+  SWIG_Python_SetConstant(d, "ERROR_ILLEGAL_ARG",SWIG_From_int((int)((0x20000|2))));
+  SWIG_Python_SetConstant(d, "ERROR_ILLEGAL_ACCESS",SWIG_From_int((int)((0x00000|3))));
+  SWIG_Python_SetConstant(d, "ERROR_INVALID_SESSION",SWIG_From_int((int)((0x20000|4))));
+  SWIG_Python_SetConstant(d, "ERROR_DUPLICATE_CORRELATIONID",SWIG_From_int((int)((0x20000|5))));
+  SWIG_Python_SetConstant(d, "ERROR_INTERNAL_ERROR",SWIG_From_int((int)((0x00000|6))));
+  SWIG_Python_SetConstant(d, "ERROR_RESOLVE_FAILED",SWIG_From_int((int)((0x30000|7))));
+  SWIG_Python_SetConstant(d, "ERROR_CONNECT_FAILED",SWIG_From_int((int)((0x30000|8))));
+  SWIG_Python_SetConstant(d, "ERROR_ILLEGAL_STATE",SWIG_From_int((int)((0x10000|9))));
+  SWIG_Python_SetConstant(d, "ERROR_CODEC_FAILURE",SWIG_From_int((int)((0x00000|10))));
+  SWIG_Python_SetConstant(d, "ERROR_INDEX_OUT_OF_RANGE",SWIG_From_int((int)((0x50000|11))));
+  SWIG_Python_SetConstant(d, "ERROR_INVALID_CONVERSION",SWIG_From_int((int)((0x40000|12))));
+  SWIG_Python_SetConstant(d, "ERROR_ITEM_NOT_FOUND",SWIG_From_int((int)((0x60000|13))));
+  SWIG_Python_SetConstant(d, "ERROR_IO_ERROR",SWIG_From_int((int)((0x30000|14))));
+  SWIG_Python_SetConstant(d, "ERROR_CORRELATION_NOT_FOUND",SWIG_From_int((int)((0x60000|15))));
+  SWIG_Python_SetConstant(d, "ERROR_SERVICE_NOT_FOUND",SWIG_From_int((int)((0x60000|16))));
+  SWIG_Python_SetConstant(d, "ERROR_LOGON_LOOKUP_FAILED",SWIG_From_int((int)((0x00000|17))));
+  SWIG_Python_SetConstant(d, "ERROR_DS_LOOKUP_FAILED",SWIG_From_int((int)((0x00000|18))));
+  SWIG_Python_SetConstant(d, "ERROR_UNSUPPORTED_OPERATION",SWIG_From_int((int)((0x80000|19))));
+  SWIG_Python_SetConstant(d, "ERROR_DS_PROPERTY_NOT_FOUND",SWIG_From_int((int)((0x60000|20))));
   
   /* Initialize threading */
   SWIG_PYTHON_INITIALIZE_THREADS;

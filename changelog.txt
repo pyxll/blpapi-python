@@ -1,3 +1,44 @@
+Version 3.14.0:
+===============
+- Improved usage of network bandwidth for snapshot requests
+    Optimized the network bandwidth usage between endpoints and Bloomberg data
+    centers for snapshot requests. Customers can request to disable the
+    optimization by setting the 'bandwidthSaveModeDisabled' session option.
+
+- Stability and performance improvements
+
+Version 3.13.1:
+===============
+- Conversions to string using print helpers ignore null-terminators
+	Previously, when converting an e.g., Element to string explicitly,
+	or when printing it, null-terminators embedded in strings
+	would cause the resulting string to be truncated to the first one.
+
+- Format docstrings to be rendered by the Sphinx documentation generator
+- Stability and performance improvements
+
+Version 3.13.0:
+===============
+- Automated network configuration for ZFP over leased lines
+    Allow customers that leverage leased lines/routers for Bloomberg services
+    (such as existing Bloomberg terminals) to use this infrastructure to
+    connect their applications to Zero Foot-Print (ZFP) instances.
+
+    A new utility class, 'blpapi.ZfpUtil', can be used to create a
+    'SessionOptions' object with the appropriate servers. Applications can
+    update the options, including authorization settings, but should not
+    change the servers.
+
+    Added a new example ZfpOverLeasedLinesSessionExample.py to demonstrate
+    how to create a session over ZFP leased lines.
+
+- Stability and performance improvements
+
+Version 3.12.3:
+===============
+- Improve error reporting on failure to load the blpapi package
+- Remove dependency on the C++ runtime
+
 Version 3.12.2:
 ===============
 - Stability and performance improvements
@@ -23,7 +64,7 @@ Version 3.11.0:
 Version 3.10.0:
 ===============
 - Documentation change
-	Clarify the meaning of integer priorities in 'ProviderSession'. Greater 
+	Clarify the meaning of integer priorities in 'ProviderSession'. Greater
 	values indicate higher priorities.
 
 - Add support for 3.10 features

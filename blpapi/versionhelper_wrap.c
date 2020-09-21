@@ -16,30 +16,6 @@
 #define SWIG_PYTHON_THREADS
 #define SWIG_PYTHON_DIRECTOR_NO_VTABLE
 
-
-#ifdef __cplusplus
-/* SwigValueWrapper is described in swig.swg */
-template<typename T> class SwigValueWrapper {
-  struct SwigMovePointer {
-    T *ptr;
-    SwigMovePointer(T *p) : ptr(p) { }
-    ~SwigMovePointer() { delete ptr; }
-    SwigMovePointer& operator=(SwigMovePointer& rhs) { T* oldptr = ptr; ptr = 0; delete oldptr; ptr = rhs.ptr; rhs.ptr = 0; return *this; }
-  } pointer;
-  SwigValueWrapper& operator=(const SwigValueWrapper<T>& rhs);
-  SwigValueWrapper(const SwigValueWrapper<T>& rhs);
-public:
-  SwigValueWrapper() : pointer(0) { }
-  SwigValueWrapper& operator=(const T& t) { SwigMovePointer tmp(new T(t)); pointer = tmp; return *this; }
-  operator T&() const { return *pointer.ptr; }
-  T *operator&() { return pointer.ptr; }
-};
-
-template <typename T> T SwigValueInit() {
-  return T();
-}
-#endif
-
 /* -----------------------------------------------------------------------------
  *  This section contains generic SWIG labels for method/variable
  *  declarations/attributes, and other compiler dependent labels.
@@ -443,6 +419,7 @@ SWIG_TypeCheck(const char *c, swig_type_info *ty) {
     swig_cast_info *iter = ty->cast;
     while (iter) {
       if (strcmp(iter->type->name, c) == 0) {
+#if 0
         if (iter == ty->cast)
           return iter;
         /* Move iter to the top of the linked list */
@@ -453,6 +430,7 @@ SWIG_TypeCheck(const char *c, swig_type_info *ty) {
         iter->prev = 0;
         if (ty->cast) ty->cast->prev = iter;
         ty->cast = iter;
+#endif
         return iter;
       }
       iter = iter->next;
@@ -470,6 +448,7 @@ SWIG_TypeCheckStruct(swig_type_info *from, swig_type_info *ty) {
     swig_cast_info *iter = ty->cast;
     while (iter) {
       if (iter->type == from) {
+#if 0
         if (iter == ty->cast)
           return iter;
         /* Move iter to the top of the linked list */
@@ -480,6 +459,7 @@ SWIG_TypeCheckStruct(swig_type_info *from, swig_type_info *ty) {
         iter->prev = 0;
         if (ty->cast) ty->cast->prev = iter;
         ty->cast = iter;
+#endif
         return iter;
       }
       iter = iter->next;
@@ -3004,12 +2984,10 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_BloombergLP__blpapi__VersionInfo swig_types[0]
-#define SWIGTYPE_p_char swig_types[1]
-#define SWIGTYPE_p_int swig_types[2]
-#define SWIGTYPE_p_std__ostream swig_types[3]
-static swig_type_info *swig_types[5];
-static swig_module_info swig_module = {swig_types, 4, 0, 0, 0, 0};
+#define SWIGTYPE_p_char swig_types[0]
+#define SWIGTYPE_p_int swig_types[1]
+static swig_type_info *swig_types[3];
+static swig_module_info swig_module = {swig_types, 2, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3037,81 +3015,8 @@ static swig_module_info swig_module = {swig_types, 4, 0, 0, 0, 0};
 #define SWIG_VERSION SWIGVERSION
 
 
-#define SWIG_as_voidptr(a) const_cast< void * >(static_cast< const void * >(a)) 
-#define SWIG_as_voidptrptr(a) ((void)SWIG_as_voidptr(*a),reinterpret_cast< void** >(a)) 
-
-
-#include <stdexcept>
-
-
-namespace swig {
-  class SwigPtr_PyObject {
-  protected:
-    PyObject *_obj;
-
-  public:
-    SwigPtr_PyObject() :_obj(0)
-    {
-    }
-
-    SwigPtr_PyObject(const SwigPtr_PyObject& item) : _obj(item._obj)
-    {
-      SWIG_PYTHON_THREAD_BEGIN_BLOCK;
-      Py_XINCREF(_obj);      
-      SWIG_PYTHON_THREAD_END_BLOCK;
-    }
-    
-    SwigPtr_PyObject(PyObject *obj, bool initial_ref = true) :_obj(obj)
-    {
-      if (initial_ref) {
-        SWIG_PYTHON_THREAD_BEGIN_BLOCK;
-        Py_XINCREF(_obj);
-        SWIG_PYTHON_THREAD_END_BLOCK;
-      }
-    }
-    
-    SwigPtr_PyObject & operator=(const SwigPtr_PyObject& item) 
-    {
-      SWIG_PYTHON_THREAD_BEGIN_BLOCK;
-      Py_XINCREF(item._obj);
-      Py_XDECREF(_obj);
-      _obj = item._obj;
-      SWIG_PYTHON_THREAD_END_BLOCK;
-      return *this;      
-    }
-    
-    ~SwigPtr_PyObject() 
-    {
-      SWIG_PYTHON_THREAD_BEGIN_BLOCK;
-      Py_XDECREF(_obj);
-      SWIG_PYTHON_THREAD_END_BLOCK;
-    }
-    
-    operator PyObject *() const
-    {
-      return _obj;
-    }
-
-    PyObject *operator->() const
-    {
-      return _obj;
-    }
-  };
-}
-
-
-namespace swig {
-  struct SwigVar_PyObject : SwigPtr_PyObject {
-    SwigVar_PyObject(PyObject* obj = 0) : SwigPtr_PyObject(obj, false) { }
-    
-    SwigVar_PyObject & operator = (PyObject* obj)
-    {
-      Py_XDECREF(_obj);
-      _obj = obj;
-      return *this;      
-    }
-  };
-}
+#define SWIG_as_voidptr(a) (void *)((const void *)(a)) 
+#define SWIG_as_voidptrptr(a) ((void)SWIG_as_voidptr(*a),(void**)(a)) 
 
 
 #include "blpapi_versioninfo.h"
@@ -3144,20 +3049,20 @@ SWIG_FromCharPtrAndSize(const char* carray, size_t size)
     if (size > INT_MAX) {
       swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
       return pchar_descriptor ? 
-	SWIG_InternalNewPointerObj(const_cast< char * >(carray), pchar_descriptor, 0) : SWIG_Py_Void();
+	SWIG_InternalNewPointerObj((char *)(carray), pchar_descriptor, 0) : SWIG_Py_Void();
     } else {
 #if PY_VERSION_HEX >= 0x03000000
 #if defined(SWIG_PYTHON_STRICT_BYTE_CHAR)
-      return PyBytes_FromStringAndSize(carray, static_cast< Py_ssize_t >(size));
+      return PyBytes_FromStringAndSize(carray, (Py_ssize_t)(size));
 #else
 #if PY_VERSION_HEX >= 0x03010000
-      return PyUnicode_DecodeUTF8(carray, static_cast< Py_ssize_t >(size), "surrogateescape");
+      return PyUnicode_DecodeUTF8(carray, (Py_ssize_t)(size), "surrogateescape");
 #else
-      return PyUnicode_FromStringAndSize(carray, static_cast< Py_ssize_t >(size));
+      return PyUnicode_FromStringAndSize(carray, (Py_ssize_t)(size));
 #endif
 #endif
 #else
-      return PyString_FromStringAndSize(carray, static_cast< Py_ssize_t >(size));
+      return PyString_FromStringAndSize(carray, (Py_ssize_t)(size));
 #endif
     }
   } else {
@@ -3248,80 +3153,30 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap___lshift__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  std::ostream *arg1 = 0 ;
-  BloombergLP::blpapi::VersionInfo *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  std::ostream *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:__lshift__",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_std__ostream,  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "__lshift__" "', argument " "1"" of type '" "std::ostream &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "__lshift__" "', argument " "1"" of type '" "std::ostream &""'"); 
-  }
-  arg1 = reinterpret_cast< std::ostream * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_BloombergLP__blpapi__VersionInfo,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "__lshift__" "', argument " "2"" of type '" "BloombergLP::blpapi::VersionInfo const &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "__lshift__" "', argument " "2"" of type '" "BloombergLP::blpapi::VersionInfo const &""'"); 
-  }
-  arg2 = reinterpret_cast< BloombergLP::blpapi::VersionInfo * >(argp2);
-  {
-    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-    result = (std::ostream *) &BloombergLP::blpapi::operator <<(*arg1,(BloombergLP::blpapi::VersionInfo const &)*arg2);
-    SWIG_PYTHON_THREAD_END_ALLOW;
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__ostream, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 static PyMethodDef SwigMethods[] = {
 	 { (char *)"SWIG_PyInstanceMethod_New", (PyCFunction)SWIG_PyInstanceMethod_New, METH_O, NULL},
 	 { (char *)"blpapi_getVersionInfo", _wrap_blpapi_getVersionInfo, METH_VARARGS, NULL},
 	 { (char *)"blpapi_getVersionIdentifier", _wrap_blpapi_getVersionIdentifier, METH_VARARGS, NULL},
-	 { (char *)"__lshift__", _wrap___lshift__, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
-static swig_type_info _swigt__p_BloombergLP__blpapi__VersionInfo = {"_p_BloombergLP__blpapi__VersionInfo", "BloombergLP::blpapi::VersionInfo *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_int = {"_p_int", "int *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__ostream = {"_p_std__ostream", "std::ostream *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
-  &_swigt__p_BloombergLP__blpapi__VersionInfo,
   &_swigt__p_char,
   &_swigt__p_int,
-  &_swigt__p_std__ostream,
 };
 
-static swig_cast_info _swigc__p_BloombergLP__blpapi__VersionInfo[] = {  {&_swigt__p_BloombergLP__blpapi__VersionInfo, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_int[] = {  {&_swigt__p_int, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__ostream[] = {  {&_swigt__p_std__ostream, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
-  _swigc__p_BloombergLP__blpapi__VersionInfo,
   _swigc__p_char,
   _swigc__p_int,
-  _swigc__p_std__ostream,
 };
 
 
